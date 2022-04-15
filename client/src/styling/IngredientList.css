@@ -1,0 +1,8 @@
+.ingredient-list-container {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  border: 1px solid salmon;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+}

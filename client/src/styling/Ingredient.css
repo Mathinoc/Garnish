@@ -1,0 +1,14 @@
+.ingredient-detail-container {
+  height: auto;
+  width: 100px;
+  border: 1px solid purple;
+  /* margin-bottom: auto; */
+}
+.ingredient-detail-container img {
+  width: auto;
+  max-width: 100%;
+  height: 50%;
+}
+.ingredient-detail-container p {
+  margin: 0;
+}

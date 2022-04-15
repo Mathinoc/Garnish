@@ -1,0 +1,7 @@
+.recipe-list-container {
+  padding: 5vh 10vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}

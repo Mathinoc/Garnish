@@ -1,9 +1,10 @@
 import './App.css';
-import { Outlet, Link } from "react-router-dom";
+//import { Outlet, Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import RecipeList from './components/RecipeList';
 import LogIn from './components/LogIn';
+import RecipeDetail from './components/RecipeDetail';
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <BrowserRouter>
         <Header />
           <Routes>
-            <Route path="/" element={<RecipeList />} />
+            <Route path="/" element={<RecipeList number={10}/>} />
             <Route path="/login" element={<LogIn />} />
+            <Route path="/:recipeId" element={<RecipeDetail />} />
           </Routes>
 
         {/* <Outlet /> */}

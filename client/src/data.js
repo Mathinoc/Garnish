@@ -53528,6 +53528,8 @@ let recipeTemplate = {
   "originalId": null
 }
 
+
+
 let recipeBulkLength = recipeBulk.length;
 export function getRandomRecipes(number) {
   let startPoint = Math.round(Math.random()*(recipeBulkLength-1));
@@ -53545,4 +53547,12 @@ export function getRandomRecipes(number) {
     result.push(recipeBulk.recipes[i])
   }
   return result
+}
+export function getRecipeById (id) {
+  for (let recipe of recipeBulk.recipes) {
+    if(recipe.id === id ) {
+      // console.log("recipe", typeof recipe)
+      return recipe
+    }
+  }
 }

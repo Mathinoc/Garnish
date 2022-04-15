@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './../styling/RecipeView.css';
 
 export default function RecipeView({ recipe }) {
   return (
