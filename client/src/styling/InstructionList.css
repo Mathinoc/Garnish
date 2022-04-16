@@ -1,0 +1,10 @@
+.instructions-container {
+  text-align: left;
+  padding: 0 max(12px, 2vw);
+  border: 1px solid pink;
+  margin-bottom: 40px;
+}
+.instruction h3{
+  text-transform: uppercase;
+  font-weight: 500;
+}

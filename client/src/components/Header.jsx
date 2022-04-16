@@ -12,8 +12,8 @@ export default function Header() {
         <button>filter</button>
       </div>
       <nav>
-        {/* <Link to="/signUp"><button className="btn sign-up">Sign up</button></Link> */}
-        <Link to="/logIn"><p className="btn log-in">Log in</p></Link>
+        <Link to="/parse"><button className="btn parse">Parse</button></Link>
+        <Link to="/logIn"><button className="btn log-in">Log in</button></Link>
       </nav>
     </div>
   )

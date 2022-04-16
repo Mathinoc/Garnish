@@ -2,12 +2,13 @@
   --element-radius: 15px;
 }
 .recipe-detail-container {
-  margin: 4vh auto;
+  margin: 4vh 15vw;
   border-radius: var(--element-radius);
-  width: 60vw;
+  /* padding: 5vh 10vw; */
+  /* width: 60vw; */
+  /* margin-left: auto;
+  margin-right: auto; */
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
   border: 1px solid blueviolet
 }
 

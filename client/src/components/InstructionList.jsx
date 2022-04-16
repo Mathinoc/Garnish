@@ -1,5 +1,6 @@
 import React from 'react';
 import Instruction from './Instruction';
+import './../styling/InstructionList.css';
 
 export default function InstructionList({instructions}) {
   return (
