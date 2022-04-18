@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import './../styling/Header.css';
+import './../styling/Header.scss';
+import logo from './../images/garnish-256px.png';
 
 export default function Header() {
   return (
     <div className="header">
-      <Link to="/">Garnish</Link>
+        <Link to="/" id='menu'><img src={logo} alt="leaf" /><p> Garnish</p></Link>
       <div className='search-bar'>
         <button>search</button>
         <input placeholder="Search..." />

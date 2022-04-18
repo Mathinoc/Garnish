@@ -4,7 +4,7 @@ import './../styling/RecipeView.css';
 export default function RecipeView({ recipe }) {
   return (
     <div className="single-recipe-container">
-      <img src={recipe.image} />
+      <img src={recipe.image} alt="image of food"/>
       <p>{recipe.title}</p>
     </div>
   )
