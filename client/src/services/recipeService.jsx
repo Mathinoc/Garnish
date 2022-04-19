@@ -8,6 +8,15 @@ export function getRandomRecipes (number) {
   return getRandomRecipes(number)
 }
 
+//work in progress
+export function getSearchResults () {
+
+}
+
+
+
+
+// Work in progress
 export function getParsedRecipe (url) {
   return fetch(parseUrl, {
     method: 'POST',

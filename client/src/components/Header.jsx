@@ -4,13 +4,20 @@ import './../styling/Header.scss';
 import logo from './../images/garnish-256px.png';
 
 export default function Header() {
+
+  let searchInput = React.createRef();
+
+  function handleClick() {
+    console.log(searchInput.current.value)
+  }
+
   return (
     <div className="header">
         <Link to="/" id='menu'><img src={logo} alt="leaf" /><p> Garnish</p></Link>
       <div className='search-bar'>
-        <button>search</button>
-        <input placeholder="Search..." />
-        <button>filter</button>
+        <button onClick={handleClick} ><i className="bi bi-search"></i></button>
+        <input ref={searchInput} placeholder="Search..." />
+        <button><i className="bi bi-sliders"></i></button>
       </div>
       <nav>
         <Link to="/parse"><button className="btn parse">Parse</button></Link>

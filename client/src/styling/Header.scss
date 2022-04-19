@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Karla&family=Nunito+Sans:ital,wght@1,200&family=Space+Mono&display=swap");
-
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 :root {
   --head-color1: #F5D6BA ;
   --head-color2: #ACC3A6;
@@ -38,8 +38,10 @@ a img {
   }
 }
 
+
+
 .search-bar{
-  border: 2px solid var(--head-color3);
+  border: 1px solid var(--head-color3);
   border-radius: 30px;
   display: flex;
   gap: 10px;
@@ -51,14 +53,20 @@ a img {
   cursor: pointer;
   padding: 0;
 }
+.search-bar i {
+  font-size: 1rem;
+}
 .search-bar input{
   border: none;
   min-width: 150px;
-  width: 20vw;
+  width: 30vw;
 }
 .search-bar input:focus-visible {
   outline: none;
 }
+
+
+
 nav {
   display: flex;
   flex-wrap: nowrap;
