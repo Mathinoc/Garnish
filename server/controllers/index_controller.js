@@ -1,4 +1,4 @@
-import recipeDataScraper from 'recipe-data-scraper';
+//import recipeDataScraper from 'recipe-data-scraper';
 
 async function parseRecipe (ctx) {
   try {

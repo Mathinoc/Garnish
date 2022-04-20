@@ -1,1 +1,2 @@
-.env.json
+server.env
+client.server

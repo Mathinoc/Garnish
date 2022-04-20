@@ -1,6 +1,17 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh
 }
 /* body {
   background-color: rgba(198, 192, 159, 0.084);
 } */
+
+.body-container {
+  flex: 1;
+  background-color: aquamarine;
+  padding: 5vh 10vw;
+  /* background-color: #fbfbfb; */
+
+}
