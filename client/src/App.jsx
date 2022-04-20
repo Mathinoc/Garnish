@@ -7,8 +7,6 @@ import LogIn from './components/LogIn';
 import RecipeDetail from './components/RecipeDetail';
 import ParsePage from './components/ParsePage';
 import Footer from "./components/Footer";
-import scrollToTop from './utils/scrollToTop';
-import ScrollToTop from './utils/scrollToTop';
 
 function App() {
   return (
