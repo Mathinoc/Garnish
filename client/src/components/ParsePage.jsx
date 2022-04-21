@@ -1,7 +1,7 @@
 import React from 'react';
-const axios = require("axios");
-const cheerio = require("cheerio");
-const fs = require('fs');
+// const axios = require("axios");
+// const cheerio = require("cheerio");
+// const fs = require('fs');
 // import fs from 'fs';
 
 export default function ParsePage() {
@@ -40,29 +40,29 @@ let fetchedData;
 
 
 //! API scraper - works
-    const options = {
-      token: "6972410233AEC621EA604A5FE4166BBB",
-      url: "https://www.starwars.com/news",
-    };
+    // const options = {
+    //   token: "6972410233AEC621EA604A5FE4166BBB",
+    //   url: "https://www.starwars.com/news",
+    // };
     
-    axios.post("https://api.scraperbox.com/scrape", options)
-    .then((response) => {
-      let $ = cheerio.load(response.data);
-      let articles = [];
+    // axios.post("https://api.scraperbox.com/scrape", options)
+    // .then((response) => {
+    //   let $ = cheerio.load(response.data);
+    //   let articles = [];
 
-      $('.news-articles li').each((index, element) => {
-          articles.push({
-              title: $(element).find('h2').text().trim()
-          });
-      });
+    //   $('.news-articles li').each((index, element) => {
+    //       articles.push({
+    //           title: $(element).find('h2').text().trim()
+    //       });
+    //   });
 
-      fs.writeFile('./articles.json', JSON.stringify(articles), (error) => {
-          if (error) throw error;
-      })
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+    //   fs.writeFile('./articles.json', JSON.stringify(articles), (error) => {
+    //       if (error) throw error;
+    //   })
+    // })
+    // .catch((error) => {
+    //     console.log(error);
+    // });
 
 
 

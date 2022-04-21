@@ -1,5 +1,32 @@
 .footer-container {
   background-color: white;
-  min-height: 80px;
-  border: 1px solid blue;
+  min-height: 60px;
+  /* border: 1px solid blue; */
+  padding: 10px 0px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.spoonacular {
+  min-height: 0;
+  display: flex;
+  gap: 15px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+}
+.spoonacular img {
+  height: 40px;
+}
+.spoonacular p{
+  margin: 0;
+  font-size: 12px;
+  font-style: italic;
+}
+.spoonacular a {
+  cursor: pointer;
+  color: grey;
+  text-decoration: none;
+  text-decoration: underline;
 }

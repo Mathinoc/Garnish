@@ -1,10 +1,12 @@
-const Router = require('koa-router');
-const { parseRecipe } = require('./controllers/index_controller.js');
+const { Router } = require('express');
+const { randomRecipes, recipeById, similarRecipes } = require('./controllers/index_controller.js');
 
-const router = new Router();
+const router = Router();
 
-router.get('/parse', parseRecipe);
-// router.post('/message', message.post);
-// router.delete('/delete', message.delMessage);
+router
+.post('/recipes', randomRecipes)
+.post('/recipe/:id', recipeById)
+.post('/similar-recipe/:id', similarRecipes)
+// router.delete('/delete', message.delMessage)
 
 module.exports = router;

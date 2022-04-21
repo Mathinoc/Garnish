@@ -53548,7 +53548,9 @@ export function getRandomRecipes(number) {
   }
   return result
 }
-export function getRecipeById (id) {
+
+
+export function getRecipeByIdData (id) {
   for (let recipe of recipeBulk.recipes) {
     if(recipe.id === id ) {
       // console.log("recipe", typeof recipe)
