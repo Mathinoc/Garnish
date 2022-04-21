@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './../styling/Header.scss';
 import logo from './../images/garnish-256px.png';
 import { useNavigate } from "react-router-dom";
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 
@@ -11,8 +11,8 @@ export default function Header({ searchSet }) {
 
   const navigate = useNavigate();
   let searchInput = React.createRef();
-  const [open, setOpen] = useState(false)
-
+  const [open, setOpen] = useState(false);
+  const condition = searchSet.searchRecipe.length > 0 || searchSet.vegetarian === true || searchSet.gluten === true || searchSet.dairy === true;
 
   function updateSearchVariable() {
     const inputField = searchInput.current.value;
@@ -23,8 +23,9 @@ export default function Header({ searchSet }) {
   function pressEnter(event) {
     if (event.key === 'Enter') {
       updateSearchVariable();
-      console.log('event', event.key)
-      navigate("/search");
+        if (condition)
+        navigate("/search");
+        setOpen(false)
     }
   }
 
@@ -32,23 +33,24 @@ export default function Header({ searchSet }) {
     searchSet.setVegetarian(!searchSet.vegetarian);
   }
   function glutenToggle(e) {
-    searchSet.setGlutenFree(!searchSet.glutenFree);
+    searchSet.setGlutenFree(!searchSet.gluten);
   }
   function dairyToggle(e) {
-    searchSet.setDairyFree(!searchSet.dairyFree);
+    searchSet.setDairyFree(!searchSet.dairy);
   }
   function handleSubmit() {
-    setOpen(false)
+    setOpen(!open)
   }
-
 
   return (
     <div className="header">
       <Link to="/" id='menu'><img src={logo} alt="leaf" /><p> Garnish</p></Link>
       
       <div className='search-bar'>
-
-        <Link to="/search"><button onClick={updateSearchVariable}><i className="bi bi-search"></i></button></Link>
+        {condition ?
+          <Link to="/search"><button onClick={updateSearchVariable}><i className="bi bi-search"></i></button></Link>
+          : <button onClick={updateSearchVariable}><i className="bi bi-search"></i></button>
+        }
 
         <input onKeyPress={pressEnter} ref={searchInput} placeholder="Search..." />
 
@@ -61,14 +63,14 @@ export default function Header({ searchSet }) {
             classNames="menu-primary"
           >
             <div className="dropdown-menu">
-              <form className="dropdown-form" onSubmit={handleSubmit}>
+              <form className="dropdown-form">
                 <label>Vegetarian</label>
                 <input type="checkbox" name="vegetarian" onChange={vegToggle} checked={searchSet.vegetarian} />
                 <label>Gluten free</label>
-                <input type="checkbox" name="gluten free" onChange={glutenToggle} checked={searchSet.glutenFree} />
+                <input type="checkbox" name="gluten free" onChange={glutenToggle} checked={searchSet.gluten} />
                 <label>Dairy free</label>
-                <input type="checkbox" name="dairy free" onChange={dairyToggle} checked={searchSet.dairyFree} />
-                <button type="submit">Save</button>
+                <input type="checkbox" name="dairy free" onChange={dairyToggle} checked={searchSet.dairy} />
+                {/* <button onClick={handleSubmit}>Save</button> */}
               </form>
             </div>
           </CSSTransition>

@@ -12,14 +12,14 @@ import { useState, useEffect } from 'react';
 function App() {
   const [searchRecipe, setSearchRecipe] = useState('');
   const [vegetarian, setVegetarian] = useState(false);
-  const [glutenFree, setGlutenFree] = useState(false);
-  const [dairyFree, setDairyFree] = useState(false);
+  const [gluten, setGlutenFree] = useState(false);
+  const [dairy, setDairyFree] = useState(false);
 
   const searchAndFilterSets = {
-    setSearchRecipe,
+    setSearchRecipe, searchRecipe,
     setVegetarian, vegetarian,
-    setGlutenFree, glutenFree,
-    setDairyFree,dairyFree
+    setGlutenFree, gluten,
+    setDairyFree,dairy
   }
 
   return (
@@ -30,7 +30,7 @@ function App() {
           <div className="body-container">
             <Routes>
               <Route path="/" element={<RecipeList number={10}/>} />
-              <Route path="/search" element={<SearchList searchValue={searchRecipe}/>} />
+              <Route path="/search" element={<SearchList number={10} searchSet={searchAndFilterSets}/>} />
               <Route path="/login" element={<LogIn />} />
               <Route path="/:recipeId" element={<RecipeDetail />} />
               <Route path="/parse" element={<ParsePage />} />

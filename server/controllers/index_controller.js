@@ -40,7 +40,7 @@ async function similarRecipes(req, res) {
   try {
     const numberOfRecipes = req.body.number;
     const baseId = req.params.id;
-    const resultFromApi = await fetch(`${baseUrl}/${baseId}/similar?apiKey=${apiKey2}&includeNutrition=true&number=2`); // ${numberOfRecipes}
+    const resultFromApi = await fetch(`${baseUrl}/${baseId}/similar?apiKey=${apiKey2}&includeNutrition=true&number=${numberOfRecipes}`); // ${numberOfRecipes}
     const parsedResult = await resultFromApi.json();
     res.status(200).json(parsedResult);
 
@@ -50,9 +50,31 @@ async function similarRecipes(req, res) {
   }
 }
 
+async function recipeByName (req, res) {
+  try {
+    const searchDetails = req.body;
+    const count = searchDetails.number;
+    const query = searchDetails.search ? `query=${searchDetails.search}` : false;
+    const diet = searchDetails.vegetarian ? `diet=vegetarian` : false;
+    let intolerancesArray=[];
+    (searchDetails.gluten === true) && intolerancesArray.push('gluten');
+    searchDetails.dairy === true && intolerancesArray.push('dairy');
+
+    const url = `${baseUrl}/complexSearch?apiKey=${apiKey2}${query? '&'+query:''}${diet? '&'+diet:''}&intolerances=[${intolerancesArray}]&number=${count}`
+    console.log("searchDetails", searchDetails)
+    console.log('in controller details', url)
+    const resultFromApi = await fetch(url);
+    const parsedResult = await resultFromApi.json();
+    res.status(200).json(parsedResult);
+  } catch (error) {
+    console.log('controller recipeByName()', error)
+    res.status(500).send();
+  }
+}
 
 
-module.exports = { randomRecipes, recipeById, similarRecipes }
+
+module.exports = { randomRecipes, recipeById, similarRecipes, recipeByName }
 
 
 // async function parseRecipe (ctx) {

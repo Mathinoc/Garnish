@@ -2,8 +2,15 @@ import {getRandomRecipes} from './../data.js';
 const baseUrl = 'http://localhost:3004'
 
 //work in progress
-export function getSearchResults () {
-
+export function getSearchResults (searchDetails) {
+  return fetch(`${baseUrl}/recipe-by-name`, {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(searchDetails)
+  })
+  .then(result => result.json())
+  .then(res => res["recipes"])
+  .catch(e => console.log('error in service file', e))
 }
 
 
