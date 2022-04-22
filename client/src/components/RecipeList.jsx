@@ -8,9 +8,9 @@ import { getRandomRecipess, getSearchResults } from './../services/recipeService
 import { scrollToTop } from '../utils/scrollToTop';
 
 
-export default function RecipeList({ randomList }) {
+export default function RecipeList({ randomListInitial, setRandomList, toggleHeart }) {
 
-  const [limit, setLimit] = useState(25)
+  const [limit, setLimit] = useState(10)
 
   //! from API
   // function get () {
@@ -42,29 +42,44 @@ export default function RecipeList({ randomList }) {
   // useEffect(() => {
   //   setRandomList(getRandomRecipes(10))
   // }, [randomList])
+  // const randomList = randomListInitial;
 
-  const [partialList, setPartialList] = useState([])
+  const [partialList, setPartialList] = useState( randomListInitial)
+  // const partialListCopy = partialList;
 
   useEffect(() => {
-    setPartialList(randomList.slice(0, limit))
-  }, [partialList])
+    console.log('useeffect in recipeLIst', limit)
 
-  function getMoreRecipes () {
-    setLimit(limit+25);
+    setPartialList(randomListInitial.slice(0, limit)) ;
+
+  }, [randomListInitial, limit])
+
+  function getMoreRecipes() {
+    console.log('increasing limit')
+    setLimit(limit + 10);
+
   }
+
 
 
   return (
     <div className="list-container" >
-    <p className="suggestion" >Suggested recipes</p>
-    <div className="recipe-list-frame">
-      {partialList.map(el => {
-        return (
-          <Link to={`/${el.id}`} key={el.id} onClick={scrollToTop}><RecipeView recipe={el} key={el.id} /></Link>
+      <p className="suggestion" >Suggested recipes</p>
+      <div className="recipe-list-frame">
+        {partialList.map(el => {
+          return (
+            <div className="recipe-frame" key={el.id} >
+              <button className="heart-btn" onClick={() => (toggleHeart(el.id))} >
+                {el.favorite ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart"></i>}
+              </button>
+              <Link to={`/${el.id}`} onClick={scrollToTop}>
+                <RecipeView toggleHeart={toggleHeart} recipe={el} key={el.id} />
+              </Link>
+            </div>
           )
         })}
-    </div>
-    <button className="btn-more" onClick={getMoreRecipes}>More recipes</button>
+      </div>
+      <button className="btn-more" onClick={getMoreRecipes} disabled={limit>=20}>More recipes</button>
     </div>
   )
 }

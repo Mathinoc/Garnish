@@ -53532,6 +53532,7 @@ let recipeTemplate = {
 
 let recipeBulkLength = recipeBulk.length;
 export function getRandomRecipes(number) {
+console.log('in random fct from data')
   let startPoint = Math.round(Math.random()*(recipeBulkLength-1));
   let result = [];
   

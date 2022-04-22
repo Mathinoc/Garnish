@@ -3,14 +3,14 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 const baseUrl = 'https://api.spoonacular.com/recipes';
 const randomList = '/random?apiKey=';
-const apiKey2 = process.env.API_KEY1
+const apiKey = process.env.API_KEY2;
 
 
 async function randomRecipes (req, res) {
   console.log('randomRecipes()', req.body.number)
   try {
     const numberOfRecipes = req.body.number  
-    const resultFromApi = await fetch(`${baseUrl}${randomList}${apiKey2}&number=${numberOfRecipes}`);
+    const resultFromApi = await fetch(`${baseUrl}${randomList}${apiKey}&number=${numberOfRecipes}`);
     const parsedResult = await resultFromApi.json();
     res.status(200).json(parsedResult);
 
@@ -24,7 +24,7 @@ async function recipeById (req, res) {
   console.log("getRecipeById()_id: ", req.params.id)
   try {
     const recipeId = req.params.id;  
-    const resultFromApi = await fetch(`${baseUrl}/${recipeId}/information?apiKey=${apiKey2}&includeNutrition=true`);
+    const resultFromApi = await fetch(`${baseUrl}/${recipeId}/information?apiKey=${apiKey}&includeNutrition=true`);
     const parsedResult = await resultFromApi.json();
     // console.log("parsed ID recipe", parsedResult)
     res.status(200).json(parsedResult);
@@ -39,7 +39,7 @@ async function similarRecipes(req, res) {
   try {
     const numberOfRecipes = req.body.number;
     const baseId = req.params.id;
-    const resultFromApi = await fetch(`${baseUrl}/${baseId}/similar?apiKey=${apiKey2}&includeNutrition=true&number=${numberOfRecipes}`); // ${numberOfRecipes}
+    const resultFromApi = await fetch(`${baseUrl}/${baseId}/similar?apiKey=${apiKey}&includeNutrition=true&number=${numberOfRecipes}`); // ${numberOfRecipes}
     const parsedResult = await resultFromApi.json();
     res.status(200).json(parsedResult);
 
@@ -59,7 +59,7 @@ async function recipeByName (req, res) {
     (searchDetails.gluten === true) && intolerancesArray.push('gluten');
     searchDetails.dairy === true && intolerancesArray.push('dairy');
 
-    const url = `${baseUrl}/complexSearch?apiKey=${apiKey2}${query? '&'+query:''}${diet? '&'+diet:''}&intolerances=[${intolerancesArray}]&number=${count}`
+    const url = `${baseUrl}/complexSearch?apiKey=${apiKey}${query? '&'+query:''}${diet? '&'+diet:''}&intolerances=[${intolerancesArray}]&number=${count}`
     console.log("searchDetails", searchDetails)
     console.log('in controller details', url)
     //const resultFromApi = await fetch(url);

@@ -18,12 +18,12 @@ export default function Header({ searchSet }) {
   const [glutenSub, setGlutenSub] = useState(false);
   const [dairySub, setDairySub] = useState(false);
 
-  function handleClick () {
+  function handleClick() {
     console.log('pathlocation', location.pathname)
     const inputField = searchInput.current.value;
     console.log('inputField', inputField)
     searchInput.current.value = ''
-    
+
     if (inputField.length > 0) {
       if (location.pathname !== '/search') navigate("/search");
       searchSet.setSearchRecipe(inputField);
@@ -33,10 +33,10 @@ export default function Header({ searchSet }) {
       setOpen(false);
     }
   }
-  
+
   function pressEnter(event) {
     if (event.key === 'Enter') {
-      handleClick ();
+      handleClick();
     }
   }
 
@@ -55,10 +55,13 @@ export default function Header({ searchSet }) {
   }
   return (
     <div className="header">
-      <Link to="/" id='menu'><img src={logo} alt="leaf" /><p> Garnish</p></Link>
-      
+      <Link to="/" id='menu'>
+        <img src={logo} alt="leaf" />
+        <p> Garnish</p>
+      </Link>
+
       <div className='search-bar'>
-          <button onClick={handleClick}><i className="bi bi-search"></i></button>
+        <button onClick={handleClick}><i className="bi bi-search"></i></button>
 
         <input onKeyPress={pressEnter} ref={searchInput} placeholder="Search..." />
         <div className="dropdown">
@@ -73,7 +76,7 @@ export default function Header({ searchSet }) {
             <div className="dropdown-menu">
               <form className="dropdown-form">
                 <label>Vegetarian</label>
-                <input type="checkbox" name="vegetarian" onChange={vegToggle} checked={vegetarianSub}/>
+                <input type="checkbox" name="vegetarian" onChange={vegToggle} checked={vegetarianSub} />
                 <label>Gluten free</label>
                 <input type="checkbox" name="gluten free" onChange={glutenToggle} checked={glutenSub} />
                 <label>Dairy free</label>
@@ -86,8 +89,12 @@ export default function Header({ searchSet }) {
 
       </div>
       <nav>
-        <Link to="/parse"><button className="btn parse">Parse</button></Link>
-        <Link to="/logIn"><button className="btn log-in">Log in</button></Link>
+        <Link to="/parse">
+          <button className="btn parse">Parse</button>
+        </Link>
+        <Link to="/logIn">
+          <button className="btn log-in">Log in</button>
+        </Link>
       </nav>
     </div>
   )

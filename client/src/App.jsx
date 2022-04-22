@@ -25,11 +25,17 @@ function App() {
   }
 
   const [refresh, setRefresh] = useState(false);
-  const [randomList, setRandomList] = useState([]);
+  const [myList, setMyList] = useState(() => {
+    const savedRecipeIdJson = localStorage.getItem("myFavorites");
+    const savedRecipeId = JSON.parse(savedRecipeIdJson);
+    return savedRecipeId || [];
+  })
+
+
 
   //! from API
   // useEffect(() => {
-  //   getRandomRecipess(50)
+  //   getRandomRecipess(100)
   //     .then(result => {
   //       if (Array.isArray(result)) {
   //         return setRandomList(result);
@@ -40,10 +46,76 @@ function App() {
   //     .catch(error => console.log("getRandomRecipess()", error));
   //     // setRefresh(false)
   // }, [refresh])
+  //! from saved data
+  // useEffect(() => {
+  //   const recipeBulk = getRecipeBulk();
+  //   recipeBulk.map(el => {
+  //     if (myList.includes(el.id)){
+  //       el["favorite"] = true;
+  //     } else {
+  //       el["favorite"] = false;
+  //     }
+  //   })
+  //   setRandomList(recipeBulk)
+  // }, [randomList])
+
+
+  //! from API
+  let randomList;
+  const [randomListInitial, setRandomListInit] = useState([]);
+
+useEffect(() => {
+    //getRandomRecipess(20)
+    .then(result => {
+    if (Array.isArray(result)) {
+      result.map(el => {
+        myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
+      })
+      setRandomListInit(result);
+      //console.log('response is an array:', result)
+      console.log('affected data')
+    } else {
+      alert("Couldn't get the data :/")
+    }
+  })
+    .catch(error => console.log("getRandomRecipess()", error));
+
+}, [])
+
+
 //! from saved data
-  useEffect(() => {
-    setRandomList(getRecipeBulk())
-  }, [randomList])
+// const randomList = getRandomRecipes(2);
+
+// randomList.map(el => {
+//   if (myList.includes(el.id)) {
+//     el["favorite"] = true;
+//   } else {
+//     el["favorite"] = false;
+//   }
+// })
+
+useEffect(() => {
+  localStorage.setItem("myFavorites", JSON.stringify(myList))
+}, [myList])
+
+function toggleHeart(recipeId) {
+  console.log('toggling')
+  setRandomListInit(randomListInitial.map(el => {
+    console.log('eleme', el)
+
+    if (el.id === recipeId) {
+      el.favorite = !el.favorite;
+      if (el.favorite) {
+        setMyList([...myList, el.id])
+      } else {
+        setMyList(myList.filter(id => id !== recipeId))
+      }
+    }
+    return el
+  }))
+}
+//console.log('myList', myList)
+
 
   return (
 
@@ -52,10 +124,10 @@ function App() {
         <Header searchSet={searchAndFilterSets} />
         <div className="body-container">
           <Routes>
-            <Route path="/" element={<RecipeList randomList={randomList} />} />
-            <Route path="/search" element={<SearchList number={10} searchSet={searchAndFilterSets} />} />
+            <Route path="/" element={<RecipeList toggleHeart={toggleHeart} randomListInitial={randomListInitial} />} />
+            <Route path="/search" element={<SearchList toggleHeart={toggleHeart} myList={myList} number={10} searchSet={searchAndFilterSets} />} />
             <Route path="/login" element={<LogIn />} />
-            <Route path="/:recipeId" element={<RecipeDetail />} />
+            <Route path="/:recipeId" element={<RecipeDetail toggleHeart={toggleHeart} myList={myList} />} />
             <Route path="/parse" element={<ParsePage />} />
           </Routes>
 
@@ -63,8 +135,9 @@ function App() {
         <Footer />
       </BrowserRouter>
     </div>
+  )
 
-  );
+
 }
 
 export default App;

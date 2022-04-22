@@ -23,12 +23,12 @@ export function getRandomRecipess (number) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({"number": number})
   })
-    .then(result => result.json())
-    .then(res => res["recipes"])
+    .then(result => {console.log('In service; resposne from server'); return result.json(); })
+    .then(res => { return res["recipes"]})
     .catch(e => console.log('error in service file', e))
   
   //! from saved data
-  // return getRandomRecipes(10);
+  return getRandomRecipes(10)
 }
 
 export function getRecipeById (id, filters) {

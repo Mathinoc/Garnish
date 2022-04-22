@@ -1,5 +1,5 @@
 import React from 'react';
-import {getRecipeByIdData} from './../data';
+import { getRecipeByIdData } from './../data';
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import './../styling/RecipeDetail.css';
@@ -12,13 +12,13 @@ import BarChart from '../charts/BarChart';
 import { scrollToTop } from '../utils/scrollToTop';
 
 
-export default function RecipeDetail() {
+export default function RecipeDetail({ myList, toggleHeart }) {
 
   let params = useParams();
 
   let recipe = getRecipeByIdData(parseInt(params.recipeId, 10));
   let recipeId = params.recipeId;
-
+  myList.includes(recipe.id) ? recipe["favorite"] = true : recipe["favorite"] = false;
   //! API
   // let { recipeId } = useParams();
   // console.log('recipe ID', recipeId);
@@ -43,6 +43,9 @@ export default function RecipeDetail() {
       <div className="recipe-detail-container">
         <img src={recipe.image} className="cover-img" />
         <p>{recipe.title}</p>
+        <button className="heart-btn-detail" onClick={() => (toggleHeart(recipe.id))} >
+          {recipe["favorite"] ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart"></i>}
+        </button>
 
         <div className="graph-container">
           <BarChart />
@@ -55,7 +58,7 @@ export default function RecipeDetail() {
         }
         <h2>Instructions</h2>
         {recipe.analyzedInstructions &&
-          <InstructionList instructions={recipe.analyzedInstructions[0].steps}/>
+          <InstructionList instructions={recipe.analyzedInstructions[0].steps} />
         }
       </div>
       <div>
