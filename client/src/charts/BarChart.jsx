@@ -37,7 +37,8 @@ const options = {
     title : {
       display: true,
       text: 'Daily needs',
-      size: 40,
+      fontSize: 20,
+      fontStyle: 'bold',
     },
     legend: {
       display: false,
@@ -65,7 +66,7 @@ const options = {
 export default function BarChart() {
   return (
     <div>
-      <p>Bar chart</p>
+      <p>Daily needs</p>
       <Bar data={data} options={options} />
     </div>
   )

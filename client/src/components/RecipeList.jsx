@@ -10,7 +10,7 @@ import { scrollToTop } from '../utils/scrollToTop';
 
 export default function RecipeList({ randomList }) {
 
-  // const [randomList, setRandomList] = useState([]);
+  const [limit, setLimit] = useState(25)
 
   //! from API
   // function get () {
@@ -42,17 +42,29 @@ export default function RecipeList({ randomList }) {
   // useEffect(() => {
   //   setRandomList(getRandomRecipes(10))
   // }, [randomList])
+
+  const [partialList, setPartialList] = useState([])
+
+  useEffect(() => {
+    setPartialList(randomList.slice(0, limit))
+  }, [partialList])
+
   function getMoreRecipes () {
+    setLimit(limit+25);
   }
 
+
   return (
+    <div className="list-container" >
+    <p className="suggestion" >Suggested recipes</p>
     <div className="recipe-list-frame">
-      {randomList.map(el => {
+      {partialList.map(el => {
         return (
           <Link to={`/${el.id}`} key={el.id} onClick={scrollToTop}><RecipeView recipe={el} key={el.id} /></Link>
           )
         })}
-        <button onClick={getMoreRecipes}>More recipes</button>
+    </div>
+    <button className="btn-more" onClick={getMoreRecipes}>More recipes</button>
     </div>
   )
 }

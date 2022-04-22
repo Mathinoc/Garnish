@@ -53549,6 +53549,10 @@ export function getRandomRecipes(number) {
   return result
 }
 
+export function getRecipeBulk () {
+  return recipeBulk.recipes
+}
+
 
 export function getRecipeByIdData (id) {
   for (let recipe of recipeBulk.recipes) {

@@ -9,7 +9,7 @@ import ParsePage from './components/ParsePage';
 import Footer from "./components/Footer";
 import { useState, useEffect } from 'react';
 import { getRandomRecipess } from './services/recipeService';
-import { getRandomRecipes } from './data';
+import { getRandomRecipes, getRecipeBulk } from './data';
 
 function App() {
   const [searchRecipe, setSearchRecipe] = useState('');
@@ -42,7 +42,7 @@ function App() {
   // }, [refresh])
 //! from saved data
   useEffect(() => {
-    setRandomList(getRandomRecipes(50))
+    setRandomList(getRecipeBulk())
   }, [randomList])
 
   return (

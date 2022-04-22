@@ -1,6 +1,23 @@
+.list-container {
+  position: relative;
+}
+
+.suggestion {
+  position: absolute;
+  top:20px;
+  text-align: center;
+  left:0;
+  right:0;
+  margin:0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
 .recipe-list-frame {
   /* margin: 5vh 10vw; */
-  padding: 5vh 1vw;
+  padding: 12vh 1vw 8vh 1vw;
   /* width: 100%; */
   background-color: white;
   box-shadow: 0px 0px 1px 1px rgba(8, 1, 1, 0.068);
@@ -12,4 +29,26 @@
 }
 .recipe-list-frame a {
   text-decoration: none;
+}
+
+
+.btn-more {
+  height: 30px;
+  position: absolute;
+  bottom: 0px;
+  cursor: pointer;
+  left:0;
+  right:0;
+  border: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transition: 0.4s;
+  font-size:15px;
+  background-color: rgba(142, 110, 172, 0.36);
+
+
+}
+
+.btn-more:hover {
+  background-color: rgba(148, 247, 209, 0.993);
 }
