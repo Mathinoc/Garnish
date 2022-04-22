@@ -11,6 +11,6 @@
 .body-container {
   flex: 1;
   background-color: aquamarine;
-  padding: 5vh 10vw;
+  padding: 5vh 10vw 8vh 10vw;
   /* background-color: #fbfbfb; */
 }

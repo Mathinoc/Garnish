@@ -63,7 +63,7 @@ async function recipeByName (req, res) {
     const url = `${baseUrl}/complexSearch?apiKey=${apiKey2}${query? '&'+query:''}${diet? '&'+diet:''}&intolerances=[${intolerancesArray}]&number=${count}`
     console.log("searchDetails", searchDetails)
     console.log('in controller details', url)
-    const resultFromApi = await fetch(url);
+    //const resultFromApi = await fetch(url);
     const parsedResult = await resultFromApi.json();
     res.status(200).json(parsedResult);
   } catch (error) {

@@ -8,6 +8,8 @@ import RecipeDetail from './components/RecipeDetail';
 import ParsePage from './components/ParsePage';
 import Footer from "./components/Footer";
 import { useState, useEffect } from 'react';
+import { getRandomRecipess } from './services/recipeService';
+
 
 function App() {
   const [searchRecipe, setSearchRecipe] = useState('');
@@ -15,34 +17,49 @@ function App() {
   const [gluten, setGlutenFree] = useState(false);
   const [dairy, setDairyFree] = useState(false);
 
-  const [activeSearch, setActiveSearch] = useState(false);
-
   const searchAndFilterSets = {
     setSearchRecipe, searchRecipe,
     setVegetarian, vegetarian,
     setGlutenFree, gluten,
-    setDairyFree,dairy
+    setDairyFree, dairy
   }
+
+  const [refresh, setRefresh] = useState(false);
+  const [randomList, setRandomList] = useState([]);
+
+  useEffect(() => {
+    getRandomRecipess(10)
+      .then(result => {
+        if (Array.isArray(result)) {
+          return setRandomList(result);
+        } else {
+          alert("Couldn't get the data :/")
+        }
+      })
+      .catch(error => console.log("getRandomRecipess()", error));
+      // setRefresh(false)
+  }, [refresh])
+
 
   return (
 
     <div className="App">
       <BrowserRouter>
         <Header searchSet={searchAndFilterSets} />
-          <div className="body-container">
-            <Routes>
-              <Route path="/" element={<RecipeList number={10}/>} />
-              <Route path="/search" element={<SearchList number={10} searchSet={searchAndFilterSets}/>} />
-              <Route path="/login" element={<LogIn />} />
-              <Route path="/:recipeId" element={<RecipeDetail />} />
-              <Route path="/parse" element={<ParsePage />} />
-            </Routes>
+        <div className="body-container">
+          <Routes>
+            <Route path="/" element={<RecipeList number={16} randomList={randomList} refresh={refresh} setRefresh={setRefresh} />} />
+            <Route path="/search" element={<SearchList number={10} searchSet={searchAndFilterSets} />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/:recipeId" element={<RecipeDetail />} />
+            <Route path="/parse" element={<ParsePage />} />
+          </Routes>
 
-          </div>
+        </div>
         <Footer />
       </BrowserRouter>
     </div>
-    
+
   );
 }
 

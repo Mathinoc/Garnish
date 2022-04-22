@@ -10,25 +10,27 @@ import SimilarList from './SimilarList';
 import { getRecipeById } from './../services/recipeService';
 
 export default function RecipeDetail() {
+
   let params = useParams();
-  let recipe = getRecipeByIdData(parseInt(params.recipeId, 10));
-  let recipeId = params.recipeId;
+
+  // let recipe = getRecipeByIdData(parseInt(params.recipeId, 10));
+  // let recipeId = params.recipeId;
 
   //! API
-  // let { recipeId } = useParams();
-  // console.log('recipe ID', recipeId);
-  // let [ recipe, setRecipe ] = useState({});
-  // useEffect(()=> {
-  //   getRecipeById(recipeId, {})
-  //   .then(result => {
+  let { recipeId } = useParams();
+  console.log('recipe ID', recipeId);
+  let [ recipe, setRecipe ] = useState({});
+  useEffect(()=> {
+    getRecipeById(recipeId, {})
+    .then(result => {
 
-  //     if (result['id'] === parseInt(recipeId, 10)) {
-  //       return setRecipe(result)
-  //     }
-  //     alert('Could not get recipe details :/')
-  //   })
-  //   .catch(error => console.log("RecipeDetail()", error))
-  // }, [recipeId])
+      if (result['id'] === parseInt(recipeId, 10)) {
+        return setRecipe(result)
+      }
+      alert('Could not get recipe details :/')
+    })
+    .catch(error => console.log("RecipeDetail()", error))
+  }, [recipeId])
 
 
   return (

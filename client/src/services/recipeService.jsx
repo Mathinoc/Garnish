@@ -18,17 +18,17 @@ export function getRandomRecipess (number) {
   console.log("number in getRandomRecipess()", number)
 
   //! API
-  // return fetch(`${baseUrl}/recipes`, {
-  //   method: 'POST',
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify({"number": number})
-  // })
-  //   .then(result => result.json())
-  //   .then(res => res["recipes"])
-  //   .catch(e => console.log('error in service file', e))
+  return fetch(`${baseUrl}/recipes`, {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({"number": number})
+  })
+    .then(result => result.json())
+    .then(res => res["recipes"])
+    .catch(e => console.log('error in service file', e))
   
   //! from saved data
-  return getRandomRecipes(10);
+  // return getRandomRecipes(10);
 }
 
 export function getRecipeById (id, filters) {
