@@ -3,8 +3,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 const baseUrl = 'https://api.spoonacular.com/recipes';
 const randomList = '/random?apiKey=';
-// const apiKey1 = process.env.API_KEY1//"55eeca7c79ed4392ad80a376bc7f5a84";//process.env.API_KEY;
-const apiKey2 = process.env.API_KEY1//"868b897a280b4429b590b0e7ec66a142"
+const apiKey2 = process.env.API_KEY1
 
 
 async function randomRecipes (req, res) {

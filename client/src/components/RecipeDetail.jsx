@@ -8,29 +8,34 @@ import InstructionList from './InstructionList';
 import RecipeList from './RecipeList';
 import SimilarList from './SimilarList';
 import { getRecipeById } from './../services/recipeService';
+import BarChart from '../charts/BarChart';
+import { scrollToTop } from '../utils/scrollToTop';
+
 
 export default function RecipeDetail() {
 
   let params = useParams();
 
-  // let recipe = getRecipeByIdData(parseInt(params.recipeId, 10));
-  // let recipeId = params.recipeId;
+  let recipe = getRecipeByIdData(parseInt(params.recipeId, 10));
+  let recipeId = params.recipeId;
 
   //! API
-  let { recipeId } = useParams();
-  console.log('recipe ID', recipeId);
-  let [ recipe, setRecipe ] = useState({});
-  useEffect(()=> {
-    getRecipeById(recipeId, {})
-    .then(result => {
+  // let { recipeId } = useParams();
+  // console.log('recipe ID', recipeId);
+  // let [ recipe, setRecipe ] = useState({});
+  // useEffect(()=> {
+  //   getRecipeById(recipeId, {})
+  //   .then(result => {
 
-      if (result['id'] === parseInt(recipeId, 10)) {
-        return setRecipe(result)
-      }
-      alert('Could not get recipe details :/')
-    })
-    .catch(error => console.log("RecipeDetail()", error))
-  }, [recipeId])
+  //     if (result['id'] === parseInt(recipeId, 10)) {
+  //       return setRecipe(result)
+  //     }
+  //     alert('Could not get recipe details :/')
+  //   })
+  //   .catch(error => console.log("RecipeDetail()", error))
+  // }, [recipeId])
+
+
 
 
   return (
@@ -38,6 +43,11 @@ export default function RecipeDetail() {
       <div className="recipe-detail-container">
         <img src={recipe.image} className="cover-img" />
         <p>{recipe.title}</p>
+
+        <div className="graph-container">
+          <BarChart />
+        </div>
+
         <h2>Ingredients</h2>
         <p>Servings {recipe.servings}</p>
         {recipe.extendedIngredients &&
@@ -50,15 +60,8 @@ export default function RecipeDetail() {
       </div>
       <div>
         <h2>Similar recipes</h2>
-        {/* <Link to={`/${recipeId}`} key={recipeId} onClick={goToTop}><SimilarList number={10} id={recipeId} /></Link> */}
+        {/* <Link to={`/${recipeId}`} key={recipeId} onClick={scrollToTop}><SimilarList number={10} id={recipeId} /></Link> */}
       </div>
     </>
   )
 }
-
-const goToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-};

@@ -8,7 +8,7 @@ import { getRandomRecipess, getSearchResults } from './../services/recipeService
 import { scrollToTop } from '../utils/scrollToTop';
 
 
-export default function RecipeList({ number, randomList, refresh, setRefresh }) {
+export default function RecipeList({ randomList }) {
 
   // const [randomList, setRandomList] = useState([]);
 
@@ -42,18 +42,17 @@ export default function RecipeList({ number, randomList, refresh, setRefresh }) 
   // useEffect(() => {
   //   setRandomList(getRandomRecipes(10))
   // }, [randomList])
-  function getNewRecipes () {
-    setRefresh(!refresh)
+  function getMoreRecipes () {
   }
 
   return (
     <div className="recipe-list-frame">
-      <button onClick={getNewRecipes}>New recipes</button>
       {randomList.map(el => {
         return (
           <Link to={`/${el.id}`} key={el.id} onClick={scrollToTop}><RecipeView recipe={el} key={el.id} /></Link>
-        )
-      })}
+          )
+        })}
+        <button onClick={getMoreRecipes}>More recipes</button>
     </div>
   )
 }

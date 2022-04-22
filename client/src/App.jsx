@@ -9,7 +9,7 @@ import ParsePage from './components/ParsePage';
 import Footer from "./components/Footer";
 import { useState, useEffect } from 'react';
 import { getRandomRecipess } from './services/recipeService';
-
+import { getRandomRecipes } from './data';
 
 function App() {
   const [searchRecipe, setSearchRecipe] = useState('');
@@ -27,19 +27,23 @@ function App() {
   const [refresh, setRefresh] = useState(false);
   const [randomList, setRandomList] = useState([]);
 
+  //! from API
+  // useEffect(() => {
+  //   getRandomRecipess(50)
+  //     .then(result => {
+  //       if (Array.isArray(result)) {
+  //         return setRandomList(result);
+  //       } else {
+  //         alert("Couldn't get the data :/")
+  //       }
+  //     })
+  //     .catch(error => console.log("getRandomRecipess()", error));
+  //     // setRefresh(false)
+  // }, [refresh])
+//! from saved data
   useEffect(() => {
-    getRandomRecipess(10)
-      .then(result => {
-        if (Array.isArray(result)) {
-          return setRandomList(result);
-        } else {
-          alert("Couldn't get the data :/")
-        }
-      })
-      .catch(error => console.log("getRandomRecipess()", error));
-      // setRefresh(false)
-  }, [refresh])
-
+    setRandomList(getRandomRecipes(50))
+  }, [randomList])
 
   return (
 
@@ -48,7 +52,7 @@ function App() {
         <Header searchSet={searchAndFilterSets} />
         <div className="body-container">
           <Routes>
-            <Route path="/" element={<RecipeList number={16} randomList={randomList} refresh={refresh} setRefresh={setRefresh} />} />
+            <Route path="/" element={<RecipeList randomList={randomList} />} />
             <Route path="/search" element={<SearchList number={10} searchSet={searchAndFilterSets} />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/:recipeId" element={<RecipeDetail />} />

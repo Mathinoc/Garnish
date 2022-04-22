@@ -13,6 +13,12 @@
   background-color: white;
 }
 
+.graph-container {
+  height: auto;
+  width: 45vw;
+}
+
+
 .recipe-detail-container .cover-img {
   border-top-left-radius: var(--element-radius);
   border-top-right-radius: var(--element-radius);

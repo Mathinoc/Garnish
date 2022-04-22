@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <div className="parent">
       <button className="scroll-top" onClick={scrollToTop}>
-        <i class="bi bi-arrow-up"></i>
+        <i className="bi bi-arrow-up"></i>
       </button>
       <div className="footer-container">
         <div className="spoonacular">
