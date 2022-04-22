@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react';
 import { getSearchResults } from './../services/recipeService';
 import { Link } from "react-router-dom";
 import RecipeView from './RecipeView';
+import { scrollToTop } from '../utils/scrollToTop';
+import animationSearch from './../gifs/searching-for-word.gif';
 
 export default function SearchList({ number, searchSet }) {
-  const [searchList, setSearchList] = useState([]);
+  const [searchList, setSearchList] = useState({});
 
   const searchDetails = {
-    search : searchSet.searchRecipe,
+    search: searchSet.searchRecipe,
     vegetarian: searchSet.vegetarian,
     gluten: searchSet.gluten,
     dairy: searchSet.dairy,
@@ -21,36 +23,38 @@ export default function SearchList({ number, searchSet }) {
     getSearchResults(searchDetails)
       .then(result => {
         console.log('in searchlist', result)
-        if (Array.isArray(result)) {
-          return setSearchList(result);
-        } else {
-          alert("Couldn't get any result for your search :/")
+
+        if (result.totalResults && result.totalResults > 0) { // Array.isArray(result)
+
+          console.log('got 1 or more results');
+          setSearchList({ resultBoolean: true, resultArray: result["results"] });
+
+        } else if (result.totalResults === 0 ) {
+
+          // alert("Couldn't get any result for your search :/");
+          setSearchList({ resultBoolean: false, displayText: `Sorry we couldn't find anything for ${searchDetails.search}` })
         }
       })
       .catch(error => console.log("getSearchResults()", error))
 
-  }, [])
+  }, [searchSet])
 
   return (
     <div className="recipe-list-frame">
-      {searchList.map(el => {
-        return (
-          <Link to={`/${el.id}`} key={el.id} onClick={goToTop}><RecipeView recipe={el} key={el.id} /></Link>
+      {searchList.resultBoolean ?
+        (searchList.resultArray.map(el => {
+          return (
+            <Link to={`/${el.id}`} key={el.id} onClick={scrollToTop}><RecipeView recipe={el} key={el.id} /></Link>
+          )
+        })
         )
-      })}
+        :
+        <>
+          <div>{searchList.displayText}</div>
+          <img src={animationSearch} style={{width: '40vw'}}/>
+        </>
+      }
+
     </div>
-    // <>
-    //   <div>Search value: {searchSet.searchRecipe}</div>
-    //   <div>Search value: {searchSet.vegetarian ? 'true' : 'false'}</div>
-    //   <div>Search value: {searchSet.glutenFree ? 'true' : 'false'}</div>
-    //   <div>Search value: {searchSet.dairyFree ? 'true' : 'false'}</div>
-    // </>
   )
 }
-
-const goToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-};

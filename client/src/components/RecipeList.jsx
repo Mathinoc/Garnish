@@ -5,6 +5,7 @@ import './../styling/RecipeList.css';
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { getRandomRecipess, getSearchResults } from './../services/recipeService';
+import { scrollToTop } from '../utils/scrollToTop';
 
 
 export default function RecipeList({ number }) {
@@ -33,16 +34,9 @@ export default function RecipeList({ number }) {
     <div className="recipe-list-frame">
       {randomList.map(el => {
         return (
-          <Link to={`/${el.id}`} key={el.id} onClick={goToTop}><RecipeView recipe={el} key={el.id} /></Link>
+          <Link to={`/${el.id}`} key={el.id} onClick={scrollToTop}><RecipeView recipe={el} key={el.id} /></Link>
         )
       })}
     </div>
   )
 }
-
-const goToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-};

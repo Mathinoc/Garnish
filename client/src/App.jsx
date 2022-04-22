@@ -15,6 +15,8 @@ function App() {
   const [gluten, setGlutenFree] = useState(false);
   const [dairy, setDairyFree] = useState(false);
 
+  const [activeSearch, setActiveSearch] = useState(false);
+
   const searchAndFilterSets = {
     setSearchRecipe, searchRecipe,
     setVegetarian, vegetarian,
@@ -41,8 +43,6 @@ function App() {
       </BrowserRouter>
     </div>
     
-    
-
   );
 }
 

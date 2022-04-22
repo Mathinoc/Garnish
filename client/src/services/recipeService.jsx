@@ -9,7 +9,7 @@ export function getSearchResults (searchDetails) {
     body: JSON.stringify(searchDetails)
   })
   .then(result => result.json())
-  .then(res => res["recipes"])
+  // .then(res => res["results"])
   .catch(e => console.log('error in service file', e))
 }
 
