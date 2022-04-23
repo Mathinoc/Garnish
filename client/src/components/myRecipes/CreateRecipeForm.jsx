@@ -6,13 +6,13 @@ import './../../styling/myRecipes/CreateRecipeForm.css';
 import { CSSTransition } from 'react-transition-group';
 
 
-export default function CreateRecipeForm({setPersonalRecipes}) {
+export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }) {
+  const [recipeTitle, setRecipeTile] = useState('')
   const [ingredientList, setIngredientList] = useState([{ ingredient: "", quantity: "", unit: "" }]);
   const [instructionList, setInstructionList] = useState([{ text: "" }]);
   const [toggle, setToggle] = useState(false);
-  function toggleView() {
-    setToggle(!toggle)
-  }
+
+
 
   function addIngredient() {
     setIngredientList([...ingredientList, { ingredient: "", quantity: "", unit: "" }]);
@@ -22,7 +22,6 @@ export default function CreateRecipeForm({setPersonalRecipes}) {
     list.splice(index, 1);
     setIngredientList(list)
   }
-
   function removeEmptyLine(e, index) {
     if (e.target.value !== '' && index + 1 === ingredientList.length) {
       addIngredient();
@@ -34,7 +33,6 @@ export default function CreateRecipeForm({setPersonalRecipes}) {
       removeIngredient(index + 1);
     }
   }
-
   function changeIngredient(e, index) {
     const list = [...ingredientList];
     list[index].ingredient = e.target.value;
@@ -74,15 +72,19 @@ export default function CreateRecipeForm({setPersonalRecipes}) {
     setInstructionList(instList);
   }
 
+  function titleChange (e) {
+    console.log(e.target.value)
+    setRecipeTile(e.target.value)
+  }
   function saveRecipe() {
-    console.log('yy')
-    setPersonalRecipes({ingredientList,instructionList})
+    localStorage.clear();
+    setPersonalRecipes([...personalRecipes,{ recipeTitle, ingredientList, instructionList }])
   }
 
 
   return (
     <div className="outer-container">
-      <button className={`page-title ${toggle ? '' : 'trial'}`} onClick={toggleView}>
+      <button className={`page-title ${toggle ? '' : 'trial'}`} onClick={() => setToggle(!toggle)}>
         Create your recipe !
       </button>
       <CSSTransition
@@ -92,6 +94,12 @@ export default function CreateRecipeForm({setPersonalRecipes}) {
         classNames="menuPrimary"
       >
         <div className="CreateRecipe">
+          <div className="input-group mb-3">
+            {/* <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Title</span>
+            </div> */}
+            <input type="text" value={recipeTitle} onChange={(e) => titleChange(e)} className="form-control  text-center" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" />
+          </div>
           <div className='form'>
             <div className='form-filed'>
               <h2>Ingredients list</h2>
