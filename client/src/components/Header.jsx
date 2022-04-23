@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from "react-router-dom";
-import './../styling/Header.scss';
 import logo from './../images/garnish-256px.png';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
-import {Button} from 'react-bootstrap';
+import './../styling/Header.scss';
+
 
 export default function Header({ searchSet }) {
 
@@ -13,6 +14,7 @@ export default function Header({ searchSet }) {
   const location = useLocation()
   const navigate = useNavigate();
   let searchInput = React.createRef();
+  let filterMenu = React.createRef();
   const [open, setOpen] = useState(false);
 
   const [vegetarianSub, setVegetarianSub] = useState(false);
@@ -22,7 +24,7 @@ export default function Header({ searchSet }) {
   function handleClick() {
     console.log('pathlocation', location.pathname)
     const inputField = searchInput.current.value;
-    console.log('inputField', inputField)
+    console.log('inputField', inputField);
     searchInput.current.value = ''
 
     if (inputField.length > 0) {
@@ -54,6 +56,10 @@ export default function Header({ searchSet }) {
     e.preventDefault();
     setOpen(false)
   }
+
+  const [animate, setAnimate] = useState(false);
+  const handleClickkk = () => setAnimate(!animate);
+
   return (
     <div className="header">
       <Link to="/" id='menu'>
@@ -65,31 +71,39 @@ export default function Header({ searchSet }) {
         <button onClick={handleClick}><i className="bi bi-search"></i></button>
 
         <input onKeyPress={pressEnter} ref={searchInput} placeholder="Search..." />
-        <div className="dropdown">
+        <div className="dropdown" >
           <button className="link" onClick={() => { setOpen(!open); console.log(open) }}><i className="bi bi-sliders"></i></button>
           <CSSTransition
-            //nodeRef={nodeRef} // avoid findDOMNode is deprecated in StrictMode error
-            in={open === true}
+            // nodeRef={nodeRef} // avoid findDOMNode is deprecated in StrictMode error
+            in={open}
+            ref={filterMenu}
             unmountOnExit
             timeout={500}
             classNames="menu-primary"
           >
             <div className="dropdown-menu">
               <form className="dropdown-form">
-                <label>Vegetarian</label>
-                <input type="checkbox" name="vegetarian" onChange={vegToggle} checked={vegetarianSub} />
-                <label>Gluten free</label>
-                <input type="checkbox" name="gluten free" onChange={glutenToggle} checked={glutenSub} />
-                <label>Dairy free</label>
-                <input type="checkbox" name="dairy free" onChange={dairyToggle} checked={dairySub} />
+                <div>
+                  <input type="checkbox" name="vegetarian" onChange={vegToggle} checked={vegetarianSub} />
+                  <label>Vegetarian</label>
+                </div>
+                <div>
+                  <input type="checkbox" name="gluten free" onChange={glutenToggle} checked={glutenSub} />
+                  <label>Gluten free</label>
+                </div>
+                <div>
+                  <input type="checkbox" name="dairy free" onChange={dairyToggle} checked={dairySub} />
+                  <label>Dairy free</label>
+                </div>
                 <button onClick={closeDropdown}>Save</button>
               </form>
             </div>
           </CSSTransition>
         </div>
 
-      </div>
+      </div >
       <nav>
+
         <Link to="/my-recipes">
           <Button type="button" className="btn-head btn-my-recipe">My recipes</Button>
         </Link>
@@ -100,6 +114,6 @@ export default function Header({ searchSet }) {
           <Button className="btn-head btn-log-in">Log in</Button>
         </Link>
       </nav>
-    </div>
+    </div >
   )
 }
