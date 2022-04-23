@@ -3,7 +3,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 const baseUrl = 'https://api.spoonacular.com/recipes';
 const randomList = '/random?apiKey=';
-const apiKey = process.env.API_KEY2;
+const apiKey = process.env.API_KEY3;
 
 
 async function randomRecipes (req, res) {
@@ -36,11 +36,15 @@ async function recipeById (req, res) {
 }
 
 async function similarRecipes(req, res) {
+  console.log("similarRecipes(): ", req.params.baseId)
   try {
     const numberOfRecipes = req.body.number;
-    const baseId = req.params.id;
+    console.log('typeof numberofresult', typeof numberOfRecipes)
+    const baseId = req.params.baseId;
+    console.log('baseId', baseId)
     const resultFromApi = await fetch(`${baseUrl}/${baseId}/similar?apiKey=${apiKey}&includeNutrition=true&number=${numberOfRecipes}`); // ${numberOfRecipes}
     const parsedResult = await resultFromApi.json();
+    console.log('resultFromApi', parsedResult)
     res.status(200).json(parsedResult);
 
   } catch (error) {
@@ -50,6 +54,8 @@ async function similarRecipes(req, res) {
 }
 
 async function recipeByName (req, res) {
+  console.log("recipeByName(): ", req.body.number)
+
   try {
     const searchDetails = req.body;
     const count = searchDetails.number;
@@ -62,7 +68,7 @@ async function recipeByName (req, res) {
     const url = `${baseUrl}/complexSearch?apiKey=${apiKey}${query? '&'+query:''}${diet? '&'+diet:''}&intolerances=[${intolerancesArray}]&number=${count}`
     console.log("searchDetails", searchDetails)
     console.log('in controller details', url)
-    //const resultFromApi = await fetch(url);
+    const resultFromApi = await fetch(url);
     const parsedResult = await resultFromApi.json();
     res.status(200).json(parsedResult);
   } catch (error) {

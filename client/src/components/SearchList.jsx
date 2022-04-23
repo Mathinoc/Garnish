@@ -36,7 +36,6 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
           setSearchList({ resultBoolean: true, resultArray: result["results"] });
 
         } else if (result.totalResults === 0) {
-
           // alert("Couldn't get any result for your search :/");
           setSearchList({ resultBoolean: false, displayText: `Sorry we couldn't find anything for ${searchDetails.search}` })
         }
@@ -45,6 +44,16 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
 
   }, [searchSet])
 
+  function heartClick (recipeId) {
+    //toggleHeart(recipeId);
+    setSearchList(searchList.resultArray.map(el => {
+      if (el.id === recipeId) {
+        el.favorite = !el.favorite;
+      }
+      return el
+    }))
+  }
+
   return (
     <div className="list-container" >
       <div className="recipe-list-frame">
@@ -52,8 +61,8 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
           (searchList.resultArray.map(el => {
             return (
               <div className="recipe-frame" key={el.id}>
-                <button className="heart-btn" onClick={() => (toggleHeart(el.id))} >
-                  {el.favorite ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart"></i>}
+                <button className="heart-btn" onClick={() => (heartClick(el.id))} >
+                  {el["favorite"] ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart"></i>}
                 </button>
                 <Link to={`/${el.id}`} key={el.id} onClick={scrollToTop}>
                   <RecipeView toggleHeart={toggleHeart} recipe={el} key={el.id} />

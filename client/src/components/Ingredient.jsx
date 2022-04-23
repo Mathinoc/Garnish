@@ -2,9 +2,9 @@ import React from 'react';
 import './../styling/Ingredient.css';
 
 export default function Ingredient({ingredientDetail}) {
-  const quantity = (ingredientDetail.amount * 100).toString();
-  const sliceNum = quantity.slice(0, quantity.indexOf('.'));
-  const roundedNumber = parseInt(sliceNum, 10)/10;
+  // const quantity = (ingredientDetail.amount * 100).toString();
+  // const sliceNum = quantity.slice(0, quantity.indexOf('.'));
+  // const roundedNumber = parseInt(sliceNum, 10)/10;
 
   return (
     <div className='ingredient-detail-container'>

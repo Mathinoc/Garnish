@@ -7,6 +7,7 @@ import SearchList from './components/SearchList';
 import RecipeDetail from './components/RecipeDetail';
 import ParsePage from './components/ParsePage';
 import Footer from "./components/Footer";
+import MyRecipes from "./components/myRecipes/MyRecipes";
 import { useState, useEffect } from 'react';
 import { getRandomRecipess } from './services/recipeService';
 import { getRandomRecipes, getRecipeBulk } from './data';
@@ -65,7 +66,7 @@ function App() {
   const [randomListInitial, setRandomListInit] = useState([]);
 
 useEffect(() => {
-    //getRandomRecipess(20)
+    getRandomRecipess(20)
     .then(result => {
     if (Array.isArray(result)) {
       result.map(el => {
@@ -114,8 +115,6 @@ function toggleHeart(recipeId) {
     return el
   }))
 }
-//console.log('myList', myList)
-
 
   return (
 
@@ -129,6 +128,7 @@ function toggleHeart(recipeId) {
             <Route path="/login" element={<LogIn />} />
             <Route path="/:recipeId" element={<RecipeDetail toggleHeart={toggleHeart} myList={myList} />} />
             <Route path="/parse" element={<ParsePage />} />
+            <Route path="/my-recipes" element={<MyRecipes />} />
           </Routes>
 
         </div>
