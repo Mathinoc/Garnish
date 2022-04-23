@@ -5,6 +5,7 @@ import logo from './../images/garnish-256px.png';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import {Button} from 'react-bootstrap';
 
 export default function Header({ searchSet }) {
 
@@ -90,13 +91,13 @@ export default function Header({ searchSet }) {
       </div>
       <nav>
         <Link to="/my-recipes">
-          <button className="btn">My recipes</button>
+          <Button type="button" className="btn-head btn-my-recipe">My recipes</Button>
         </Link>
         <Link to="/parse">
-          <button className="btn parse">Parse</button>
+          <Button className="btn-head btn-parse">Parse</Button>
         </Link>
         <Link to="/logIn">
-          <button className="btn log-in">Log in</button>
+          <Button className="btn-head btn-log-in">Log in</Button>
         </Link>
       </nav>
     </div>

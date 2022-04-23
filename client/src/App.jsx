@@ -65,23 +65,23 @@ function App() {
   let randomList;
   const [randomListInitial, setRandomListInit] = useState([]);
 
-useEffect(() => {
-    getRandomRecipess(20)
-    .then(result => {
-    if (Array.isArray(result)) {
-      result.map(el => {
-        myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
-      })
-      setRandomListInit(result);
-      //console.log('response is an array:', result)
-      console.log('affected data')
-    } else {
-      alert("Couldn't get the data :/")
-    }
-  })
-    .catch(error => console.log("getRandomRecipess()", error));
+// useEffect(() => {
+//     getRandomRecipess(20)
+//     .then(result => {
+//     if (Array.isArray(result)) {
+//       result.map(el => {
+//         myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
+//       })
+//       setRandomListInit(result);
+//       //console.log('response is an array:', result)
+//       console.log('affected data')
+//     } else {
+//       alert("Couldn't get the data :/")
+//     }
+//   })
+//     .catch(error => console.log("getRandomRecipess()", error));
 
-}, [])
+// }, [])
 
 
 //! from saved data

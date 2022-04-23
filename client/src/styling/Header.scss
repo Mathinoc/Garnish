@@ -115,22 +115,27 @@ nav {
   gap: 15px;
   align-items: center;
 }
-.btn {
-  border-radius: 30px;
+.btn-head{
+  border-radius: 30px !important;
   padding: 8px 15px;
   white-space: nowrap;
   cursor: pointer;
+  // background-color: pink;
 }
-.log-in {
+.btn-log-in {
   border: none;
   color: var(--head-color);
-  background-color: var(--head-color3);
-  color: aliceblue;
+  background-color: var(--head-color3) !important;
+  color: aliceblue ;
 }
-.parse {
-  /* border: 1px solid var(--head-color4); */
-  background-color: var(--head-color1);
+.btn-parse {
+  background-color: rgb(255, 255, 255) !important;
+  color: grey !important;
+}
 
+.btn-my-recipe{
+  background-color: rgb(255, 255, 255) !important;
+  color: grey !important;
 }
 
 .header a{

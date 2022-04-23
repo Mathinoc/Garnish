@@ -1,0 +1,37 @@
+.form{
+  border: 1px solid blue;
+  display: flex;
+  min-width: 300px;
+  flex-direction: row;
+}
+.first-division{
+  display:flex;
+}
+
+.form-filed{
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  width:55vw;
+  min-width: 150px;
+}
+.ingredient-field {
+  width: 1vw;
+}
+.output li{
+  margin-top: 10px;
+}
+.output{
+  border: 1px purple solid;
+  margin-right:0;
+  width: 25vw;
+}
+.btn-outline-secondary{
+  background-color: rgba(167, 252, 167, 0.815);
+  color:grey;
+  transition: 0.4s;
+}
+.btn-outline-secondary:hover{
+  background-color: rgb(158, 250, 158);
+  color:grey;
+}
