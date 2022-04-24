@@ -5,11 +5,15 @@ import { Link } from "react-router-dom";
 import RecipeView from './RecipeView';
 import { scrollToTop } from '../utils/scrollToTop';
 import animationSearch from './../gifs/searching-for-word.gif';
+import animationServer from './../gifs/server.gif';
 import './../styling/RecipeList.css';
 
 
 export default function SearchList({ number, searchSet, toggleHeart, myList }) {
   const [searchList, setSearchList] = useState({});
+
+const [myListBis, setMyListBis] = useState(myList)
+
 
   const searchDetails = {
     search: searchSet.searchRecipe,
@@ -30,34 +34,59 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
           console.log('got 1 or more results');
 
           result["results"].map(el => {
-            myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
+            myListBis.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
           })
 
-          setSearchList({ resultBoolean: true, resultArray: result["results"] });
+          setSearchList({ resultBoolean: 'ok', resultArray: result["results"] });
 
         } else if (result.totalResults === 0) {
           // alert("Couldn't get any result for your search :/");
-          setSearchList({ resultBoolean: false, displayText: `Sorry we couldn't find anything for ${searchDetails.search}` })
+          console.log('what you want ot see')
+          const message = `Sorry we couldn't find anything for ' ${searchDetails.search} '`
+          setSearchList({ resultBoolean: 'notOk', displayText: message })
         }
       })
-      .catch(error => console.log("getSearchResults()", error))
+      .catch(error => {
+        console.log("getSearchResults()", error)
+        setSearchList({ resultBoolean: 'serverIssue', displayText: 'Error from server' })
+      })
 
   }, [searchSet])
+console.log('searchList', searchList)
 
-  function heartClick (recipeId) {
-    //toggleHeart(recipeId);
-    setSearchList(searchList.resultArray.map(el => {
+
+  function heartClick(recipeId) {
+    console.log('searchList.resultArray', searchList.resultArray)
+    console.log('searchList', searchList)
+    const newSearchList = searchList.resultArray.map(el => {
+      console.log('in map')
       if (el.id === recipeId) {
+        console.log('found Id')
         el.favorite = !el.favorite;
+        if (el.favorite) {
+          setMyListBis([...myListBis, recipeId])
+        } else {
+          setMyListBis(myListBis.filter(id => id !== recipeId))
+        }
       }
       return el
-    }))
+    });
+    console.log('newSearchList', newSearchList)
+    const statusValue = 'ok';
+    console.log('statusValue', statusValue)
+    setSearchList({resultArray: newSearchList, resultBoolean: statusValue })
+
   }
+
+  useEffect(() => {
+    localStorage.setItem("myFavorites", JSON.stringify(myListBis))
+  }, [myListBis])
+
 
   return (
     <div className="list-container" >
       <div className="recipe-list-frame">
-        {searchList.resultBoolean ?
+        {searchList.resultBoolean === 'ok' &&
           (searchList.resultArray.map(el => {
             return (
               <div className="recipe-frame" key={el.id}>
@@ -73,11 +102,18 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
             )
           })
           )
-          :
-          <>
-            <div>{searchList.displayText}</div>
-            <img src={animationSearch} style={{ width: '40vw' }} />
-          </>
+          || searchList.resultBoolean === 'notOk' &&
+          (<div>
+            <div style={{'font-size': '20px'}}>{searchList.displayText}</div>
+            <img src={animationSearch} style={{ width: '20vw' }} />
+          </div>)
+          || searchList.resultBoolean === 'serverIssue' &&
+          (
+            <div>
+            <div style={{'font-size': '20px'}} >{searchList.displayText}</div>
+            <img src={animationServer} style={{ width: '20vw' }} />
+          </div>
+          )
         }
 
       </div>

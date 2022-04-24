@@ -58,9 +58,18 @@
 
 
 
+h3{
+  color: rgb(223, 146, 4);
+  font-size: 20px;
+  font-weight: 400;
+}
+.title-minimized{
+  font-size:20px;
+  font-weight:300;
+}
 
 .form {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   min-width: 300px;
   flex-direction: row;
@@ -71,7 +80,7 @@
 }
 
 .form-filed {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
   width: 55vw;
@@ -87,7 +96,7 @@
 }
 
 .output {
-  border: 1px purple solid;
+  /* border: 1px purple solid; */
   margin-right: 0;
   width: 25vw;
 }
@@ -106,6 +115,6 @@
 
 
 .second-division {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width:100%;
 }

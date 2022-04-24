@@ -31,7 +31,7 @@ export default function MyRecipesList({ personalRecipes, setPersonalRecipes }) {
   return (
     <div className="display-recipe-container">
       <p className="page-title2" >
-        Recipe list
+        My Recipes
       </p>
       <div className="display-recipe-frame" >
         <div className="display-recipeList-container ">

@@ -103,14 +103,14 @@ export default function Header({ searchSet }) {
       <nav>
 
         <Link to="/my-recipes">
-          <Button type="button" className="btn-head btn-my-recipe">My recipes</Button>
+          <Button type="button" className="btn-head btn-my-recipe">Recipe Box</Button>
         </Link>
         <Link to="/parse">
-          <Button className="btn-head btn-parse">Parse</Button>
+          <Button className="btn-head btn-parse">Collect</Button>
         </Link>
-        <Link to="/logIn">
+        {/* <Link to="/logIn">
           <Button className="btn-head btn-log-in">Log in</Button>
-        </Link>
+        </Link> */}
       </nav>
     </div >
   )

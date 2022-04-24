@@ -64,7 +64,7 @@ export default function RecipeList({ randomListInitial, setRandomList, toggleHea
 
   return (
     <div className="list-container" >
-      <p className="suggestion" >Suggested recipes</p>
+      <p className="suggestion" >Suggested Recipes</p>
       <div className="recipe-list-frame">
         {partialList.map(el => {
           return (
@@ -79,7 +79,7 @@ export default function RecipeList({ randomListInitial, setRandomList, toggleHea
           )
         })}
       </div>
-      <button className="btn-more" onClick={getMoreRecipes} disabled={limit>=20}>More recipes</button>
+      <button className="btn-more" onClick={getMoreRecipes} disabled={limit>=20}>More...</button>
     </div>
   )
 }

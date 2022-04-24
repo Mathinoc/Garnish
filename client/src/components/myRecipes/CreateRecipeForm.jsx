@@ -85,7 +85,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
   return (
     <div className="outer-container">
       <button className={`page-title ${toggle ? '' : 'trial'}`} onClick={() => setToggle(!toggle)}>
-        Create your recipe !
+        Add Recipe
       </button>
       <CSSTransition
         in={toggle}
@@ -102,7 +102,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
           </div>
           <div className='form'>
             <div className='form-filed'>
-              <h2>Ingredients list</h2>
+              <h3>Ingredients</h3>
               {ingredientList.map((ingredient, index) => (
                 <div key={index}>
                   <div className="first-division">
@@ -126,7 +126,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
 
             </div>
             <div className="output">
-              <h2>Output</h2>
+              <h3 className="title-minimized" >Output</h3>
               {ingredientList.map((ingredientObject, index) => (
                 <ul key={index}>
                   {ingredientObject.ingredient &&
@@ -141,7 +141,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
           </div>
 
           <div className="second-division">
-            <h2>Instructions</h2>
+            <h3>Instructions</h3>
             {instructionList.map((el, ind) => (
               <div key={ind + 'a'}>
                 <div className="input-group input-group-sm mb-3">
