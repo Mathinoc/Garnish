@@ -10,7 +10,7 @@ import './../styling/Header.scss';
 
 export default function Header({ searchSet }) {
 
-  const nodeRef = React.useRef(null); //avoid error with CSSTransition: see line 67
+  //const nodeRef = React.useRef(null); //avoid error with CSSTransition: see line 67
   const location = useLocation()
   const navigate = useNavigate();
   let searchInput = React.createRef();
@@ -57,8 +57,6 @@ export default function Header({ searchSet }) {
     setOpen(false)
   }
 
-  const [animate, setAnimate] = useState(false);
-  const handleClickkk = () => setAnimate(!animate);
 
   return (
     <div className="header">

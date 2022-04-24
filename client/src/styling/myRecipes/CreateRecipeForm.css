@@ -10,7 +10,6 @@
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
-
 }
 
 .page-title{
@@ -21,21 +20,21 @@
   left: 0;
   right: 0;
   margin: 0;
-  /* font-size: 20px; */
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  font-size: 18px;
+  /* border-top-left-radius: 10px;
+  border-top-right-radius: 10px; */
   background-color: rgba(205, 186, 222, 0.887);
   padding: 8px 0 10px 0;
   color: rgb(86, 86, 86);
-  transition: 0.2s;
-  z-index:2;
+  transition: 0.4s;
+  z-index:1;
 }
 .trial {
   font-size: 20px;
-
 }
 .page-title:hover{
   background-color: rgb(209, 169, 241);
+  transform: scale(1.03)
 }
 
 

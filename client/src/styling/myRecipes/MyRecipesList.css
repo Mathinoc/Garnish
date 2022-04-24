@@ -1,0 +1,80 @@
+.display-recipe-container {
+  margin-top: 60px;
+  color: blue;
+  min-width: 450px;
+  position: relative;
+  padding: 80px 3vw 30px 3vw;
+  background-color: white;
+  box-shadow: 0px 0px 1px 1px rgba(8, 1, 1, 0.068);
+  border-radius: 10px;
+}
+
+
+.display-recipe-frame{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.page-title2{
+  border: none;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  left: 0;
+  right: 0;
+  margin: 0;
+  font-size: 18px;
+  /* border-top-left-radius: 10px;
+  border-top-right-radius: 10px; */
+  background-color: rgba(205, 186, 222, 0.887);
+  padding: 8px 0 10px 0;
+  color: rgb(86, 86, 86);
+  transition: 0.4s;
+  z-index:1;
+}
+
+
+
+.display-recipeList-container {
+  width: 30vw;
+  min-width: 200px;
+  /* border: 2px solid rgb(240, 197, 197); */
+}
+
+.recipe-detail-frame {
+  width: 50vw;
+  min-width: 250px;
+}
+
+.recipe-details {
+  padding: 10px;
+}
+
+.ingredient-list {
+  text-align: left;
+  list-style-position: inside;
+  padding: 0;
+}
+
+.list-instructions {}
+
+.btn-delete-recipe {
+  border: none;
+  background-color: none;
+  background: none;
+  transition: 0.2s;
+  color: rgb(77, 80, 84);
+}
+
+.btn-delete-recipe:hover {
+  color: red
+}
+
+.card-title {
+  color: rgb(89, 81, 81);
+}
+
+.card-header {
+  color: rgb(226, 148, 4);
+}

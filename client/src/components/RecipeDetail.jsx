@@ -1,22 +1,20 @@
 import React from 'react';
 import { getRecipeByIdData } from './../data';
-import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import './../styling/RecipeDetail.css';
 import IngredientList from './IngredientList';
 import InstructionList from './InstructionList';
-import RecipeList from './RecipeList';
 import SimilarList from './SimilarList';
 import { getRecipeById } from './../services/recipeService';
 import BarChart from '../charts/BarChart';
-import { scrollToTop } from '../utils/scrollToTop';
 
 
 export default function RecipeDetail({ myList, toggleHeart }) {
 
-  let params = useParams();
   let { recipeId } = useParams();
   //! data storage
+  // let params = useParams();
   // let recipe = getRecipeByIdData(parseInt(params.recipeId, 10));
   // let recipeId = params.recipeId;
   // myList.includes(recipe.id) ? recipe["favorite"] = true : recipe["favorite"] = false;

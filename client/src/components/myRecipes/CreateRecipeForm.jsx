@@ -5,7 +5,6 @@ import { useState } from 'react';
 import './../../styling/myRecipes/CreateRecipeForm.css';
 import { CSSTransition } from 'react-transition-group';
 
-
 export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }) {
   const [recipeTitle, setRecipeTile] = useState('')
   const [ingredientList, setIngredientList] = useState([{ ingredient: "", quantity: "", unit: "" }]);
@@ -73,13 +72,14 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
   }
 
   function titleChange (e) {
-    console.log(e.target.value)
     setRecipeTile(e.target.value)
   }
   function saveRecipe() {
     localStorage.clear();
-    setPersonalRecipes([...personalRecipes,{ recipeTitle, ingredientList, instructionList }])
+    setPersonalRecipes([...personalRecipes,{ recipeTitle, ingredientList, instructionList, creationDate: new Date().toISOString().slice(0, 10) }])
+    setToggle(false)
   }
+
 
 
   return (
