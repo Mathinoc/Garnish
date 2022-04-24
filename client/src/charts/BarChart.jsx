@@ -10,42 +10,44 @@ export default function BarChart({ recipe }) {
   console.log("recipe", recipe);
   const nutrients = recipe['nutrition'] && recipe['nutrition'].nutrients;
   console.log("nutrients", nutrients);
-  let collections= ["Calories", "Protein", "Calcium", "Fiber", "Fat", "Carbohydrates" ];
-  
+  let collections = ["Calories", "Protein", "Calcium", "Fiber", "Fat", "Carbohydrates"];
+
   let value = [], labels = [];
-  const [chartInfo, setChartInfo] = useState();
+  const [chartInfo, setChartInfo] = useState(false);
 
   useEffect(() => {
-      if (nutrients) {
-        console.log('inside')
-        for (let i=0; i<nutrients.length; i++) {
-          if (collections.includes(nutrients[i].name)) {
-            console.log('insiiiiide2222')
-  
-            labels.push(nutrients[i].name);
-            value.push(nutrients[i].percentOfDailyNeeds)
-          }
+    console.log('in BAR uneeffect')
+    if (nutrients) {
+      console.log('inside')
+      for (let i = 0; i < nutrients.length; i++) {
+        if (collections.includes(nutrients[i].name)) {
+          console.log('insiiiiide2222')
+
+          labels.push(nutrients[i].name);
+          value.push(nutrients[i].percentOfDailyNeeds)
         }
-        setChartInfo({labels, value})
       }
-  }, [recipe])
+      setChartInfo({ labels, value })
+    }
+  }, [recipe, nutrients])
   console.log('chartInfo', chartInfo);
 
-  
+  const labelsSpare = ["Calories", "Protein", "Calcium", "Fiber", "Fat", "Carbohydrates"];
+  const dataSpare = [20, 50, 10, 30, 26, 74];
+
+
   const data = {
-    labels: chartInfo.labels,
-    // labels: ["Calories", "Protein", "Calcium", "Fiber", "Fat", "Carbohydrates" ],
+    labels: Object.keys(recipe).length > 0 && chartInfo ? chartInfo.labels : labelsSpare,
     datasets: [{
-      // data: [20,50,10,30,26,74],
-      data: chartInfo.value,
+      data: Object.keys(recipe).length > 0 && chartInfo ? chartInfo.value : dataSpare,
 
       backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(255, 159, 64, 0.2)',
-      'rgba(255, 205, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(153, 102, 255, 0.2)'
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)'
       ],
       borderColor: [
         'rgb(255, 99, 132)',
@@ -63,9 +65,9 @@ export default function BarChart({ recipe }) {
     }]
   }
   const options = {
-    type:'bar',
-    plugins:{
-      title : {
+    type: 'bar',
+    plugins: {
+      title: {
         display: true,
         fontSize: 20,
         fontStyle: 'bold',
@@ -77,12 +79,12 @@ export default function BarChart({ recipe }) {
     scales: {
       yAxes: {
         title: {
-            display: true,
-            text: '%',
-            font: {
-                size: 15,
-                weight: 'bolder',
-            }
+          display: true,
+          text: '%',
+          font: {
+            size: 15,
+            weight: 'bolder',
+          }
         },
         ticks: {
           beginAtZero: true,

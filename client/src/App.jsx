@@ -8,6 +8,7 @@ import RecipeDetail from './components/RecipeDetail';
 import ParsePage from './components/ParsePage';
 import Footer from "./components/Footer";
 import MyRecipes from "./components/myRecipes/MyRecipes";
+import SavedRecipes from './components/SavedRecipes/SavedRecipes';
 import { useState, useEffect } from 'react';
 import { getRandomRecipess } from './services/recipeService';
 import { getRandomRecipes, getRecipeBulk } from './data';
@@ -59,6 +60,7 @@ function App() {
   //   })
   //   setRandomList(recipeBulk)
   // }, [randomList])
+
 
 
   //! from API
@@ -117,8 +119,6 @@ function App() {
   }
 
 
-
-
   return (
 
     <div className="App">
@@ -132,6 +132,7 @@ function App() {
             <Route path="/:recipeId" element={<RecipeDetail toggleHeart={toggleHeart} myList={myList} />} />
             <Route path="/parse" element={<ParsePage />} />
             <Route path="/my-recipes" element={<MyRecipes />} />
+            <Route path="/my-favorites" element={<SavedRecipes myList={myList} toggleHeart={toggleHeart}/>} />
           </Routes>
 
         </div>

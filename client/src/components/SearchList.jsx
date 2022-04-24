@@ -52,6 +52,7 @@ const [myListBis, setMyListBis] = useState(myList)
       })
 
   }, [searchSet])
+
 console.log('searchList', searchList)
 
 
@@ -64,9 +65,9 @@ console.log('searchList', searchList)
         console.log('found Id')
         el.favorite = !el.favorite;
         if (el.favorite) {
-          setMyListBis([...myListBis, recipeId])
+          setMyListBis([...myListBis, recipeId]);
         } else {
-          setMyListBis(myListBis.filter(id => id !== recipeId))
+          setMyListBis(myListBis.filter(id => id !== recipeId));
         }
       }
       return el

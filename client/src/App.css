@@ -10,7 +10,7 @@
 
 .body-container {
   flex: 1;
-  background-color: aquamarine;
+  background-color: rgb(255, 255, 255);
   padding: 5vh 10vw 8vh 10vw;
   /* background-color: #fbfbfb; */
 }

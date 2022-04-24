@@ -12,6 +12,16 @@ export function getSearchResults (searchDetails) {
   .catch(e => console.log('error in service file', e))
 }
 
+export function getRecipeInMyList (ids) {
+  return fetch(`${baseUrl}/recipes-id`, {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(ids)
+  })
+  .then(result => result.json())
+  .catch(e => console.log('error in service file', e))
+}
+
 
 export function getRandomRecipess (number) {
   console.log("number in getRandomRecipess()", number)

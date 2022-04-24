@@ -44,9 +44,9 @@ export default function RecipeList({ randomListInitial, setRandomList, toggleHea
   // }, [randomList])
   // const randomList = randomListInitial;
 
-  const [partialList, setPartialList] = useState( randomListInitial)
+  const [partialList, setPartialList] = useState(randomListInitial)
   // const partialListCopy = partialList;
-
+  
   useEffect(() => {
     console.log('useeffect in recipeLIst', limit)
 
@@ -57,8 +57,14 @@ export default function RecipeList({ randomListInitial, setRandomList, toggleHea
   function getMoreRecipes() {
     console.log('increasing limit')
     setLimit(limit + 10);
-
   }
+  
+  
+  
+  const [favoriteList, setfavoriteList] = useState([]);
+  
+
+
 
 
 

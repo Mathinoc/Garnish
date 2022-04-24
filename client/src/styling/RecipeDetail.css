@@ -25,13 +25,13 @@
   padding: 2vw 0;
 }
 .graph-container {
-  height: auto;
+  height: 5vh;
   width: 45vw;
 }
-.recipe-detail-container .cover-img {
+ .cover-img {
   border-top-left-radius: var(--element-radius);
   border-top-right-radius: var(--element-radius);
-  width: 100%;
+  width: fit-content;
   /* height: 40vh; */
   /* object-fit: cover; */
 }

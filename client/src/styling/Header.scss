@@ -3,7 +3,7 @@
 :root {
   --head-color1: #F5D6BA ;
   --head-color2: #ACC3A6;
-  --head-color3: #5fd8ed;
+  --head-color3: rgba(145 204 46 / 56%);
   --head-color4: #FFC15E;
 }
 
@@ -117,6 +117,7 @@ nav {
   padding: 9px 15px 11px;
   white-space: nowrap;
   cursor: pointer;
+  border: 1px solid rgba(145,204,46,.56) !important;
   // background-color: pink;
 }
 .btn-log-in {

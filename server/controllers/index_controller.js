@@ -3,7 +3,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 const baseUrl = 'https://api.spoonacular.com/recipes';
 const randomList = '/random?apiKey=';
-const apiKey = process.env.API_KEY2;
+const apiKey = process.env.API_KEY1;
 
 
 async function randomRecipes (req, res) {
@@ -16,6 +16,21 @@ async function randomRecipes (req, res) {
 
   } catch (error) {
     console.log('randomRecipes()', error)
+    res.sendStatus(500);
+  }
+}
+
+async function recipesIds (req,res) {
+  try {
+    const recipeIds = req.body ;
+    const idString = recipeIds.join(',');
+    const resultFromApi = await fetch(`${baseUrl}/informationBulk?apiKey=${apiKey}&ids=${idString}`);
+    const parsedResult = await resultFromApi.json();
+    console.log("parsedResult IDs", parsedResult)
+    res.status(200).json(parsedResult);
+
+  } catch (error) {
+    console.log('recipeById()', error)
     res.sendStatus(500);
   }
 }
@@ -79,7 +94,7 @@ async function recipeByName (req, res) {
 
 
 
-module.exports = { randomRecipes, recipeById, similarRecipes, recipeByName }
+module.exports = { randomRecipes, recipeById, similarRecipes, recipeByName, recipesIds }
 
 
 // async function parseRecipe (ctx) {

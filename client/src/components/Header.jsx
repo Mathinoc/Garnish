@@ -108,9 +108,9 @@ export default function Header({ searchSet }) {
         <Link to="/parse">
           <Button className="btn-head btn-parse">Collect</Button>
         </Link>
-        {/* <Link to="/logIn">
-          <Button className="btn-head btn-log-in">Log in</Button>
-        </Link> */}
+        <Link to="/my-favorites">
+          <Button className="btn-head btn-log-in">Favorites</Button>
+        </Link>
       </nav>
     </div >
   )
