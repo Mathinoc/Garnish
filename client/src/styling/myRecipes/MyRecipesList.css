@@ -57,7 +57,15 @@
   padding: 0;
 }
 
-.list-instructions {}
+.ingredient-list p {
+  margin:0;
+}
+.instruction-step {
+  font-weight: 600;
+}
+.instruction-sub-block{
+  margin-bottom: 10px;
+}
 
 .btn-delete-recipe {
   border: none;
@@ -77,4 +85,5 @@
 
 .card-header {
   color: rgb(226, 148, 4);
+  font-size: 20px;
 }

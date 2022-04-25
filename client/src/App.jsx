@@ -5,7 +5,6 @@ import RecipeList from './components/RecipeList';
 import LogIn from './components/LogIn';
 import SearchList from './components/SearchList';
 import RecipeDetail from './components/RecipeDetail';
-import ParsePage from './components/ParsePage';
 import Footer from "./components/Footer";
 import MyRecipes from "./components/myRecipes/MyRecipes";
 import SavedRecipes from './components/SavedRecipes/SavedRecipes';
@@ -130,7 +129,6 @@ function App() {
             <Route path="/search" element={<SearchList toggleHeart={toggleHeart} myList={myList} number={3} searchSet={searchAndFilterSets} />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/:recipeId" element={<RecipeDetail toggleHeart={toggleHeart} myList={myList} />} />
-            <Route path="/parse" element={<ParsePage />} />
             <Route path="/my-recipes" element={<MyRecipes />} />
             <Route path="/my-favorites" element={<SavedRecipes myList={myList} toggleHeart={toggleHeart}/>} />
           </Routes>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 
 export default function MyRecipesList({ personalRecipes, setPersonalRecipes }) {
-  const [display, setDisplay] = useState({recipeTitle:'Select a recipe'});
+  const [display, setDisplay] = useState({ recipeTitle: 'Select a recipe' });
 
   function recipeDetail(e, index) {
 
@@ -24,7 +24,7 @@ export default function MyRecipesList({ personalRecipes, setPersonalRecipes }) {
     });
     const message = `\'${personalRecipes[index].recipeTitle}\' has been deleted`
     setDisplay({ recipeTitle: message });
-    setTimeout(() => setDisplay({recipeTitle:'Select a recipe'}), 2000)
+    setTimeout(() => setDisplay({ recipeTitle: 'Select a recipe' }), 2000)
     setPersonalRecipes(list)
   }
 
@@ -65,7 +65,9 @@ export default function MyRecipesList({ personalRecipes, setPersonalRecipes }) {
                   <h5 className="card-title">{display.recipeTitle}</h5>
                   <p className="card-text">{display.story}</p>
                   <ul className="list-group list-group-flush">
-                    <li className="list-group-item card-header">{display.ingredientList && 'Ingredients'}</li>
+                    <li className="list-group-item card-header">
+                      {display.ingredientList && 'Ingredients'}
+                    </li>
                     <li className="list-group-item">
                       <ul className="ingredient-list" >
                         {display.ingredientList && display.ingredientList.map((el, index) => (
@@ -78,16 +80,21 @@ export default function MyRecipesList({ personalRecipes, setPersonalRecipes }) {
                     </li>
                   </ul>
                   <ul className="list-group list-group-flush">
-                    <li className="list-group-item card-header">{display.instructionList && 'Instructions'}</li>
+                    <li className="list-group-item card-header">
+                      {display.instructionList && 'Instructions'}
+                    </li>
                     <li className="list-group-item">
-                      <ol className="ingredient-list" >
+                      <div className="ingredient-list" >
                         {display.instructionList && display.instructionList.map((el, index) => (
                           el.text !== '' &&
-                          <li key={index + 'c'} >
-                            {el.text}
-                          </li>
+                          <div className="instruction-sub-block" key={index + 'c'}>
+                            <p className="instruction-step" >Step {index + 1}</p>
+                            <p  >
+                              {el.text}
+                            </p>
+                          </div>
                         ))}
-                      </ol>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -96,6 +103,6 @@ export default function MyRecipesList({ personalRecipes, setPersonalRecipes }) {
           </div>
         </div>
       </div>
-      </div>
-      )
+    </div>
+  )
 }

@@ -112,9 +112,7 @@ export default function Header({ searchSet }) {
         <Link to="/my-recipes">
           <Button type="button" className="btn-head btn-my-recipe">Recipe Box</Button>
         </Link>
-        <Link to="/parse">
-          <Button className="btn-head btn-parse">Collect</Button>
-        </Link>
+
         <Link to="/my-favorites">
           <Button className="btn-head btn-log-in">Favorites</Button>
         </Link>
