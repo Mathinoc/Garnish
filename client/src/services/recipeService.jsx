@@ -2,6 +2,22 @@ import {getRandomRecipes} from './../data.js';
 const baseUrl = 'http://localhost:3004'
 
 
+export function scrapeData (urlRecipe) {
+  console.log('url in service', urlRecipe)
+  return fetch(`${baseUrl}/recipe-url`, {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({'urlRecipe':urlRecipe})
+  })
+  .then(result => {
+    console.log('result in service', result)
+    return result.json()
+  })
+  .catch(e => console.log('error in service file', e))
+}
+
+
+
 export function getSearchResults (searchDetails) {
   return fetch(`${baseUrl}/recipe-by-name`, {
     method: 'POST',

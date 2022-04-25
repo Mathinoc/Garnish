@@ -1,13 +1,19 @@
+:root{
+  --main-color:rgb(167, 252, 167,.82);
+  /* --main-color:rgb(204, 240, 146); */
+}
+
 .outer-container{
   position: relative;
 }
 .CreateRecipe {
   padding: 80px 3vw 30px 3vw;
   background-color: white;
-  box-shadow: 0px 0px 1px 1px rgba(8, 1, 1, 0.068);
+  box-shadow: 0px 0px 1px 1px var(--main-color);
   border-radius: 10px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction:column;
+  flex-wrap: nowrap;
   gap: 30px;
   justify-content: center;
 }
@@ -23,7 +29,7 @@
   font-size: 18px;
   /* border-top-left-radius: 10px;
   border-top-right-radius: 10px; */
-  background-color: rgba(205, 186, 222, 0.887);
+  background-color: var(--main-color);
   padding: 8px 0 10px 0;
   color: rgb(86, 86, 86);
   transition: 0.4s;
@@ -37,7 +43,14 @@
   transform: scale(1.03)
 }
 
-
+.separator{
+  border: 2px solid rgb(174, 172, 172);
+  background-color: rgb(174, 172, 172);
+  border-radius: 2px;
+  width: 42vw;
+  margin: auto;
+  /* height: 1px; */
+}
 
 .menuPrimary-enter {
   transform: translate(0%, 20%);
@@ -57,6 +70,11 @@
 }
 
 
+.minimize-url-btn{
+  background-color: rgba(171, 202, 171, 0.82) !important;
+}
+
+
 
 h3{
   color: rgb(223, 146, 4);
@@ -67,19 +85,19 @@ h3{
   font-size:20px;
   font-weight:300;
 }
-
 .form {
   /* border: 1px solid blue; */
   display: flex;
   min-width: 300px;
   flex-direction: row;
+  gap:20px;
 }
 
 .first-division {
   display: flex;
 }
 
-.form-filed {
+.form-field {
   /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;

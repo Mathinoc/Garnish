@@ -9,13 +9,28 @@ const apiKey = process.env.API_KEY1;
 async function randomRecipes (req, res) {
   console.log('randomRecipes()', req.body.number)
   try {
-    const numberOfRecipes = req.body.number  
+    const numberOfRecipes = req.body.number;
     const resultFromApi = await fetch(`${baseUrl}${randomList}${apiKey}&number=${numberOfRecipes}`);
     const parsedResult = await resultFromApi.json();
     res.status(200).json(parsedResult);
 
   } catch (error) {
     console.log('randomRecipes()', error)
+    res.sendStatus(500);
+  }
+}
+
+async function recipeUrl (req,res) {
+  console.log("getRecipeById()_id: ", req.body.urlRecipe)
+  try {
+    const recipeUrl = req.body.urlRecipe;  
+    const resultFromApi = await fetch(`${baseUrl}/extract?apiKey=${apiKey}&url=${recipeUrl}`);
+    const parsedResult = await resultFromApi.json();
+    console.log("parsed Url recipe", parsedResult)
+    res.status(200).json(parsedResult);
+
+  } catch (error) {
+    console.log('recipeById()', error)
     res.sendStatus(500);
   }
 }
@@ -93,22 +108,4 @@ async function recipeByName (req, res) {
 }
 
 
-
-module.exports = { randomRecipes, recipeById, similarRecipes, recipeByName, recipesIds }
-
-
-// async function parseRecipe (ctx) {
-//   try {
-//     let recipeElements;
-//     const url = ctx.request.body;
-//     recipeDataScraper(url)
-//       // .then((recipe) => res.json({ recipe }))
-//       //! stopped here
-//       .then(result => recipeElements = result)
-//       .then(result => recipeElements = result)
-//       .catch((err) => res.status(500).json({ message: err.message })); 
-//     ctx.body = recipeElements
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+module.exports = { randomRecipes, recipeById, similarRecipes, recipeByName, recipesIds, recipeUrl }

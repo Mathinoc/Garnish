@@ -1,16 +1,20 @@
 import React from 'react';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.css";
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import './../../styling/myRecipes/CreateRecipeForm.css';
 import { CSSTransition } from 'react-transition-group';
+import {scrapeData} from './../../services/recipeService';
+import { useEffect } from 'react';
 
 export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }) {
   const [recipeTitle, setRecipeTile] = useState('')
   const [ingredientList, setIngredientList] = useState([{ ingredient: "", quantity: "", unit: "" }]);
   const [instructionList, setInstructionList] = useState([{ text: "" }]);
   const [toggle, setToggle] = useState(false);
-
+  const [toggleUrl, setToggleUrl] = useState(false);
+  const [urlRecipe, setUrlRecipe] = useState('');
+  const [scrapedRecipe, setScrapedRecipe] = useState(false);
 
 
   function addIngredient() {
@@ -71,16 +75,46 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
     setInstructionList(instList);
   }
 
-  function titleChange (e) {
+  function titleChange(e) {
     setRecipeTile(e.target.value)
   }
   function saveRecipe() {
     localStorage.clear();
-    setPersonalRecipes([...personalRecipes,{ recipeTitle, ingredientList, instructionList, creationDate: new Date().toISOString().slice(0, 10) }])
-    setToggle(false)
+    setPersonalRecipes([...personalRecipes, { recipeTitle, ingredientList, instructionList, creationDate: new Date().toISOString().slice(0, 10) }])
+    setToggle(false);
+    setToggleUrl(false);
+    setIngredientList([{ ingredient: "", quantity: "", unit: "" }]);
+    setInstructionList([{ text: "" }]);
+    setRecipeTile('');
   }
 
 
+
+  function browseUrl () {
+    console.log('urlRecipe', urlRecipe)
+    scrapeData(urlRecipe)
+    .then( result => setScrapedRecipe(result))
+    .catch(e => console.log(e))
+  }
+
+  useEffect(() => {
+    if (scrapedRecipe) {
+      const ingredients = scrapedRecipe.extendedIngredients;
+      const instructions = scrapedRecipe.analyzedInstructions[0].steps;
+      const title = scrapedRecipe.title;
+      const ingredientList = [], instructionList = [];
+      instructions.map(el => {
+        instructionList.push({text:el.step})
+      }) 
+      ingredients.map(el => {
+        ingredientList.push({ ingredient: el.nameClean, quantity: el.amount, unit: el.unit })
+      })  
+      setIngredientList(ingredientList)
+      setInstructionList(instructionList)
+      setRecipeTile(title)
+    }
+
+  },[scrapedRecipe])
 
   return (
     <div className="outer-container">
@@ -94,14 +128,40 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
         classNames="menuPrimary"
       >
         <div className="CreateRecipe">
-          <div className="input-group mb-3">
-            {/* <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">Title</span>
-            </div> */}
-            <input type="text" value={recipeTitle} onChange={(e) => titleChange(e)} className="form-control  text-center" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" />
+          <div className="url-input-container" >
+
+            <div className="input-group mb-3">
+
+              <div className="input-group-prepend">
+                <button
+                  onClick={() => setToggleUrl(!toggleUrl)}
+                  className={`btn btn-outline-secondary ${toggleUrl ? 'minimize-url-btn' : ''}`}
+                  type="button"
+                  style={{ fontSize: '11px' }}
+                >
+                  Url Search
+                </button>
+              </div>
+              {toggleUrl && (
+                <>
+                  <input onChange={(e) => setUrlRecipe(e.target.value)} style={{ fontSize: '11px' }} type="text" className="form-control" placeholder="Url..." aria-label="Small" aria-describedby="basic-addon1" />
+                  <div className="input-group-append">
+                    <button onClick={browseUrl} className="btn btn-outline-secondary" type="button" style={{ fontSize: '11px' }}>Collect</button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          <div className="separator">
+          </div>
+
+          <div className="input-group">
+            <input type="text" value={recipeTitle} onChange={(e) => titleChange(e)} className="form-control  text-center"
+              placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" />
           </div>
           <div className='form'>
-            <div className='form-filed'>
+            <div className='form-field'>
               <h3>Ingredients</h3>
               {ingredientList.map((ingredient, index) => (
                 <div key={index}>
@@ -125,47 +185,33 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
               }
 
             </div>
-            <div className="output">
-              <h3 className="title-minimized" >Output</h3>
-              {ingredientList.map((ingredientObject, index) => (
-                <ul key={index}>
-                  {ingredientObject.ingredient &&
-                    <li>
-                      {ingredientObject.ingredient}: {ingredientObject.quantity} {ingredientObject.unit}
-                    </li>
-                  }
-                </ul>
+            <div className="second-division">
+              <h3>Instructions</h3>
+              {instructionList.map((el, ind) => (
+                <div key={ind + 'a'}>
+                  <div className="input-group input-group-sm mb-3">
+                    <div className="input-group-prepend">
+                      <span style={{ fontSize: '11px' }} className="input-group-text" id="inputGroup-sizing-sm">{ind + 1}</span>
+                    </div>
+                    <input placeholder="..." value={el.text && el.text} onChange={(e) => (onInstructionChange(e, ind))} type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
+                    {instructionList.length > 1 &&
+                      <Button variant="outline-warning"
+                        onClick={() => removeInstruction(ind)}
+                      >
+                        <i className="bi bi-trash-fill"></i>
+                      </Button>
+                    }
+                  </div>
 
+                </div>
               ))}
+
             </div>
           </div>
 
-          <div className="second-division">
-            <h3>Instructions</h3>
-            {instructionList.map((el, ind) => (
-              <div key={ind + 'a'}>
-                <div className="input-group input-group-sm mb-3">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text" id="inputGroup-sizing-sm">{ind + 1}</span>
-                  </div>
-                  <input placeholder="..." value={el.text && el.text} onChange={(e) => (onInstructionChange(e, ind))} type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
-                  {instructionList.length > 1 &&
-                    <Button variant="outline-warning"
-                      onClick={() => removeInstruction(ind)}
-                    >
-                      <i className="bi bi-trash-fill"></i>
-                    </Button>
-                  }
-                </div>
-
-              </div>
-            ))}
-
+          <div>
+            <button type="button" onClick={saveRecipe} className="btn btn-outline-success">Save</button>
           </div>
-
-
-
-          <button type="button" onClick={saveRecipe} className="btn btn-outline-success">Save</button>
         </div>
 
       </CSSTransition>

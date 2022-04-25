@@ -68,7 +68,7 @@ export default function Header({ searchSet }) {
       <div className='search-bar'>
         <button onClick={handleClick}><i className="bi bi-search"></i></button>
 
-        <input onKeyPress={pressEnter} ref={searchInput} placeholder="Search..." />
+        <input id="main-input" onKeyPress={pressEnter} ref={searchInput} placeholder="Search..." />
         <div className="dropdown" >
           <button className="link" onClick={() => { setOpen(!open); console.log(open) }}><i className="bi bi-sliders"></i></button>
           <CSSTransition
@@ -81,19 +81,26 @@ export default function Header({ searchSet }) {
           >
             <div className="dropdown-menu">
               <form className="dropdown-form">
-                <div>
+                <div className="checkbox-filter" >
                   <input type="checkbox" name="vegetarian" onChange={vegToggle} checked={vegetarianSub} />
                   <label>Vegetarian</label>
                 </div>
-                <div>
+                <div className="checkbox-filter">
                   <input type="checkbox" name="gluten free" onChange={glutenToggle} checked={glutenSub} />
                   <label>Gluten free</label>
                 </div>
-                <div>
+                <div className="checkbox-filter">
                   <input type="checkbox" name="dairy free" onChange={dairyToggle} checked={dairySub} />
                   <label>Dairy free</label>
                 </div>
-                <button onClick={closeDropdown}>Save</button>
+                <div className="filter-form-btn-container">
+
+                  <button onClick={closeDropdown} className="filter-form-btn">
+                    <div className="filter-form-inner-btn">
+                      Save
+                    </div>
+                  </button>
+                </div>
               </form>
             </div>
           </CSSTransition>
