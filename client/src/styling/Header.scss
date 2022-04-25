@@ -42,7 +42,7 @@ a img {
 
 
 .search-bar{
-  border: 1px solid var(--head-color3);
+  border: 1px solid var(--main-color);
   border-radius: 30px;
   display: flex;
   gap: 10px;
@@ -108,7 +108,7 @@ a img {
   width:100%;
 }
 .filter-form-inner-btn{
-  background-color: aquamarine;
+  background-color: var(--main-color);
   border-radius: 20px;
 }
 
@@ -145,16 +145,14 @@ nav {
   padding: 9px 15px 11px;
   white-space: nowrap;
   cursor: pointer;
-  border: 1px solid rgba(145,204,46,.56) !important;
+  border: 1px solid var(--main-color) !important;
   // background-color: pink;
 }
-.btn-log-in {
+.btn-favorite {
   border: none;
   color: var(--head-color);
-  background-color: var(--head-color3) !important;
-  color: aliceblue ;
-}
-.btn-parse {
+  // background-color: var(--main-color) !important;
+  // color: aliceblue ;
   background-color: rgb(255, 255, 255) !important;
   color: grey !important;
 }

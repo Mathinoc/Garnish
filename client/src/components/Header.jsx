@@ -114,7 +114,7 @@ export default function Header({ searchSet }) {
         </Link>
 
         <Link to="/my-favorites">
-          <Button className="btn-head btn-log-in">Favorites</Button>
+          <Button className="btn-head btn-favorite">Favorites</Button>
         </Link>
       </nav>
     </div >

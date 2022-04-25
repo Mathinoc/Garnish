@@ -53554,6 +53554,9 @@ export function getRecipeBulk () {
   return recipeBulk.recipes
 }
 
+export function getRecipeTemplate () {
+  return recipeTemplate
+}
 
 export function getRecipeByIdData (id) {
   for (let recipe of recipeBulk.recipes) {

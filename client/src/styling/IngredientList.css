@@ -2,7 +2,15 @@
   padding: 20px;
   display: flex;
   gap: 20px;
-  border: 1px solid salmon;
+  /* border: 1px solid salmon; */
   flex-wrap: wrap;
-  /* justify-content: center; */
+}
+ul {
+  list-style-type: circle;
+  text-align: left;
+  padding-left: 30px;
+}
+li span {
+  position: relative;
+  left: 10px;
 }

@@ -60,10 +60,9 @@ export default function MyRecipesList({ personalRecipes, setPersonalRecipes }) {
         <div className="recipe-detail-frame" >
           <div className="recipe-details">
             {display &&
-              <div className="card" >
+              <div className="card card-frame" >
                 <div className="card-body">
                   <h5 className="card-title">{display.recipeTitle}</h5>
-                  <p className="card-text">{display.story}</p>
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item card-header">
                       {display.ingredientList && 'Ingredients'}

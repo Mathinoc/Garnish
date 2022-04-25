@@ -107,7 +107,8 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
         instructionList.push({text:el.step})
       }) 
       ingredients.map(el => {
-        ingredientList.push({ ingredient: el.nameClean, quantity: el.amount, unit: el.unit })
+        const upperCaseName = el.nameClean[0].toUpperCase() + el.nameClean.slice(1)
+        ingredientList.push({ ingredient: upperCaseName, quantity: el.amount, unit: el.unit })
       })  
       setIngredientList(ingredientList)
       setInstructionList(instructionList)
