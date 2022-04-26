@@ -10,7 +10,7 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 4;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -146,19 +146,22 @@ nav {
   white-space: nowrap;
   cursor: pointer;
   border: 1px solid var(--main-color) !important;
-  // background-color: pink;
+}
+.common-background{
+  background: rgba(88, 254, 169, 0.12)!important;
+
 }
 .btn-favorite {
   border: none;
   color: var(--head-color);
   // background-color: var(--main-color) !important;
   // color: aliceblue ;
-  background-color: rgb(255, 255, 255) !important;
+  // background-color: rgb(255, 255, 255) !important;
   color: grey !important;
 }
 
 .btn-my-recipe{
-  background-color: rgb(255, 255, 255) !important;
+  // background-color: rgb(255, 255, 255) !important;
   color: grey !important;
 }
 

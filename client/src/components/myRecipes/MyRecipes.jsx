@@ -12,14 +12,27 @@ export default function MyRecipes() {
     const listParsed = JSON.parse(savedJSON);
     return listParsed || [];
   })
+  const [indexRecipeToModify, setIndexRecipeToModify] = useState(false)
   useEffect(() => {
     localStorage.setItem("personalRecipes", JSON.stringify(personalRecipes))
   }, [personalRecipes])
 
+console.log('MYList() indexRecipeToModify', indexRecipeToModify)
+
   return (
     <div className="my-recipes-container" >
-      <CreateRecipeForm personalRecipes={personalRecipes} setPersonalRecipes={setPersonalRecipes}/>
-      <MyRecipesList personalRecipes={personalRecipes} setPersonalRecipes={setPersonalRecipes}/>
+      <CreateRecipeForm
+        personalRecipes={personalRecipes}
+        setPersonalRecipes={setPersonalRecipes}
+        indexRecipeToModify={indexRecipeToModify}
+        setIndexRecipeToModify={setIndexRecipeToModify}
+      />
+      <MyRecipesList
+        personalRecipes={personalRecipes}
+        setPersonalRecipes={setPersonalRecipes}
+
+        setIndexRecipeToModify={setIndexRecipeToModify}
+      />
     </div>
   )
 }

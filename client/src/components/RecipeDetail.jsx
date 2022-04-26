@@ -8,7 +8,7 @@ import SimilarList from './SimilarList';
 import { getRecipeById } from './../services/recipeService';
 import BarChart from './charts/BarChart';
 // import { getRecipeByIdData } from './../data';
-// import { getRecipeTemplate } from './../data';
+import { getRecipeTemplate } from './../data';
 
 
 export default function RecipeDetail({ myList, toggleHeart }) {
@@ -38,7 +38,7 @@ export default function RecipeDetail({ myList, toggleHeart }) {
         alert('Could not get recipe details :/')
       })
       .catch(error => console.log("RecipeDetail()", error))
-    //setRecipe(getRecipeTemplate())
+    // setRecipe(getRecipeTemplate())
 
   }, [recipeId])
 
@@ -63,10 +63,12 @@ export default function RecipeDetail({ myList, toggleHeart }) {
           <div className="cover-img-container" style={{ 'background-image': `url(${recipe.image})` }} >
           </div>
           <div className="graph-container" >
-            <p>Nutrition Facts <span style={{ 'font-size': '12px' }} >/serving</span></p>
+            <p>Nutrition Facts</p>
+            <p style={{ 'font-size': '12px', 'margin-top': '-5px' }}> <span >/serving</span></p>
             <BarChart recipe={recipe} id="chart-itself" />
           </div>
         </div>
+
         <div className="recipe-detail-middle">
           <div className="recipe-information" >
             <div className="info-container" >
@@ -83,13 +85,15 @@ export default function RecipeDetail({ myList, toggleHeart }) {
               <i class="bi bi-file-medical special-selection"></i>
               <p>Health score: {nutritionScore(recipe.healthScore)}</p>
             </div>
-          </div>
-          <div className="step-for-heart-transition" >
-            <button className="heart-btn-detail" onClick={() => handleClick(recipe.id)} >
-              {heartToggle ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart heart-fill"></i>}
-            </button>
+            <i class="bi bi-dot"></i>
+            <div className="step-for-heart-transition" >
+              <button className="heart-btn-detail" onClick={() => handleClick(recipe.id)} >
+                {heartToggle ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart heart-fill"></i>}
+              </button>
+            </div>
           </div>
         </div>
+
         <div className="recipe-detail-bottom">
           <div className="ingredient-class" >
             <h5>Ingredients</h5>

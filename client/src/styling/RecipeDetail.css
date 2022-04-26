@@ -65,15 +65,19 @@
 }
 
 
-.recipe-detail-middle {}
+.recipe-detail-middle {
+  
+}
 
 .recipe-detail-middle p {
   margin-bottom: 0;
   margin-top: 6px;
 }
 .recipe-information {
+  /* border: 1px solid blue; */
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 25px;
 }
 .info-container {
@@ -89,15 +93,17 @@
   color: var(--main-color2);
 }
 .step-for-heart-transition{
-  margin-top:20px;
+  /* border: 1px solid blue; */
+  /* margin-top:20px; */
   position: relative;
-  height:80px;
+  height:68px;
+  width :68px;
 }
 .heart-btn-detail {
-  left: calc(50% - 30px);
+  left: calc(50% - 34px);
 
   position: absolute;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   background: linear-gradient(217deg, #75f999, rgba(255, 0, 0, 0) 70.71%),
     linear-gradient(127deg, #f99f75, rgba(0, 255, 0, 0) 70.71%),
     linear-gradient(336deg, #f975a6, rgba(0, 0, 255, 0) 70.71%);

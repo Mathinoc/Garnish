@@ -4,18 +4,24 @@ import "bootstrap/dist/css/bootstrap.css";
 import { useState, useTransition } from 'react';
 import './../../styling/myRecipes/CreateRecipeForm.css';
 import { CSSTransition } from 'react-transition-group';
-import {scrapeData} from './../../services/recipeService';
+import { scrapeData } from './../../services/recipeService';
 import { useEffect } from 'react';
 
-export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }) {
+export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, indexRecipeToModify, setIndexRecipeToModify }) {
   const [recipeTitle, setRecipeTile] = useState('')
   const [ingredientList, setIngredientList] = useState([{ ingredient: "", quantity: "", unit: "" }]);
   const [instructionList, setInstructionList] = useState([{ text: "" }]);
   const [toggle, setToggle] = useState(false);
   const [toggleUrl, setToggleUrl] = useState(false);
-  const [urlRecipe, setUrlRecipe] = useState('');
+  const [urlRecipe, setUrlRecipe] = useState(false);
   const [scrapedRecipe, setScrapedRecipe] = useState(false);
+  const [recipeToModify, setRecipeToModify] = useState(false);
 
+  useEffect(() => {
+
+    console.log('increate from department')
+
+  }, [indexRecipeToModify])
 
   function addIngredient() {
     setIngredientList([...ingredientList, { ingredient: "", quantity: "", unit: "" }]);
@@ -44,7 +50,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
   }
   function changeQuantity(e, index) {
     const list = [...ingredientList];
-    list[index].quantity = e.target.value;
+    list[index].quantity = (e.target.value).toString();
     setIngredientList(list);
     removeEmptyLine(e, index);
   }
@@ -74,48 +80,126 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
     instList.splice(ind, 1);
     setInstructionList(instList);
   }
-
   function titleChange(e) {
     setRecipeTile(e.target.value)
   }
+
+  function removeLastInstructionIfEmpty(arr) {
+    if (arr[arr.length - 1].text === '') {
+      return arr.slice(-0, arr.length - 1);
+    } else {
+      return arr
+    }
+  }
+  function removeLastIngredientIfEmpty(arr) {
+    if (arr[arr.length - 1].ingredient === '') {
+      return arr.slice(-0, arr.length - 1);
+    } else {
+      return arr
+    }
+  }
+
+
   function saveRecipe() {
-    localStorage.clear();
-    setPersonalRecipes([...personalRecipes, { recipeTitle, ingredientList, instructionList, creationDate: new Date().toISOString().slice(0, 10) }])
+    //localStorage.clear();
+    console.log('indexRecipeToModify', indexRecipeToModify)
+    const ingredientListNotEmpty = removeLastIngredientIfEmpty(ingredientList);
+    const instructionListNotEmpty = removeLastInstructionIfEmpty(instructionList);
+    console.log('ingredientListNotEmpty', ingredientListNotEmpty)
+    console.log('ingredientListNotEmpty', instructionListNotEmpty)
+    console.log('indexRecipeToModify',indexRecipeToModify)
+
+    if (indexRecipeToModify === false) {
+      console.log('should be false')
+      setPersonalRecipes([...personalRecipes, { recipeTitle, ingredientList: ingredientListNotEmpty, instructionList: instructionListNotEmpty, creationDate: new Date().toISOString().slice(0, 10) }])
+      
+    } else {
+      console.log('there is index')
+      const firstPartList = personalRecipes.slice(0, indexRecipeToModify);
+      const modifiedRecipe = { recipeTitle, ingredientList:ingredientListNotEmpty, instructionList:instructionListNotEmpty, creationDate: new Date().toISOString().slice(0, 10) };
+      const finalPartList = personalRecipes.slice(indexRecipeToModify + 1);
+      console.log('look below')
+      console.log([...firstPartList, modifiedRecipe, ...finalPartList]);
+
+      setPersonalRecipes([...firstPartList, modifiedRecipe, ...finalPartList]);
+      setScrapedRecipe('');
+    }
     setToggle(false);
     setToggleUrl(false);
     setIngredientList([{ ingredient: "", quantity: "", unit: "" }]);
     setInstructionList([{ text: "" }]);
     setRecipeTile('');
+
+    setRecipeToModify(false)
+
+    setIndexRecipeToModify(false);
+    setUrlRecipe(false);
   }
 
 
-
-  function browseUrl () {
-    console.log('urlRecipe', urlRecipe)
-    scrapeData(urlRecipe)
-    .then( result => setScrapedRecipe(result))
-    .catch(e => console.log(e))
+  function browseUrl() {
+    if (urlRecipe) {
+      console.log('urlRecipe', urlRecipe)
+      scrapeData(urlRecipe)
+        .then(result => setScrapedRecipe(result))
+        .catch(e => console.log(e))
+    }
   }
 
   useEffect(() => {
-    if (scrapedRecipe) {
-      const ingredients = scrapedRecipe.extendedIngredients;
-      const instructions = scrapedRecipe.analyzedInstructions[0].steps;
-      const title = scrapedRecipe.title;
-      const ingredientList = [], instructionList = [];
-      instructions.map(el => {
-        instructionList.push({text:el.step})
-      }) 
-      ingredients.map(el => {
-        const upperCaseName = el.nameClean[0].toUpperCase() + el.nameClean.slice(1)
-        ingredientList.push({ ingredient: upperCaseName, quantity: el.amount, unit: el.unit })
-      })  
+    if (typeof indexRecipeToModify === 'number') {
+      console.log('personalRecipes', personalRecipes)
+      const selectRecipeToModify = personalRecipes[indexRecipeToModify];
+      console.log('selectRecipe', selectRecipeToModify)
+      setRecipeToModify(selectRecipeToModify)
+    }
+  }, [indexRecipeToModify])
+
+  useEffect(() => {
+    console.log('prep to display')
+    if (scrapedRecipe || recipeToModify) {
+      let ingredientList = [], instructionList = [];
+      let recipeTitle = '';
+      if (scrapedRecipe) {
+        console.log('in here?')
+        const ingredients = scrapedRecipe.extendedIngredients;
+        const instructions = scrapedRecipe.analyzedInstructions[0].steps;
+        recipeTitle = scrapedRecipe.title;
+
+        instructions.map(el => {
+          instructionList.push({ text: el.step })
+        })
+        ingredients.map(el => {
+          const upperCaseName = el.nameClean[0].toUpperCase() + el.nameClean.slice(1)
+          console.log((el.amount).toString())
+          ingredientList.push({ ingredient: upperCaseName, quantity: (el.amount).toString(), unit: el.unit })
+        })
+      } else {
+        setToggle(true)
+        console.log('recipetomodify', recipeToModify)
+        instructionList = recipeToModify.instructionList ||[];
+        ingredientList = recipeToModify.ingredientList || [];
+        recipeTitle = recipeToModify.recipeTitle;
+      }
+      console.log('ingredientList', ingredientList)
+
+      // instructionList.push({ text: "" })
+      // ingredientList.push({ ingredient: "", quantity: "", unit: "" })
+
       setIngredientList(ingredientList)
       setInstructionList(instructionList)
-      setRecipeTile(title)
+      setRecipeTile(recipeTitle)
     }
 
-  },[scrapedRecipe])
+  }, [scrapedRecipe, recipeToModify])
+
+
+
+  function pressEnter(event) {
+    if (event.key === 'Enter') {
+      browseUrl();
+    }
+  }
 
   return (
     <div className="outer-container">
@@ -145,7 +229,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes }
               </div>
               {toggleUrl && (
                 <>
-                  <input onChange={(e) => setUrlRecipe(e.target.value)} style={{ fontSize: '11px' }} type="text" className="form-control" placeholder="Url..." aria-label="Small" aria-describedby="basic-addon1" />
+                  <input onKeyPress={(e) => pressEnter(e)} onChange={(e) => setUrlRecipe(e.target.value)} style={{ fontSize: '11px' }} type="text" className="form-control" placeholder="Url..." aria-label="Small" aria-describedby="basic-addon1" />
                   <div className="input-group-append">
                     <button onClick={browseUrl} className="btn btn-outline-secondary" type="button" style={{ fontSize: '11px' }}>Collect</button>
                   </div>

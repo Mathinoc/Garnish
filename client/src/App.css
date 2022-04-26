@@ -1,12 +1,21 @@
 :root{
   --main-color:rgba(151, 246, 151, 0.822);
   /* --main-color:rgb(167, 252, 167,.82); */
-  --main-hover:rgb(78, 241, 122);
+  --main-hover:rgb(78, 241, 181);
   --main-color2:#f99f75;
   --border-radius: 10px;
-  /* --main-color:rgb(204, 240, 146); */
+  --max-width: 1000px;
+
+  --shadee-one: 0px;
+  --shadee-two: 20px;
+  --shadee-three: 20px;
+  --shadee-percent: rgba(0,0,0,.2);
+
+  --main-shadow: var(--shadee-one) var(--shadee-two) var(--shadee-three) var(--shadee-percent);
+  /* 0 20px 20px rgba(0,0,0,.2); */
 }
 .App {
+  margin: auto;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -17,30 +26,36 @@
 } */
 
 .body-container {
+  
   flex: 1;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(169, 255, 205, 0.349);
   padding: 5vh 10vw 8vh 10vw;
   /* background-color: #fbfbfb; */
+  text-align: center;
+}
+.body-sub-container{
+  max-width: var(--max-width);
+  margin: auto;
 }
 
-.App::-webkit-scrollbar {
+body::-webkit-scrollbar {
   height: 10px;
   padding-right: 10px;
 }
 
-.App::-webkit-scrollbar-track {
-  background: rgba(185, 186, 186, 0.209);
+body::-webkit-scrollbar-track {
+  background: rgba(253, 253, 253, 0.209);
   border-radius: 20px;
   /* color of the tracking area */
   padding-right: 10px;
 }
 
-.App::-webkit-scrollbar-thumb {
-  background-color: rgb(42, 41, 41);
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(183, 184, 184);
   /* color of the scroll thumb */
   border-radius: 20px;
   /* roundness of the scroll thumb */
-  border: 2px solid rgba(185, 186, 186, 0.209);
+  border: 2px solid rgba(62, 247, 182, 0.209);
   /* creates padding around scroll thumb */
   background-clip: padding-box;
 }

@@ -3,20 +3,16 @@ const baseUrl = 'http://localhost:3004'
 
 
 export function scrapeData (urlRecipe) {
-  console.log('url in service', urlRecipe)
   return fetch(`${baseUrl}/recipe-url`, {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({'urlRecipe':urlRecipe})
   })
   .then(result => {
-    console.log('result in service', result)
     return result.json()
   })
   .catch(e => console.log('error in service file', e))
 }
-
-
 
 export function getSearchResults (searchDetails) {
   return fetch(`${baseUrl}/recipe-by-name`, {
@@ -38,10 +34,8 @@ export function getRecipeInMyList (ids) {
   .catch(e => console.log('error in service file', e))
 }
 
-
 export function getRandomRecipess (number) {
-  console.log("number in getRandomRecipess()", number)
-
+  // console.log("number in getRandomRecipess()", number)
   //! API
   return fetch(`${baseUrl}/recipes`, {
     method: 'POST',
@@ -57,7 +51,7 @@ export function getRandomRecipess (number) {
 }
 
 export function getRecipeById (id, filters) {
-  console.log("id in getRecipeById()", id)
+  // console.log("id in getRecipeById()", id)
 //   //! API
   return fetch(`${baseUrl}/recipe/${id}`, {
     method: 'POST',
@@ -67,8 +61,6 @@ export function getRecipeById (id, filters) {
   .then(result => result.json())
   .catch(e => console.log('error in service file', e))
 }
-
-
 
 export function getSimilarRecipes (id, number) {
   //   //! API
@@ -80,17 +72,3 @@ export function getSimilarRecipes (id, number) {
   .then(result => result.json())
   .catch(e => console.log('error in service file', e))
 }
-
-
-
-
-// Work in progress
-// export function getParsedRecipe (url) {
-//   return fetch(parseUrl, {
-//     method: 'POST',
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(url)
-//   })
-//     .then(result => result.json())
-//     .catch(error => console.error(error))
-// }

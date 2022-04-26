@@ -3,18 +3,20 @@ import './../../styling/myRecipes/MyRecipesList.css';
 import { useState } from 'react';
 
 
-export default function MyRecipesList({ personalRecipes, setPersonalRecipes }) {
+export default function MyRecipesList({ personalRecipes, setPersonalRecipes, setIndexRecipeToModify }) {
   const [display, setDisplay] = useState({ recipeTitle: 'Select a recipe' });
 
-  function recipeDetail(e, index) {
-
-    if (e.target.tagName === 'I') {
+  function recipeAction(e, index) {
+    if (e.target.id === 'trashIcon') {
+      //alert('recipe DELETE!')
       deleteRecipe(index);
+    } else if (e.target.id === 'editIcon') {
+      console.log('pressed change')
+      setIndexRecipeToModify(index);
     } else {
       setDisplay(personalRecipes[index]);
     }
   }
-
 
   function deleteRecipe(index) {
     const list = personalRecipes.filter((el, elIndex) => {
@@ -28,6 +30,8 @@ export default function MyRecipesList({ personalRecipes, setPersonalRecipes }) {
     setPersonalRecipes(list)
   }
 
+  console.log('personalRecipes',personalRecipes)
+
   return (
     <div className="display-recipe-container">
       <p className="page-title2" >
@@ -35,20 +39,23 @@ export default function MyRecipesList({ personalRecipes, setPersonalRecipes }) {
       </p>
       <div className="display-recipe-frame" >
         <div className="display-recipeList-container ">
-          <table className="table table-sm table-hover table-responsive-sm">
+          <table className="table table-sm table-hover table-responsive-sm table-center-elements">
             <tbody>
               <tr>
                 <td scope="col">Title</td>
                 <td scope="col">Date</td>
-                <td scope="col">Delete</td>
+                <td scope="col">Action</td>
               </tr>
               {personalRecipes && personalRecipes.map((el, index) => (
-                <tr onClick={(e) => recipeDetail(e, index)} key={index + 'b'} >
+                <tr onClick={(e) => recipeAction(e, index)} key={index + 'b'} >
                   <td>{el.recipeTitle}</td>
                   <td>{el.creationDate}</td>
                   <td>
-                    <button className="btn-delete-recipe">
-                      <i className="bi bi-trash"></i>
+                    <button className="btn-recipe modify-recipe">
+                      <i id='editIcon' className="bi bi-pencil icon-size-table"></i>
+                    </button>
+                    <button className="btn-recipe delete-recipe">
+                      <i id='trashIcon' className="bi bi-trash icon-size-table"></i>
                     </button>
                   </td>
                 </tr>

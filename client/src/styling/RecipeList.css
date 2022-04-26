@@ -43,9 +43,11 @@
 
 
 .recipe-list-frame {
+  /* max-width: var(--max-width); */
   padding: 100px 1vw 40px 1vw;
   background-color: white;
-  border: 1px solid var(--main-color);
+  box-shadow: var(--main-shadow);
+
   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -56,6 +58,7 @@
   text-decoration: none;
 }
 .suggestion {
+  /* max-width: var(--max-width); */
   position: absolute;
   top: 0;
   text-align: center;
@@ -69,6 +72,7 @@
   padding: 8px 0 10px 0;
 }
 .btn-more {
+  /* max-width: var(--max-width); */
   height: 30px;
   position: absolute;
   bottom: 0px;

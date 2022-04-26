@@ -51,10 +51,10 @@ export default function SavedRecipes({ myList, toggleHeart }) {
             })
           )
           :
-          <>
-            <div style={{ 'font-size': '20px' }}>You don't have any saved recipe yet!</div>
+          <div>
+            <div style={{ 'fontSize': '20px' }}>You don't have any saved recipe yet!</div>
             <img src={empty} style={{ width: '400px' }} />
-          </>
+          </div>
         }
       </div>
     </div>

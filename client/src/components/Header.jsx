@@ -68,7 +68,7 @@ export default function Header({ searchSet }) {
       <div className='search-bar'>
         <button onClick={handleClick}><i className="bi bi-search"></i></button>
 
-        <input id="main-input" onKeyPress={pressEnter} ref={searchInput} placeholder="Search..." />
+        <input id="main-input" onKeyPress={(e) => pressEnter(e)} ref={searchInput} placeholder="Search..." />
         <div className="dropdown" >
           <button className="link" onClick={() => { setOpen(!open); console.log(open) }}><i className="bi bi-sliders"></i></button>
           <CSSTransition
@@ -110,11 +110,11 @@ export default function Header({ searchSet }) {
       <nav>
 
         <Link to="/my-recipes">
-          <Button type="button" className="btn-head btn-my-recipe">Recipe Box</Button>
+          <Button type="button" className="btn-head btn-my-recipe common-background">Recipe Box</Button>
         </Link>
 
         <Link to="/my-favorites">
-          <Button className="btn-head btn-favorite">Favorites</Button>
+          <Button className="btn-head btn-favorite common-background">Favorites</Button>
         </Link>
       </nav>
     </div >

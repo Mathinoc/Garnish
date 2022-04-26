@@ -44,7 +44,7 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
     //!data from data.json
     //setSearchList({resultBoolean:'ok',resultArray:[getRecipeTemplate()]})
   }, [searchSet])
-  
+
   useEffect(() => {
     localStorage.setItem("myFavorites", JSON.stringify(myListBis))
   }, [myListBis])
@@ -77,7 +77,7 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
     <div className="list-container" >
       <p className="suggestion" >Results for {searchSet.searchRecipe}</p>
       <div className="recipe-list-frame">
-        {searchList.resultBoolean === 'ok' &&
+        {(searchList.resultBoolean === 'ok' &&
           (searchList.resultArray.map((el, index) => {
             if (index < limit) {
               return (
@@ -92,19 +92,19 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
               )
             }
           })
-          )
-          || searchList.resultBoolean === 'notOk' &&
-          (<div>
-            <div style={{ 'font-size': '20px' }}>{searchList.displayText}</div>
-            <img src={animationSearch} style={{ width: '20vw' }} />
-          </div>)
-          || searchList.resultBoolean === 'serverIssue' &&
-          (
-            <div>
-              <div style={{ 'font-size': '20px' }} >{searchList.displayText}</div>
-              <img src={animationServer} style={{ width: '20vw' }} />
-            </div>
-          )
+          ))
+          || (searchList.resultBoolean === 'notOk' &&
+            (<div>
+              <div style={{ 'font-size': '20px' }}>{searchList.displayText}</div>
+              <img src={animationSearch} style={{ width: '20vw' }} />
+            </div>))
+          || (searchList.resultBoolean === 'serverIssue' &&
+            (
+              <div>
+                <div style={{ 'font-size': '20px' }} >{searchList.displayText}</div>
+                <img src={animationServer} style={{ width: '20vw' }} />
+              </div>
+            ))
         }
 
       </div>

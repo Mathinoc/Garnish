@@ -6,7 +6,9 @@
 .CreateRecipe {
   padding: 80px 3vw 30px 3vw;
   background-color: white;
-  box-shadow: 0px 0px 1px 1px var(--main-color);
+  box-shadow: var(--main-shadow);
+
+  /* box-shadow: 0px 0px 1px 1px var(--main-color); */
   border-radius: var(--border-radius);
   display: flex;
   flex-direction:column;

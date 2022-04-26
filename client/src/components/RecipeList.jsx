@@ -15,9 +15,10 @@ export default function RecipeList({ randomListInitial, toggleHeart }) {
     if (randomListInitial.resultBoolean === 'ok') {
       setPartialList({
         resultBoolean: 'ok',
-        resultArray: randomListInitial.slice(0, limit)
+        resultArray: randomListInitial.resultArray.slice(0, limit)
       });
-    } else { setPartialList(randomListInitial) }
+    } 
+    // else { setPartialList(randomListInitial) }
   }, [randomListInitial, limit])
 
   function getMoreRecipes() {
@@ -32,7 +33,7 @@ export default function RecipeList({ randomListInitial, toggleHeart }) {
           partialList.resultBoolean === 'ok'
           &&
           (
-            partialList.map(el => {
+            partialList.resultArray.map(el => {
               return (
                 <div className="recipe-frame" key={el.id} >
                   <button className="heart-btn" onClick={() => (toggleHeart(el.id))} >

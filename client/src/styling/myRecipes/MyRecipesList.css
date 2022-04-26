@@ -1,11 +1,11 @@
 .display-recipe-container {
+  max-width: var(--max-width);
+  box-shadow: var(--main-shadow);
   margin-top: 60px;
-  color: blue;
   min-width: 450px;
   position: relative;
   padding: 80px 3vw 30px 3vw;
   background-color: white;
-  box-shadow: 0px 0px 1px 1px var(--main-color);
   border-radius: 10px;
 }
 
@@ -70,16 +70,26 @@ h5{
   margin-bottom: 10px;
 }
 
-.btn-delete-recipe {
+.table-center-elements {
+  text-align: center;
+  vertical-align: middle;
+}
+.btn-recipe {
   border: none;
   background-color: none;
   background: none;
   transition: 0.2s;
   color: rgb(77, 80, 84);
 }
-
-.btn-delete-recipe:hover {
+.modify-recipe:hover {
+  color:orange;
+  font-size: 700;
+}
+.delete-recipe:hover {
   color: red
+}
+.icon-size-table{
+  font-size:20px;
 }
 
 .card-frame{
