@@ -10,7 +10,7 @@ import MyRecipes from "./components/myRecipes/MyRecipes";
 import SavedRecipes from './components/SavedRecipes/SavedRecipes';
 import { useState, useEffect } from 'react';
 import { getRandomRecipess } from './services/recipeService';
-import { getRandomRecipes, getRecipeBulk } from './data';
+// import { getRandomRecipes, getRecipeBulk } from './data';
 
 function App() {
   const [searchRecipe, setSearchRecipe] = useState('');
@@ -34,36 +34,36 @@ function App() {
 
 
   //! from API
-  //const [randomListInitial, setRandomListInit] = useState([]);
+  const [randomListInitial, setRandomListInit] = useState([]);
 
   useEffect(() => {
-    // getRandomRecipess(20)
-    //   .then(result => {
-    //     if (Array.isArray(result)) {
-    //       result.map(el => {
-    //         myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
-    //       })
-    //       setRandomListInit({ resultBoolean: 'ok', resultArray: result });
-    //       console.log('affected data')
-    //     } else {
-    //       alert("Couldn't get the data :/")
-    //       const message = "Sorry, we couldn't get any recipe from the database"
-    //       setRandomListInit({ resultBoolean: 'serverIssue', displayText: message });
-    //     }
-    //   })
-    //   .catch(error => console.log("getRandomRecipess()", error));
+    getRandomRecipess(45)
+      .then(result => {
+        if (Array.isArray(result)) {
+          result.map(el => {
+            myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
+          })
+          setRandomListInit({ resultBoolean: 'ok', resultArray: result });
+          console.log('affected data')
+        } else {
+          alert("Couldn't get the data :/")
+          const message = "Sorry, we couldn't get any recipe from the database"
+          setRandomListInit({ resultBoolean: 'serverIssue', displayText: message });
+        }
+      })
+      .catch(error => console.log("getRandomRecipess()", error));
   }, [])
 
 
   //! from saved data
-  const randomListInitial ={resultBoolean: 'ok', resultArray:getRandomRecipes(20)};
-  randomListInitial.resultArray.map(el => {
-    if (myList.includes(el.id)) {
-      el["favorite"] = true;
-    } else {
-      el["favorite"] = false;
-    }
-  })
+  // const randomListInitial ={resultBoolean: 'ok', resultArray:getRandomRecipes(20)};
+  // randomListInitial.resultArray.map(el => {
+  //   if (myList.includes(el.id)) {
+  //     el["favorite"] = true;
+  //   } else {
+  //     el["favorite"] = false;
+  //   }
+  // })
 
   useEffect(() => {
     localStorage.setItem("myFavorites", JSON.stringify(myList))

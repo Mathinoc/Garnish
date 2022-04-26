@@ -13,14 +13,14 @@ import { getRecipeTemplate } from './../data';
 export default function SearchList({ number, searchSet, toggleHeart, myList }) {
   const [searchList, setSearchList] = useState({});
   const [myListBis, setMyListBis] = useState(myList)
-  const [limit, setLimit] = useState(10)
+  const [limit, setLimit] = useState(12)
 
   const searchDetails = {
     search: searchSet.searchRecipe,
     vegetarian: searchSet.vegetarian,
     gluten: searchSet.gluten,
     dairy: searchSet.dairy,
-    number: number
+    number: 25
   }
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
 
 
   function getMoreRecipes() {
-    setLimit(limit + 10);
+    setLimit(limit + 12);
   }
 
   return (

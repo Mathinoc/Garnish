@@ -8,7 +8,7 @@ import animationServer from './../gifs/server.gif';
 
 export default function RecipeList({ randomListInitial, toggleHeart }) {
 
-  const [limit, setLimit] = useState(10)
+  const [limit, setLimit] = useState(15)
   const [partialList, setPartialList] = useState(randomListInitial)
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function RecipeList({ randomListInitial, toggleHeart }) {
   }, [randomListInitial, limit])
 
   function getMoreRecipes() {
-    setLimit(limit + 10);
+    setLimit(limit + 15);
   }
 
   return (

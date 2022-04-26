@@ -72,7 +72,9 @@
 .minimize-url-btn{
   background-color: rgba(171, 202, 171, 0.82) !important;
 }
-
+.button-trash{
+  font-size:14px;
+}
 
 
 h3{

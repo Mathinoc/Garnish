@@ -3,6 +3,7 @@
   /* --main-color:rgb(167, 252, 167,.82); */
   --main-hover:rgb(78, 241, 181);
   --main-color2:#f99f75;
+  --background-color:rgba(169, 255, 205, 0.349) ;
   --border-radius: 10px;
   --max-width: 1000px;
 
@@ -28,7 +29,7 @@
 .body-container {
   
   flex: 1;
-  background-color: rgba(169, 255, 205, 0.349);
+  background-color: var(--background-color);
   padding: 5vh 10vw 8vh 10vw;
   /* background-color: #fbfbfb; */
   text-align: center;
@@ -39,23 +40,30 @@
 }
 
 body::-webkit-scrollbar {
-  height: 10px;
-  padding-right: 10px;
+  width:14px;
+  /* padding-right: 10px; */
 }
-
 body::-webkit-scrollbar-track {
-  background: rgba(253, 253, 253, 0.209);
-  border-radius: 20px;
+  /* background: rgba(247, 244, 244, 0.34); */
+  background-color: white;
+  /* border-radius: 20px; */
   /* color of the tracking area */
-  padding-right: 10px;
+  /* visibility: hidden; */
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: rgb(183, 184, 184);
+  background-color: rgb(203, 228, 228);
   /* color of the scroll thumb */
   border-radius: 20px;
   /* roundness of the scroll thumb */
   border: 2px solid rgba(62, 247, 182, 0.209);
   /* creates padding around scroll thumb */
-  background-clip: padding-box;
+  /* background-clip: padding-box; */
+  visibility: hidden;
 }
+body:hover::-webkit-scrollbar-thumb{
+  visibility: visible;
+}
+/* body:hover, body:active, body:focus {
+  overflow-y: auto;
+} */

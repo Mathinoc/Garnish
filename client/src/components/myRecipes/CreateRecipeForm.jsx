@@ -6,6 +6,7 @@ import './../../styling/myRecipes/CreateRecipeForm.css';
 import { CSSTransition } from 'react-transition-group';
 import { scrapeData } from './../../services/recipeService';
 import { useEffect } from 'react';
+import { fractionView } from './../../utils/formatNumber.js';
 
 export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, indexRecipeToModify, setIndexRecipeToModify }) {
   const [recipeTitle, setRecipeTile] = useState('')
@@ -172,7 +173,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
         ingredients.map(el => {
           const upperCaseName = el.nameClean[0].toUpperCase() + el.nameClean.slice(1)
           console.log((el.amount).toString())
-          ingredientList.push({ ingredient: upperCaseName, quantity: (el.amount).toString(), unit: el.unit })
+          ingredientList.push({ ingredient: upperCaseName, quantity: fractionView(el.amount), unit: el.unit })
         })
       } else {
         setToggle(true)
@@ -183,12 +184,13 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
       }
       console.log('ingredientList', ingredientList)
 
-      // instructionList.push({ text: "" })
-      // ingredientList.push({ ingredient: "", quantity: "", unit: "" })
+      instructionList.push({ text: "" })
+      ingredientList.push({ ingredient: "", quantity: "", unit: "" })
 
       setIngredientList(ingredientList)
       setInstructionList(instructionList)
       setRecipeTile(recipeTitle)
+      setToggle(true)
     }
 
   }, [scrapedRecipe, recipeToModify])
@@ -260,7 +262,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
                         <Button variant="outline-warning"
                           onClick={() => removeIngredient(index)}
                         >
-                          <i className="bi bi-trash-fill"></i>
+                          <i className="bi bi-trash-fill button-trash"></i>
                         </Button>
                       }
                     </InputGroup>
@@ -283,7 +285,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
                       <Button variant="outline-warning"
                         onClick={() => removeInstruction(ind)}
                       >
-                        <i className="bi bi-trash-fill"></i>
+                        <i className="bi bi-trash-fill button-trash"></i>
                       </Button>
                     }
                   </div>
