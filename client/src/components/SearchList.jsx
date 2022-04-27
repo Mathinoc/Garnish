@@ -66,9 +66,6 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
     toggleHeart(recipeId)
   }
 
-
-
-
   function getMoreRecipes() {
     setLimit(limit + 12);
   }
@@ -106,7 +103,6 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
               </div>
             ))
         }
-
       </div>
       <button className="btn-more" onClick={getMoreRecipes} disabled={limit >= 20}>More...</button>
     </div>

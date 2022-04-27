@@ -15,26 +15,24 @@ import { getRandomRecipess } from './services/recipeService';
 function App() {
   const [searchRecipe, setSearchRecipe] = useState('');
   const [vegetarian, setVegetarian] = useState(false);
-  const [gluten, setGlutenFree] = useState(false);
-  const [dairy, setDairyFree] = useState(false);
-
+  const [gluten, setGluten] = useState(false);
+  const [dairy, setDairy] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [myList, setMyList] = useState(() => {
+    const savedRecipeIdsJson = localStorage.getItem("myFavorites");
+    const savedRecipeIds = JSON.parse(savedRecipeIdsJson);
+    return savedRecipeIds || [];
+  })
+  
   const searchAndFilterSets = {
     setSearchRecipe, searchRecipe,
     setVegetarian, vegetarian,
-    setGlutenFree, gluten,
-    setDairyFree, dairy
+    setGluten, gluten,
+    setDairy, dairy
   }
 
-  const [refresh, setRefresh] = useState(false);
-  const [myList, setMyList] = useState(() => {
-    const savedRecipeIdJson = localStorage.getItem("myFavorites");
-    const savedRecipeId = JSON.parse(savedRecipeIdJson);
-    return savedRecipeId || [];
-  })
-
-
   //! from API
-  const [randomListInitial, setRandomListInit] = useState([]);
+  const [randomListInitial, setRandomListInitial] = useState([]);
 
   useEffect(() => {
     getRandomRecipess(45)
@@ -43,12 +41,12 @@ function App() {
           result.map(el => {
             myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
           })
-          setRandomListInit({ resultBoolean: 'ok', resultArray: result });
+          setRandomListInitial({ resultStatus: 'ok', resultArray: result });
           console.log('affected data')
         } else {
           alert("Couldn't get the data :/")
           const message = "Sorry, we couldn't get any recipe from the database"
-          setRandomListInit({ resultBoolean: 'serverIssue', displayText: message });
+          setRandomListInitial({ resultStatus: 'serverIssue', displayText: message });
         }
       })
       .catch(error => console.log("getRandomRecipess()", error));
@@ -56,7 +54,7 @@ function App() {
 
 
   //! from saved data
-  // const randomListInitial ={resultBoolean: 'ok', resultArray:getRandomRecipes(20)};
+  // const randomListInitial ={resultStatus: 'ok', resultArray:getRandomRecipes(20)};
   // randomListInitial.resultArray.map(el => {
   //   if (myList.includes(el.id)) {
   //     el["favorite"] = true;
@@ -82,7 +80,7 @@ function App() {
       }
       return el
     })
-    //setRandomListInit({ ...randomListInitial, resultArray: newList })
+    //setRandomListInitial({ ...randomListInitial, resultArray: newList })
     if (myList.includes(recipeId)) {
       setMyList(myList.filter(id => id !== recipeId))
     } else {

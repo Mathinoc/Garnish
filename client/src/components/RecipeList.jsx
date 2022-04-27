@@ -12,9 +12,9 @@ export default function RecipeList({ randomListInitial, toggleHeart }) {
   const [partialList, setPartialList] = useState(randomListInitial)
 
   useEffect(() => {
-    if (randomListInitial.resultBoolean === 'ok') {
+    if (randomListInitial.resultStatus === 'ok') {
       setPartialList({
-        resultBoolean: 'ok',
+        resultStatus: 'ok',
         resultArray: randomListInitial.resultArray.slice(0, limit)
       });
     } 
@@ -30,7 +30,7 @@ export default function RecipeList({ randomListInitial, toggleHeart }) {
       <p className="suggestion" >Suggested Recipes</p>
       <div className="recipe-list-frame">
         {(
-          partialList.resultBoolean === 'ok'
+          partialList.resultStatus === 'ok'
           &&
           (
             partialList.resultArray.map(el => {
@@ -49,7 +49,7 @@ export default function RecipeList({ randomListInitial, toggleHeart }) {
         )
           ||
           (
-            partialList.resultBoolean === 'serverIssue'
+            partialList.resultStatus === 'serverIssue'
             &&
             (
               <div>

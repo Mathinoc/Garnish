@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import './../styling/Header.scss';
+import { createRef } from 'react';
 
 
 export default function Header({ searchSet }) {
@@ -13,8 +14,8 @@ export default function Header({ searchSet }) {
   //const nodeRef = React.useRef(null); //avoid error with CSSTransition: see line 67
   const location = useLocation()
   const navigate = useNavigate();
-  let searchInput = React.createRef();
-  let filterMenu = React.createRef();
+  const searchInput = createRef();
+  const filterMenu = createRef();
   const [open, setOpen] = useState(false);
 
   const [vegetarianSub, setVegetarianSub] = useState(false);
@@ -28,11 +29,13 @@ export default function Header({ searchSet }) {
     searchInput.current.value = ''
 
     if (inputField.length > 0) {
-      if (location.pathname !== '/search') navigate("/search");
+      if (location.pathname !== '/search') {
+        navigate("/search");
+      };
       searchSet.setSearchRecipe(inputField);
       searchSet.setVegetarian(vegetarianSub);
-      searchSet.setGlutenFree(glutenSub);
-      searchSet.setDairyFree(dairySub);
+      searchSet.setGluten(glutenSub);
+      searchSet.setDairy(dairySub);
       setOpen(false);
     }
   }
@@ -64,10 +67,8 @@ export default function Header({ searchSet }) {
         <img src={logo} alt="leaf" />
         <p> Garnish</p>
       </Link>
-
       <div className='search-bar'>
         <button onClick={handleClick}><i className="bi bi-search"></i></button>
-
         <input id="main-input" onKeyPress={(e) => pressEnter(e)} ref={searchInput} placeholder="Search..." />
         <div className="dropdown" >
           <button className="link" onClick={() => { setOpen(!open); console.log(open) }}><i className="bi bi-sliders"></i></button>
@@ -105,14 +106,11 @@ export default function Header({ searchSet }) {
             </div>
           </CSSTransition>
         </div>
-
       </div >
       <nav>
-
         <Link to="/my-recipes">
           <Button type="button" className="btn-head btn-my-recipe common-background">Recipe Box</Button>
         </Link>
-
         <Link to="/my-favorites">
           <Button className="btn-head btn-favorite common-background">Favorites</Button>
         </Link>

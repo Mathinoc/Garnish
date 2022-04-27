@@ -20,7 +20,6 @@ export default function RecipeDetail({ myList, toggleHeart }) {
   // let recipeId = params.recipeId;
   // myList.includes(recipe.id) ? recipe["favorite"] = true : recipe["favorite"] = false;
   //! API
-  console.log('recipe ID', recipeId);
   const [recipe, setRecipe] = useState({});
   const [heartToggle, setHeartToggle] = useState();
 
@@ -29,10 +28,8 @@ export default function RecipeDetail({ myList, toggleHeart }) {
       .then(recipeResult => {
         if (recipeResult['id'] === parseInt(recipeId, 10)) {
           myList.includes(recipeResult['id']) ? recipeResult["favorite"] = true : recipeResult["favorite"] = false;
-          console.log('recipeModified', recipeResult);
           setHeartToggle(recipeResult["favorite"])
           setRecipe(recipeResult);
-          console.log('recipe ID', recipe);
           return
         }
         alert('Could not get recipe details :/')
