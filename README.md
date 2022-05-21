@@ -2,6 +2,9 @@
 
 Garnish is an app that enables users to search for recipes and save the ones they most like. Users can also create their own recipes, save them and modify them at any time. Lastly, the app provides users with the ability of pasting any url of a recipe page and save any recipe content locally which can be modified as well.
 
+<img src='./client/public/screen-1.png' style='height:200px'>
+<img src='./client/public/screen-2.png' style='height:200px'>
+<img src='./client/public/screen-7.png' style='height:197px'>
 
 ## Getting started
 
@@ -24,20 +27,19 @@ Garnish is an app that enables users to search for recipes and save the ones the
 
 ## Tech stack
 
-Front-end:
-- React
-- bootstrap
-- Chart.JS
-- react router
+### Front-end:
+- 🏗 React
+- 💄 CSS & bootstrap
+- 📊 Chart.JS
+- 🔀 react router
 
-Back-end
-- node.js
-- Express
+### Back-end
+- 🏗 node.js + Express
 
 Misc:
-- coolors.co (color palettes generator)
-- trello
-- namelix
+- 🎨 coolors.co (color palettes generator)
+- 🗂️ trello
+- ✏️ namelix
 
 ## Credits
 
