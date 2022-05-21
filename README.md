@@ -5,19 +5,19 @@ Garnish is an app that enables users to search for recipes and save the ones the
 
 ## Getting started
 
-1. Fork this repo and CLone a copy on your local machine
+1. Fork this repo and Clone a copy on your local machine.
 
 
-2. Set up your API key (the recipes available through the app are fetched from the Spoonacular API)
+2. Set up your API key (the recipes available through the app are fetched from the Spoonacular API):
 - create an account: https://spoonacular.com/food-api/console#Dashboard
 - once logged in, check your profile and copy your API key
 - in the server folder,create a .env file and paste the API key as followed: API_KEY1 = " ...your key here... "
 
-3. install the dependencies:
+3. Install the dependencies:
 - run **npm i** from the server folder
 - run **npm i** from the client folder
 
-4. Start the app
+4. Start the app:
 - run **npm start** from the server folder
 - run **npm start** from the client folder
 
