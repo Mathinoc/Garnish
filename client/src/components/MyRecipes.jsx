@@ -1,6 +1,6 @@
 import React from 'react';
 import CreateRecipeForm from './CreateRecipeForm';
-import './../../styling/myRecipes/MyRecipes.css';
+import './../styling/myRecipes/MyRecipes.css';
 import MyRecipesList from './MyRecipesList';
 import { useState, useEffect } from 'react';
 

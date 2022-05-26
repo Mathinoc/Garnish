@@ -43,8 +43,8 @@ export function getRandomRecipess (number) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({"number": number})
   })
-    .then(result => {console.log('In service; response from server'); return result.json(); })
-    .then(res => { return res["recipes"]})
+    .then(result => result.json())
+    .then(res => res["recipes"])
     .catch(e => console.log('error in service file', e))
   
   //! from saved data

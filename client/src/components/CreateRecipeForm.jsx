@@ -2,11 +2,11 @@ import React from 'react';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.css";
 import { useState, useTransition } from 'react';
-import './../../styling/myRecipes/CreateRecipeForm.css';
+import '../styling/myRecipes/CreateRecipeForm.css';
 import { CSSTransition } from 'react-transition-group';
-import { scrapeData } from './../../services/recipeService';
+import { scrapeData } from '../services/recipeService';
 import { useEffect } from 'react';
-import { fractionView } from './../../utils/formatNumber.js';
+import { fractionView } from '../utils/formatNumber.js';
 
 export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, indexRecipeToModify, setIndexRecipeToModify }) {
   const [recipeTitle, setRecipeTile] = useState('')

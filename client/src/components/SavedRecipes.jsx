@@ -1,20 +1,17 @@
 import React from 'react';
-import { scrollToTop } from '../../utils/scrollToTop';
+import { scrollToTop } from '../utils/scrollToTop';
 import { Link } from "react-router-dom";
-import { getRecipeInMyList } from './../../services/recipeService';
+import { getRecipeInMyList } from './../services/recipeService';
 import { useState, useEffect } from 'react';
-import RecipeView from './../RecipeView.jsx';
-import empty from './../../gifs/empty.gif';
+import RecipeView from './RecipeView.jsx';
+import empty from './../gifs/empty.gif';
 
 export default function SavedRecipes({ myList, toggleHeart }) {
 
   const [savedRecipes, setSavedRecipes] = useState([]);
-  console.log('myList', myList)
   useEffect(() => {
     getRecipeInMyList(myList)
       .then(result => {
-        console.log('in segetRecipeInMyListarchlist', result)
-
         if (Array.isArray(result)) {
           result.map(el => el["favorite"] = true)
           setSavedRecipes(result)
@@ -27,8 +24,8 @@ export default function SavedRecipes({ myList, toggleHeart }) {
 
   function handleClick(recipeId) {
     toggleHeart(recipeId);
-    const filterRecipes = savedRecipes.filter(el => el.id !== recipeId);
-    setSavedRecipes(filterRecipes);
+    const filteredRecipes = savedRecipes.filter(el => el.id !== recipeId);
+    setSavedRecipes(filteredRecipes);
   }
 
   return (
@@ -52,8 +49,8 @@ export default function SavedRecipes({ myList, toggleHeart }) {
           )
           :
           <div>
-            <div style={{ 'fontSize': '20px' }}>You don't have any saved recipe yet!</div>
-            <img src={empty} style={{ width: '400px' }} />
+            <p style={{ 'fontSize': '20px' }}>You don't have any saved recipe yet!</p>
+            <i class="bi bi-bookmark-heart"></i>
           </div>
         }
       </div>

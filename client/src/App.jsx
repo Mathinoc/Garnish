@@ -5,8 +5,8 @@ import RecipeList from './components/RecipeList';
 import SearchList from './components/SearchList';
 import RecipeDetail from './components/RecipeDetail';
 import Footer from "./components/Footer";
-import MyRecipes from "./components/myRecipes/MyRecipes";
-import SavedRecipes from './components/SavedRecipes/SavedRecipes';
+import MyRecipes from "./components/MyRecipes";
+import SavedRecipes from './components/SavedRecipes';
 import { useState, useEffect } from 'react';
 import { getRandomRecipess } from './services/recipeService';
 // import { getRandomRecipes, getRecipeBulk } from './data';
@@ -21,8 +21,8 @@ function App() {
     const savedRecipeIds = JSON.parse(savedRecipeIdsJson);
     return savedRecipeIds || [];
   })
-  
-const searchAndFilterSets = {
+
+  const searchAndFilterSets = {
     setSearchRecipe, searchRecipe,
     setVegetarian, vegetarian,
     setGluten, gluten,
@@ -40,7 +40,6 @@ const searchAndFilterSets = {
             myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
           })
           setRandomListInitial({ ok: true, resultArray: result });
-          console.log('affected data')
         } else {
           alert("Couldn't get the data :/")
           const message = "Sorry, we couldn't get any recipe from the database"
@@ -66,7 +65,6 @@ const searchAndFilterSets = {
   }, [myList])
 
   function toggleHeart(recipeId) {
-    console.log('togglingRR')
     const newList = randomListInitial.resultArray.map(el => {
       if (el.id === recipeId) {
         el.favorite = !el.favorite;

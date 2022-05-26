@@ -6,7 +6,7 @@ import IngredientList from './IngredientList';
 import InstructionList from './InstructionList';
 import SimilarList from './SimilarList';
 import { getRecipeById } from './../services/recipeService';
-import BarChart from './charts/BarChart';
+import BarChart from './BarChart';
 // import { getRecipeByIdData } from './../data';
 import { getRecipeTemplate } from './../data';
 
