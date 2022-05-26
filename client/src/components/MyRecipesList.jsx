@@ -8,10 +8,8 @@ export default function MyRecipesList({ personalRecipes, setPersonalRecipes, set
 
   function recipeAction(e, index) {
     if (e.target.id === 'trashIcon') {
-      //alert('recipe DELETE!')
       deleteRecipe(index);
     } else if (e.target.id === 'editIcon') {
-      console.log('pressed change')
       setIndexRecipeToModify(index);
     } else {
       setDisplay(personalRecipes[index]);
@@ -29,8 +27,6 @@ export default function MyRecipesList({ personalRecipes, setPersonalRecipes, set
     setTimeout(() => setDisplay({ recipeTitle: 'Select a recipe' }), 2000)
     setPersonalRecipes(list)
   }
-
-  console.log('personalRecipes',personalRecipes)
 
   return (
     <div className="display-recipe-container">

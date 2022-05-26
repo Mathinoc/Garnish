@@ -11,13 +11,12 @@ export default function MyRecipes() {
     const savedJSON = localStorage.getItem("personalRecipes");
     const listParsed = JSON.parse(savedJSON);
     return listParsed || [];
-  })
-  const [indexRecipeToModify, setIndexRecipeToModify] = useState(false)
+  });
+  const [indexRecipeToModify, setIndexRecipeToModify] = useState(false);
   useEffect(() => {
-    localStorage.setItem("personalRecipes", JSON.stringify(personalRecipes))
-  }, [personalRecipes])
+    localStorage.setItem("personalRecipes", JSON.stringify(personalRecipes));
+  }, [personalRecipes]);
 
-console.log('MYList() indexRecipeToModify', indexRecipeToModify)
 
   return (
     <div className="my-recipes-container" >
