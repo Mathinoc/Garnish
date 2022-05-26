@@ -34,20 +34,20 @@ const searchAndFilterSets = {
 
   useEffect(() => {
     //getRandomRecipess(20)
-      .then(result => {
-        if (Array.isArray(result)) {
-          result.map(el => {
-            myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
-          })
-          setRandomListInitial({ ok: true, resultArray: result });
-          console.log('affected data')
-        } else {
-          alert("Couldn't get the data :/")
-          const message = "Sorry, we couldn't get any recipe from the database"
-          setRandomListInitial({ ok: false, displayText: message });
-        }
-      })
-      .catch(error => console.log("getRandomRecipess()", error));
+      // .then(result => {
+      //   if (Array.isArray(result)) {
+      //     result.map(el => {
+      //       myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
+      //     })
+      //     setRandomListInitial({ ok: true, resultArray: result });
+      //     console.log('affected data')
+      //   } else {
+      //     alert("Couldn't get the data :/")
+      //     const message = "Sorry, we couldn't get any recipe from the database"
+      //     setRandomListInitial({ ok: false, displayText: message });
+      //   }
+      // })
+      // .catch(error => console.log("getRandomRecipess()", error));
   }, [])
 
 

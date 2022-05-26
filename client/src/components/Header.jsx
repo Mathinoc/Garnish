@@ -15,7 +15,6 @@ export default function Header({ searchSet }) {
   const location = useLocation()
   const navigate = useNavigate();
   const searchInput = useRef();
-  const filterMenu = useRef();
   const [open, setOpen] = useState(false);
 
   const [vegetarianSub, setVegetarianSub] = useState(false);
@@ -23,11 +22,8 @@ export default function Header({ searchSet }) {
   const [dairySub, setDairySub] = useState(false);
 
   function handleClick() {
-    console.log('pathlocation', location.pathname)
     const inputField = searchInput.current.value;
-    console.log('inputField', inputField);
     searchInput.current.value = ''
-
     if (inputField.length > 0) {
       if (location.pathname !== '/search') {
         navigate("/search");
@@ -60,7 +56,6 @@ export default function Header({ searchSet }) {
     setOpen(false)
   }
 
-
   return (
     <div className="header">
       <Link to="/" id='menu'>
@@ -71,17 +66,16 @@ export default function Header({ searchSet }) {
         <button onClick={handleClick}><i className="bi bi-search"></i></button>
         <input id="main-input" onKeyPress={(e) => pressEnter(e)} ref={searchInput} placeholder="Search..." />
         <div className="dropdown" >
-          <button className="link" onClick={() => { setOpen(!open); console.log(open) }}><i className="bi bi-sliders"></i></button>
+          <button className="link" onClick={() => setOpen(!open)}><i className="bi bi-sliders"></i></button>
           <CSSTransition
             nodeRef={nodeRef} // avoid findDOMNode is deprecated in StrictMode error
             in={open}
-            ref={filterMenu}
             unmountOnExit
             timeout={500}
             classNames="menu-primary"
           >
             <div className="dropdown-menu" ref={nodeRef}>
-              <form className="dropdown-form">
+              <form className="dropdown-form" onSubmit={closeDropdown}>
                 <div className="checkbox-filter" >
                   <input type="checkbox" name="vegetarian" onChange={vegToggle} checked={vegetarianSub} />
                   <label>Vegetarian</label>
@@ -94,14 +88,11 @@ export default function Header({ searchSet }) {
                   <input type="checkbox" name="dairy free" onChange={dairyToggle} checked={dairySub} />
                   <label>Dairy free</label>
                 </div>
-                <div className="filter-form-btn-container">
-
-                  <button onClick={closeDropdown} className="filter-form-btn">
-                    <div className="filter-form-inner-btn">
-                      Save
-                    </div>
-                  </button>
-                </div>
+                <button type='submit' className="filter-form-btn-container">
+                  <div className="filter-form-inner-btn">
+                    Save
+                  </div>
+                </button>
               </form>
             </div>
           </CSSTransition>
