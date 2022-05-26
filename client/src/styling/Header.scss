@@ -14,7 +14,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid blue; */
   background-color: white;
   padding: 0px 15px;
   box-shadow: 0px 0px 10px 1px rgba(8, 1, 1, 0.199);
@@ -92,7 +91,6 @@ a img {
   display: flex;
   align-items: center;
   gap:10px;
-  // justify-content: center;
   padding-left:35px;
 }
 .filter-form-btn-container{
@@ -101,12 +99,7 @@ a img {
   text-align: center;
   padding:10px 16px 4px 16px;
 }
-.filter-form-btn{
-  // left:0;
-  // right:0;
-  // margin:0;
-  width:100%;
-}
+
 .filter-form-inner-btn{
   background-color: var(--main-color);
   border-radius: 20px;
@@ -149,19 +142,14 @@ nav {
 }
 .common-background{
   background: rgba(88, 254, 169, 0.12)!important;
-
 }
 .btn-favorite {
   border: none;
   color: var(--head-color);
-  // background-color: var(--main-color) !important;
-  // color: aliceblue ;
-  // background-color: rgb(255, 255, 255) !important;
   color: grey !important;
 }
 
 .btn-my-recipe{
-  // background-color: rgb(255, 255, 255) !important;
   color: grey !important;
 }
 

@@ -30,7 +30,6 @@ console.log('MYList() indexRecipeToModify', indexRecipeToModify)
       <MyRecipesList
         personalRecipes={personalRecipes}
         setPersonalRecipes={setPersonalRecipes}
-
         setIndexRecipeToModify={setIndexRecipeToModify}
       />
     </div>

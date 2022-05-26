@@ -33,21 +33,21 @@ const searchAndFilterSets = {
   const [randomListInitial, setRandomListInitial] = useState([]);
 
   useEffect(() => {
-    //getRandomRecipess(20)
-      // .then(result => {
-      //   if (Array.isArray(result)) {
-      //     result.map(el => {
-      //       myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
-      //     })
-      //     setRandomListInitial({ ok: true, resultArray: result });
-      //     console.log('affected data')
-      //   } else {
-      //     alert("Couldn't get the data :/")
-      //     const message = "Sorry, we couldn't get any recipe from the database"
-      //     setRandomListInitial({ ok: false, displayText: message });
-      //   }
-      // })
-      // .catch(error => console.log("getRandomRecipess()", error));
+    getRandomRecipess(20)
+      .then(result => {
+        if (Array.isArray(result)) {
+          result.map(el => {
+            myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
+          })
+          setRandomListInitial({ ok: true, resultArray: result });
+          console.log('affected data')
+        } else {
+          alert("Couldn't get the data :/")
+          const message = "Sorry, we couldn't get any recipe from the database"
+          setRandomListInitial({ ok: false, displayText: message });
+        }
+      })
+      .catch(error => console.log("getRandomRecipess()", error));
   }, [])
 
 
@@ -70,15 +70,10 @@ const searchAndFilterSets = {
     const newList = randomListInitial.resultArray.map(el => {
       if (el.id === recipeId) {
         el.favorite = !el.favorite;
-        if (el.favorite) {
-          setMyList([...myList, recipeId])
-        } else {
-          setMyList(myList.filter(id => id !== recipeId))
-        }
       }
       return el
     })
-    //setRandomListInitial({ ...randomListInitial, resultArray: newList })
+    setRandomListInitial({ ...randomListInitial, resultArray: newList })
     if (myList.includes(recipeId)) {
       setMyList(myList.filter(id => id !== recipeId))
     } else {

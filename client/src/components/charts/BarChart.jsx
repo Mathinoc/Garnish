@@ -7,34 +7,26 @@ Chart.register(...registerables);
 
 
 export default function BarChart({ recipe }) {
-  console.log("recipe", recipe);
   const nutrients = recipe['nutrition'] && recipe['nutrition'].nutrients;
-  console.log("nutrients", nutrients);
   let collections = ["Calories", "Protein", "Calcium", "Fiber", "Fat", "Carbohydrates"];
 
   let value = [], labels = [];
   const [chartInfo, setChartInfo] = useState(false);
 
   useEffect(() => {
-    console.log('in BAR uneeffect')
     if (nutrients) {
-      console.log('inside')
       for (let i = 0; i < nutrients.length; i++) {
-        if (collections.includes(nutrients[i].name)) {
-          console.log('insiiiiide2222')
-
+        if (collections.includes(nutrients[i].name)) {          
           labels.push(nutrients[i].name);
           value.push(nutrients[i].percentOfDailyNeeds)
         }
       }
       setChartInfo({ labels, value })
     }
-  }, [recipe, nutrients])
-  console.log('chartInfo', chartInfo);
+  }, [nutrients])
 
   const labelsSpare = ["Calories", "Protein", "Calcium", "Fiber", "Fat", "Carbohydrates"];
   const dataSpare = [20, 50, 10, 30, 26, 74];
-
 
   const data = {
     labels: Object.keys(recipe).length > 0 && chartInfo ? chartInfo.labels : labelsSpare,

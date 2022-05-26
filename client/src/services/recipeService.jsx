@@ -51,6 +51,7 @@ export function getRandomRecipess (number) {
   return getRandomRecipes(10)
 }
 
+
 export function getRecipeById (id, filters) {
   // console.log("id in getRecipeById()", id)
 //   //! API
@@ -62,6 +63,7 @@ export function getRecipeById (id, filters) {
   .then(result => result.json())
   .catch(e => console.log('error in service file', e))
 }
+
 
 export function getSimilarRecipes (id, number) {
   //   //! API

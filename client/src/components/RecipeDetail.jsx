@@ -21,28 +21,32 @@ export default function RecipeDetail({ myList, toggleHeart }) {
   // myList.includes(recipe.id) ? recipe["favorite"] = true : recipe["favorite"] = false;
   //! API
   const [recipe, setRecipe] = useState({});
-  const [heartToggle, setHeartToggle] = useState();
 
   useEffect(() => {
-    getRecipeById(recipeId, {})
-      .then(recipeResult => {
-        if (recipeResult['id'] === parseInt(recipeId, 10)) {
-          myList.includes(recipeResult['id']) ? recipeResult["favorite"] = true : recipeResult["favorite"] = false;
-          setHeartToggle(recipeResult["favorite"])
-          setRecipe(recipeResult);
-          return
-        }
-        alert('Could not get recipe details :/')
-      })
-      .catch(error => console.log("RecipeDetail()", error))
+    if (!recipe.id || recipe.id !== recipeId) {
+      getRecipeById(recipeId, {})
+        .then(recipeResult => {
+          if (recipeResult['id'] === parseInt(recipeId, 10)) {
+            myList.includes(recipeResult['id']) ? recipeResult["favorite"] = true : recipeResult["favorite"] = false;
+            setRecipe(recipeResult);
+            return
+          }
+          alert('Could not get recipe details :/')
+        })
+        .catch(error => console.log("RecipeDetail()", error))
+    }
     // setRecipe(getRecipeTemplate())
 
   }, [recipeId])
 
-  function handleClick(id) {
-    toggleHeart(id);
-    setHeartToggle(!heartToggle)
-  }
+  useEffect(() => {
+    if (recipe.id) {
+      let isFavorite = false;
+      myList.includes(recipe.id) && (isFavorite = true);
+      setRecipe({...recipe, favorite: isFavorite})
+    }
+  }, [myList])
+
 
   function nutritionScore(number) {
     if (number < 20) return 'E';
@@ -84,8 +88,8 @@ export default function RecipeDetail({ myList, toggleHeart }) {
             </div>
             <i className="bi bi-dot"></i>
             <div className="step-for-heart-transition" >
-              <button className="heart-btn-detail" onClick={() => handleClick(recipe.id)} >
-                {heartToggle ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart heart-fill"></i>}
+              <button className="heart-btn-detail" onClick={() => toggleHeart(recipe.id)} >
+                {recipe.favorite ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart heart-fill"></i>}
               </button>
             </div>
           </div>

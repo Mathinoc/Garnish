@@ -13,8 +13,6 @@ export default function RecipeList({ randomListInitial, toggleHeart }) {
   function getMoreRecipes() {
     setLimit(limit + 10);
   }
-console.log(limit)
-// console.log(limit, randomListInitial.resultArray.length )
   return (
     <div className="list-container" >
       <p className="suggestion" >Suggested Recipes</p>

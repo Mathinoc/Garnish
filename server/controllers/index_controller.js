@@ -3,7 +3,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 const baseUrl = 'https://api.spoonacular.com/recipes';
 const randomList = '/random?apiKey=';
-const apiKey = process.env.API_KEY3;
+const apiKey = process.env.API_KEY1;
 
 
 async function randomRecipes (req, res) {
@@ -53,6 +53,7 @@ async function recipesIds (req,res) {
 async function recipeById (req, res) {
   console.log("getRecipeById()_id: ", req.params.id)
   try {
+    console.log('FETCH ONCE')
     const recipeId = req.params.id;  
     const resultFromApi = await fetch(`${baseUrl}/${recipeId}/information?apiKey=${apiKey}&includeNutrition=true`);
     const parsedResult = await resultFromApi.json();

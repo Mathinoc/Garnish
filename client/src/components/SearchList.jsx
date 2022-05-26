@@ -11,7 +11,6 @@ import { getRecipeTemplate } from './../data';
 
 export default function SearchList({ number, searchSet, toggleHeart, myList }) {
   const [searchList, setSearchList] = useState({});
-  const [myListBis, setMyListBis] = useState(myList);
   const [limit, setLimit] = useState(12);
 
   const searchDetails = {
@@ -19,16 +18,15 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
     vegetarian: searchSet.vegetarian,
     gluten: searchSet.gluten,
     dairy: searchSet.dairy,
-    number: 25
+    number: number || 20
   }
 
   useEffect(() => {
-    console.log('in useeffect')
     getSearchResults(searchDetails)
       .then(result => {
         if (result.totalResults && result.totalResults > 0) { // Array.isArray(result)
           result["results"].map(el => {
-            myListBis.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
+            myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
           })
           setSearchList({ ok: true, resultArray: result["results"] });
         } else if (result.totalResults === 0) {
@@ -45,28 +43,16 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
   }, [searchSet])
 
   useEffect(() => {
-    localStorage.setItem("myFavorites", JSON.stringify(myListBis))
-  }, [myListBis])
+    if (searchList.resultArray && searchList.resultArray.length) {
+      const newSearchList = searchList.resultArray.map(el => {
+        myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false
+        return el
+      });
+      console.log('searchlist', newSearchList)
+      setSearchList({ ...searchList, resultArray: newSearchList })
+    }
+  }, [myList])
 
-  function heartClick(recipeId) {
-    const newSearchList = searchList.resultArray.map(el => {
-      if (el.id === recipeId) {
-        el.favorite = !el.favorite;
-        if (el.favorite) {
-          setMyListBis([...myListBis, recipeId]);
-        } else {
-          setMyListBis(myListBis.filter(id => id !== recipeId));
-        }
-      }
-      return el
-    });
-    setSearchList({ resultArray: newSearchList, ok: true })
-    toggleHeart(recipeId)
-  }
-
-  function getMoreRecipes() {
-    setLimit(limit + 12);
-  }
 
   return (
     <div className="list-container" >
@@ -77,7 +63,7 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
             if (index < limit) {
               return (
                 <div className="recipe-frame" key={el.id}>
-                  <button className="heart-btn" onClick={() => (heartClick(el.id))} >
+                  <button className="heart-btn" onClick={() => (toggleHeart(el.id))} >
                     {el["favorite"] ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart"></i>}
                   </button>
                   <Link to={`/${el.id}`} key={el.id} onClick={scrollToTop}>
@@ -90,13 +76,21 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
           ))
           || (searchList.ok === false &&
             (<div>
-              <div style={{ 'font-size': '20px' }}>{searchList.displayText}</div>
+              <div style={{ 'font-size': '20px' }}>
+                {searchList.displayText}
+              </div>
               <img src={animationSearch} style={{ width: '20vw' }} />
             </div>
             ))
         }
       </div>
-      <button className="btn-more" onClick={getMoreRecipes} disabled={limit >= 20}>More...</button>
+      <button
+        className="btn-more"
+        onClick={() => setLimit(limit + 10)}
+        disabled={limit >= (searchList.resultArray && searchList.resultArray.length)}
+      >
+        More...
+      </button>
     </div>
   )
 }
