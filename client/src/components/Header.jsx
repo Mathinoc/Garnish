@@ -6,16 +6,16 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import './../styling/Header.scss';
-import { createRef } from 'react';
+import { useRef } from 'react';
 
 
 export default function Header({ searchSet }) {
 
-  //const nodeRef = React.useRef(null); //avoid error with CSSTransition: see line 67
+  const nodeRef = React.useRef(); //avoid error with CSSTransition: see line 67
   const location = useLocation()
   const navigate = useNavigate();
-  const searchInput = createRef();
-  const filterMenu = createRef();
+  const searchInput = useRef();
+  const filterMenu = useRef();
   const [open, setOpen] = useState(false);
 
   const [vegetarianSub, setVegetarianSub] = useState(false);
@@ -73,14 +73,14 @@ export default function Header({ searchSet }) {
         <div className="dropdown" >
           <button className="link" onClick={() => { setOpen(!open); console.log(open) }}><i className="bi bi-sliders"></i></button>
           <CSSTransition
-            // nodeRef={nodeRef} // avoid findDOMNode is deprecated in StrictMode error
+            nodeRef={nodeRef} // avoid findDOMNode is deprecated in StrictMode error
             in={open}
             ref={filterMenu}
             unmountOnExit
             timeout={500}
             classNames="menu-primary"
           >
-            <div className="dropdown-menu">
+            <div className="dropdown-menu" ref={nodeRef}>
               <form className="dropdown-form">
                 <div className="checkbox-filter" >
                   <input type="checkbox" name="vegetarian" onChange={vegToggle} checked={vegetarianSub} />

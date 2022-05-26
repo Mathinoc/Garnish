@@ -33,7 +33,7 @@ const searchAndFilterSets = {
   const [randomListInitial, setRandomListInitial] = useState([]);
 
   useEffect(() => {
-    getRandomRecipess(30)
+    //getRandomRecipess(20)
       .then(result => {
         if (Array.isArray(result)) {
           result.map(el => {

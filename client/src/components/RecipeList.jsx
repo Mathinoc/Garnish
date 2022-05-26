@@ -2,29 +2,19 @@ import React from 'react';
 import RecipeView from './RecipeView';
 import './../styling/RecipeList.css';
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { scrollToTop } from '../utils/scrollToTop';
 import animationServer from './../gifs/server.gif';
 
 export default function RecipeList({ randomListInitial, toggleHeart }) {
 
-  const [limit, setLimit] = useState(15)
-  // const [partialList, setPartialList] = useState(randomListInitial)
-
-  // useEffect(() => {
-  //   if (randomListInitial.ok) {
-  //     setPartialList({
-  //       ok: true,
-  //       resultArray: randomListInitial.resultArray.slice(0, limit)
-  //     });
-  //   }
-  //   // else { setPartialList(randomListInitial) }
-  // }, [randomListInitial, limit])
+  const [limit, setLimit] = useState(10)
 
   function getMoreRecipes() {
-    setLimit(limit + 15);
+    setLimit(limit + 10);
   }
-
+console.log(limit)
+// console.log(limit, randomListInitial.resultArray.length )
   return (
     <div className="list-container" >
       <p className="suggestion" >Suggested Recipes</p>
@@ -51,7 +41,7 @@ export default function RecipeList({ randomListInitial, toggleHeart }) {
             )
           )}
       </div>
-      <button className="btn-more" onClick={getMoreRecipes} disabled={limit >= 20}>More...</button>
+      <button className="btn-more" onClick={getMoreRecipes} disabled={limit >= randomListInitial.resultArray&& randomListInitial.resultArray.length}>More...</button>
     </div>
   )
 }
