@@ -57,11 +57,11 @@ export default function RecipeDetail({ myList, toggleHeart }) {
       <div className="recipe-detail-container">
         <p className="recipe-header-title" >{recipe.title}</p>
         <div className="recipe-detail-top">
-          <div className="cover-img-container" style={{ 'background-image': `url(${recipe.image})` }} >
+          <div className="cover-img-container" style={{ 'backgroundImage': `url(${recipe.image})` }} >
           </div>
           <div className="graph-container" >
             <p>Nutrition Facts</p>
-            <p style={{ 'font-size': '12px', 'margin-top': '-5px' }}> <span >/serving</span></p>
+            <p style={{ 'fontSize': '12px', 'marginTop': '-5px' }}> <span >/serving</span></p>
             <BarChart recipe={recipe} id="chart-itself" />
           </div>
         </div>
@@ -69,20 +69,20 @@ export default function RecipeDetail({ myList, toggleHeart }) {
         <div className="recipe-detail-middle">
           <div className="recipe-information" >
             <div className="info-container" >
-              <i class="bi bi-clock special-selection"></i>
+              <i className="bi bi-clock special-selection"></i>
               <p>{recipe.readyInMinutes} min</p>
             </div>
-            <i class="bi bi-dot"></i>
+            <i className="bi bi-dot"></i>
             <div className="info-container">
-              <i class="bi bi-people special-selection"></i>
+              <i className="bi bi-people special-selection"></i>
               <p>Servings {recipe.servings}</p>
             </div>
-            <i class="bi bi-dot"></i>
+            <i className="bi bi-dot"></i>
             <div className="info-container">
-              <i class="bi bi-file-medical special-selection"></i>
+              <i className="bi bi-file-medical special-selection"></i>
               <p>Health score: {nutritionScore(recipe.healthScore)}</p>
             </div>
-            <i class="bi bi-dot"></i>
+            <i className="bi bi-dot"></i>
             <div className="step-for-heart-transition" >
               <button className="heart-btn-detail" onClick={() => handleClick(recipe.id)} >
                 {heartToggle ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart heart-fill"></i>}

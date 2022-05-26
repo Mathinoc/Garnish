@@ -14,21 +14,22 @@ export function scrapeData (urlRecipe) {
   .catch(e => console.log('error in service file', e))
 }
 
-export function getSearchResults (searchDetails) {
-  return fetch(`${baseUrl}/recipe-by-name`, {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(searchDetails)
-  })
-  .then(result => result.json())
-  .catch(e => console.log('error in service file', e))
-}
 
 export function getRecipeInMyList (ids) {
   return fetch(`${baseUrl}/recipes-id`, {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(ids)
+  })
+  .then(result => result.json())
+  .catch(e => console.log('error in service file', e))
+}
+
+export function getSearchResults (searchDetails) {
+  return fetch(`${baseUrl}/recipe-by-name`, {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(searchDetails)
   })
   .then(result => result.json())
   .catch(e => console.log('error in service file', e))
@@ -42,7 +43,7 @@ export function getRandomRecipess (number) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({"number": number})
   })
-    .then(result => {console.log('In service; resposne from server'); return result.json(); })
+    .then(result => {console.log('In service; response from server'); return result.json(); })
     .then(res => { return res["recipes"]})
     .catch(e => console.log('error in service file', e))
   

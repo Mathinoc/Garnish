@@ -12,8 +12,8 @@ import { getRecipeTemplate } from './../data';
 
 export default function SearchList({ number, searchSet, toggleHeart, myList }) {
   const [searchList, setSearchList] = useState({});
-  const [myListBis, setMyListBis] = useState(myList)
-  const [limit, setLimit] = useState(12)
+  const [myListBis, setMyListBis] = useState(myList);
+  const [limit, setLimit] = useState(12);
 
   const searchDetails = {
     search: searchSet.searchRecipe,
@@ -31,18 +31,18 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
           result["results"].map(el => {
             myListBis.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
           })
-          setSearchList({ resultBoolean: 'ok', resultArray: result["results"] });
+          setSearchList({ ok: true, resultArray: result["results"] });
         } else if (result.totalResults === 0) {
           const message = `Sorry, we couldn't find anything for ' ${searchDetails.search} '`
-          setSearchList({ resultBoolean: 'notOk', displayText: message })
+          setSearchList({ ok: false, displayText: message })
         }
       })
       .catch(error => {
         console.log("getSearchResults()", error)
-        setSearchList({ resultBoolean: 'serverIssue', displayText: 'Error from server' })
+        setSearchList({ ok: false, displayText: 'Error from server' })
       })
     //!data from data.json
-    //setSearchList({resultBoolean:'ok',resultArray:[getRecipeTemplate()]})
+    //setSearchList({ok:true,resultArray:[getRecipeTemplate()]})
   }, [searchSet])
 
   useEffect(() => {
@@ -61,8 +61,7 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
       }
       return el
     });
-    const statusValue = 'ok';
-    setSearchList({ resultArray: newSearchList, resultBoolean: statusValue })
+    setSearchList({ resultArray: newSearchList, ok: true })
     toggleHeart(recipeId)
   }
 
@@ -74,7 +73,7 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
     <div className="list-container" >
       <p className="suggestion" >Results for {searchSet.searchRecipe}</p>
       <div className="recipe-list-frame">
-        {(searchList.resultBoolean === 'ok' &&
+        {(searchList.ok &&
           (searchList.resultArray.map((el, index) => {
             if (index < limit) {
               return (
@@ -90,17 +89,11 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
             }
           })
           ))
-          || (searchList.resultBoolean === 'notOk' &&
+          || (searchList.ok === false &&
             (<div>
               <div style={{ 'font-size': '20px' }}>{searchList.displayText}</div>
               <img src={animationSearch} style={{ width: '20vw' }} />
-            </div>))
-          || (searchList.resultBoolean === 'serverIssue' &&
-            (
-              <div>
-                <div style={{ 'font-size': '20px' }} >{searchList.displayText}</div>
-                <img src={animationServer} style={{ width: '20vw' }} />
-              </div>
+            </div>
             ))
         }
       </div>

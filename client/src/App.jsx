@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import RecipeList from './components/RecipeList';
-import LogIn from './components/LogIn';
 import SearchList from './components/SearchList';
 import RecipeDetail from './components/RecipeDetail';
 import Footer from "./components/Footer";
@@ -17,14 +16,13 @@ function App() {
   const [vegetarian, setVegetarian] = useState(false);
   const [gluten, setGluten] = useState(false);
   const [dairy, setDairy] = useState(false);
-  const [refresh, setRefresh] = useState(false);
   const [myList, setMyList] = useState(() => {
     const savedRecipeIdsJson = localStorage.getItem("myFavorites");
     const savedRecipeIds = JSON.parse(savedRecipeIdsJson);
     return savedRecipeIds || [];
   })
   
-  const searchAndFilterSets = {
+const searchAndFilterSets = {
     setSearchRecipe, searchRecipe,
     setVegetarian, vegetarian,
     setGluten, gluten,
@@ -35,18 +33,18 @@ function App() {
   const [randomListInitial, setRandomListInitial] = useState([]);
 
   useEffect(() => {
-    getRandomRecipess(45)
+    getRandomRecipess(30)
       .then(result => {
         if (Array.isArray(result)) {
           result.map(el => {
             myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
           })
-          setRandomListInitial({ resultStatus: 'ok', resultArray: result });
+          setRandomListInitial({ ok: true, resultArray: result });
           console.log('affected data')
         } else {
           alert("Couldn't get the data :/")
           const message = "Sorry, we couldn't get any recipe from the database"
-          setRandomListInitial({ resultStatus: 'serverIssue', displayText: message });
+          setRandomListInitial({ ok: false, displayText: message });
         }
       })
       .catch(error => console.log("getRandomRecipess()", error));
@@ -54,7 +52,7 @@ function App() {
 
 
   //! from saved data
-  // const randomListInitial ={resultStatus: 'ok', resultArray:getRandomRecipes(20)};
+  // const randomListInitial ={ok: true, resultArray:getRandomRecipes(20)};
   // randomListInitial.resultArray.map(el => {
   //   if (myList.includes(el.id)) {
   //     el["favorite"] = true;
@@ -98,7 +96,6 @@ function App() {
             <Routes>
               <Route path="/" element={<RecipeList toggleHeart={toggleHeart} randomListInitial={randomListInitial} />} />
               <Route path="/search" element={<SearchList toggleHeart={toggleHeart} myList={myList} number={20} searchSet={searchAndFilterSets} />} />
-              <Route path="/login" element={<LogIn />} />
               <Route path="/:recipeId" element={<RecipeDetail toggleHeart={toggleHeart} myList={myList} />} />
               <Route path="/my-recipes" element={<MyRecipes />} />
               <Route path="/my-favorites" element={<SavedRecipes myList={myList} toggleHeart={toggleHeart} />} />
