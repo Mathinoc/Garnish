@@ -14,9 +14,9 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
   const [ingredientList, setIngredientList] = useState([{ ingredient: "", quantity: "", unit: "" }]);
   const [instructionList, setInstructionList] = useState([{ text: "" }]);
 
-  const [urlRecipe, setUrlRecipe] = useState(false);
+  const urlRecipe = useRef();
   const [scrapedRecipe, setScrapedRecipe] = useState(false);
-  
+
   const [recipeToModify, setRecipeToModify] = useState(false);
 
 
@@ -130,14 +130,13 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
     setRecipeToModify(false)
 
     setIndexRecipeToModify(false);
-    setUrlRecipe(false);
+    urlRecipe.current = "";
   }
 
 
   function browseUrl() {
-    if (urlRecipe) {
-      console.log('urlRecipe', urlRecipe)
-      scrapeData(urlRecipe)
+    if (urlRecipe.current.value !== "") {
+      scrapeData(urlRecipe.current.value)
         .then(result => setScrapedRecipe(result))
         .catch(e => console.log(e))
     }
@@ -220,9 +219,24 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
               </div>
               {toggleUrl && (
                 <>
-                  <input onKeyPress={(e) => pressEnter(e)} onChange={(e) => setUrlRecipe(e.target.value)} style={{ fontSize: '11px' }} type="text" className="form-control" placeholder="Url..." aria-label="Small" aria-describedby="basic-addon1" />
+                  <input
+                    onKeyPress={(e) => pressEnter(e)}
+                    // onChange={(e) => setUrlRecipe(e.target.value)}
+                    ref={urlRecipe}
+                    style={{ fontSize: '11px' }} type="text"
+                    className="form-control" placeholder="Url..."
+                    aria-label="Small"
+                    aria-describedby="basic-addon1"
+                  />
                   <div className="input-group-append">
-                    <button onClick={browseUrl} className="btn btn-outline-secondary" type="button" style={{ fontSize: '11px' }}>Collect</button>
+                    <button
+                      onClick={browseUrl}
+                      className="btn btn-outline-secondary"
+                      type="button"
+                      style={{ fontSize: '11px' }}
+                    >
+                      Collect
+                    </button>
                   </div>
                 </>
               )}
@@ -271,9 +285,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
                     </div>
                     <input placeholder="..." value={el.text && el.text} onChange={(e) => (onInstructionChange(e, ind))} type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
                     {instructionList.length > 1 &&
-                      <Button variant="outline-warning"
-                        onClick={() => removeInstruction(ind)}
-                      >
+                      <Button variant="outline-warning" onClick={() => removeInstruction(ind)} >
                         <i className="bi bi-trash-fill button-trash"></i>
                       </Button>
                     }
