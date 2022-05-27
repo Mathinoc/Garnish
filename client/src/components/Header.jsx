@@ -66,7 +66,9 @@ export default function Header({ searchSet }) {
         <button onClick={handleClick}><i className="bi bi-search"></i></button>
         <input id="main-input" onKeyPress={(e) => pressEnter(e)} ref={searchInput} placeholder="Search..." />
         <div className="dropdown" >
-          <button className="link" onClick={() => setOpen(!open)}><i className="bi bi-sliders"></i></button>
+          <button className="link" onClick={() => setOpen(!open)}>
+            <i className="bi bi-sliders"></i>
+          </button>
           <CSSTransition
             nodeRef={nodeRef} // avoid findDOMNode is deprecated in StrictMode error
             in={open}

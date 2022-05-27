@@ -16,10 +16,11 @@
 .page-title{
   border: none;
   position: absolute;
-  top: 0;
   text-align: center;
+  top: 0;
   left: 0;
   right: 0;
+  width: 100%;
   margin: 0;
   font-size: 18px;
   border-top-left-radius: var(--border-radius);
