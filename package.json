@@ -1,0 +1,21 @@
+{
+  "name": "garnish",
+  "version": "1.0.0",
+  "description": "Garnish is an app that enables users to search for recipes and save the ones they most like. Users can also create their own recipes, save them and modify them at any time. Lastly, the app provides users with the ability of pasting any url of a recipe page and save any recipe content locally which can be modified as well.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":" cd ./server/ npm run index.js",
+    "install": "cd ./server/ npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mathinoc/Garnish.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mathinoc/Garnish/issues"
+  },
+  "homepage": "https://github.com/Mathinoc/Garnish#readme"
+}
