@@ -4,7 +4,8 @@ const path = require('path')
 const cors = require('cors');
 const { config } = require('dotenv');
 require('dotenv').config();
-const PORT = process.env.PORT || process.env.SERVER_PORT || 3001;
+const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || process.env.SERVER_PORT || 3001;
 
 const app = Express();
 
