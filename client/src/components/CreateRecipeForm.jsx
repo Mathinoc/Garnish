@@ -14,6 +14,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
   const [ingredientList, setIngredientList] = useState([{ ingredient: "", quantity: "", unit: "" }]);
   const [instructionList, setInstructionList] = useState([{ text: "" }]);
 
+  const nodeRef = useRef();
   const urlRecipe = useRef();
   const [scrapedRecipe, setScrapedRecipe] = useState(false);
 
@@ -111,16 +112,13 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
           creationDate: new Date().toISOString().slice(0, 10)
         }
       ])
-
     } else {
       const firstPartList = personalRecipes.slice(0, indexRecipeToModify);
       const modifiedRecipe = { recipeTitle, ingredientList: ingredientListNotEmpty, instructionList: instructionListNotEmpty, creationDate: new Date().toISOString().slice(0, 10) };
       const finalPartList = personalRecipes.slice(indexRecipeToModify + 1);
-
       setPersonalRecipes([...firstPartList, modifiedRecipe, ...finalPartList]);
       setScrapedRecipe('');
     }
-
     setToggle(false);
     setToggleUrl(false);
     setIngredientList([{ ingredient: "", quantity: "", unit: "" }]);
@@ -180,10 +178,7 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
       setRecipeTile(recipeTitle)
       setToggle(true)
     }
-
   }, [scrapedRecipe, recipeToModify])
-
-
 
   function pressEnter(event) {
     if (event.key === 'Enter') {
@@ -197,16 +192,15 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
         Add Recipe
       </button>
       <CSSTransition
+        nodeRef={nodeRef}
         in={toggle}
         unmountOnExit
         timeout={500}
         classNames="menuPrimary"
       >
-        <div className="CreateRecipe">
+        <div className="CreateRecipe" ref={nodeRef}>
           <div className="url-input-container" >
-
             <div className="input-group mb-3">
-
               <div className="input-group-prepend">
                 <button
                   onClick={() => setToggleUrl(!toggleUrl)}

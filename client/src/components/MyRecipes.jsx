@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 
 export default function MyRecipes() {
   const [personalRecipes, setPersonalRecipes] = useState(() => {
-    // localStorage.clear();
     const savedJSON = localStorage.getItem("personalRecipes");
     const listParsed = JSON.parse(savedJSON);
     return listParsed || [];
