@@ -14,9 +14,9 @@ app.use(cors());
 
 app.use(Express.json());    //parse the req into json
 
-app.use(Express.static(path.join(__dirname + './../client/build')));
+app.use(Express.static(path.join(__dirname + './../client/public')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });
 
 app.use(router);
