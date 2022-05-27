@@ -1,5 +1,5 @@
 import {getRandomRecipes} from './../data.js';
-const baseUrl = 'http://localhost:3004'
+const baseUrl = process.env.REACT_APP_BASE_URL || "";
 
 
 export function scrapeData (urlRecipe) {
