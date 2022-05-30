@@ -1,5 +1,5 @@
 import React from 'react';
-import './../styling/myRecipes/MyRecipesList.css';
+import './../styling/myRecipes/MyRecipesList.scss';
 import { useState } from 'react';
 
 

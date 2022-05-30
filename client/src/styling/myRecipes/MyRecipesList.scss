@@ -1,24 +1,49 @@
-.display-recipe-container {
-  max-width: var(--max-width);
-  box-shadow: var(--main-shadow);
-  margin-top: 60px;
-  min-width: 450px;
-  position: relative;
-  padding: 80px 3vw 30px 3vw;
-  background-color: white;
-  border-radius: 10px;
-}
+@import '../../App.scss';
 
 
-.display-recipe-frame{
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-}
+
 h5{
   margin-bottom:15px !important;
 }
 
+.display-recipe-container {
+  max-width: var(--max-width);
+  box-shadow: var(--main-shadow);
+  margin-top: 60px;
+  position: relative;
+  padding: 80px 3vw 30px 3vw;
+  background-color: white;
+  border-radius: 10px;
+
+  .display-recipe-frame{
+    flex-wrap: wrap;
+    
+    @include md {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      gap: 30px;
+    }
+  
+    .display-recipeList-container {
+      width: 100%;
+      
+      @include md {
+        width: 35vw;
+        min-width: 200px;
+      }
+    }
+    
+    .recipe-detail-frame {
+      width: 100%;
+
+      @include md {
+        width: 50vw;
+        min-width: 250px;
+      }
+    }
+  }
+}
 .page-title2{
   border: none;
   position: absolute;
@@ -39,16 +64,9 @@ h5{
 
 
 
-.display-recipeList-container {
-  width: 35vw;
-  min-width: 200px;
-  /* border: 2px solid rgb(240, 197, 197); */
-}
 
-.recipe-detail-frame {
-  width: 50vw;
-  min-width: 250px;
-}
+
+
 
 .recipe-details {
   padding: 10px;
