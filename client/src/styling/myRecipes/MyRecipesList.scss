@@ -43,27 +43,24 @@ h5{
       }
     }
   }
+
+  .page-title2 {
+    border: none;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: 0;
+    font-size: 18px;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    background-color: var(--main-color);
+    padding: 8px 0 10px 0;
+    color: rgb(86, 86, 86);
+    transition: 0.4s;
+  }
 }
-.page-title2{
-  border: none;
-  position: absolute;
-  top: 0;
-  text-align: center;
-  left: 0;
-  right: 0;
-  margin: 0;
-  font-size: 18px;
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  background-color: var(--main-color);
-  padding: 8px 0 10px 0;
-  color: rgb(86, 86, 86);
-  transition: 0.4s;
-  z-index:1;
-}
-
-
-
 
 
 

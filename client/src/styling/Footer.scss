@@ -68,7 +68,14 @@
   justify-content: space-evenly;
   box-shadow: 0px 0px 10px 1px rgba(8, 1, 1, 0.199);
   text-decoration: none;
-  padding-bottom: 7px;
+  position: fixed;
+  bottom:0;
+  width: 100%;
+  height: var(--mobile-footer-height);
+  align-content: flex-start;
+  background-color: white;
+  z-index:1.5;
+
   a {
     color: rgba(128, 128, 128, 0.718);
     font-size: 25px;

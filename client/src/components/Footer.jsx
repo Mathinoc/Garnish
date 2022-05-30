@@ -25,13 +25,13 @@ export default function Footer() {
       </div>
       <nav className='mobile-nav-bar'>
         <Link to="/" className={`${ActivePath('/') && 'active-tab'}`} >
-          <i class="bi bi-house"></i>
+          <i className="bi bi-house"></i>
         </Link>
         <Link to="/my-favorites" className={`${ActivePath('/my-favorites') && 'active-tab'}`}>
-          <i class="bi bi-heart"></i>
+          <i className="bi bi-heart"></i>
         </Link>
         <Link to="/my-recipes" className={`${ActivePath('/my-recipes') && 'active-tab'}`}>
-          <i class="bi bi-archive"></i>
+          <i className="bi bi-archive"></i>
         </Link>
       </nav>
     </>

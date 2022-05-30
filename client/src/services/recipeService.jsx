@@ -36,7 +36,8 @@ export function getSearchResults (searchDetails) {
 }
 
 export function getRandomRecipess (number) {
-  // console.log("number in getRandomRecipess()", number)
+  console.log("number in getRandomRecipess()", number);
+  console.log('baseUrl', baseUrl)
   //! API
   return fetch(`${baseUrl}/recipes`, {
     method: 'POST',
@@ -48,7 +49,7 @@ export function getRandomRecipess (number) {
     .catch(e => console.log('error in service file', e))
   
   //! from saved data
-  return getRandomRecipes(10)
+  // return getRandomRecipes(10)
 }
 
 
