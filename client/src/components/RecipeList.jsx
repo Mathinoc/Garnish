@@ -39,9 +39,11 @@ export default function RecipeList({ randomListInitial, toggleHeart }) {
             )
           )}
       </div>
-      <button className="btn-more" onClick={getMoreRecipes} disabled={limit >= randomListInitial.resultArray && randomListInitial.resultArray.length}>
-        More...
-      </button>
+      {(randomListInitial.ok &&
+        <button className="btn-more" onClick={getMoreRecipes} disabled={limit >= randomListInitial.resultArray && randomListInitial.resultArray.length}>
+          More...
+        </button>
+      )}
     </div>
   )
 }

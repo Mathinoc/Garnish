@@ -1,3 +1,5 @@
+@import '../../App.scss';
+
 .outer-container{
   position: relative;
 }
@@ -11,6 +13,18 @@
   flex-wrap: nowrap;
   gap: 30px;
   justify-content: center;
+
+
+  .btn-outline-secondary {
+    background-color: var(--main-hover);
+    color: grey;
+    transition: 0.4s;
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: rgb(158, 250, 158);
+    color: grey;
+  }
 }
 
 .page-title{
@@ -68,62 +82,53 @@
 .minimize-url-btn{
   background-color: rgba(171, 202, 171, 0.82) !important;
 }
-.button-trash{
-  font-size:14px;
-}
 
 
-h3{
-  color: rgb(223, 146, 4);
-  font-size: 20px;
-  font-weight: 400;
-}
-.title-minimized{
+
+
+.title-minimized {
   font-size:20px;
   font-weight:300;
 }
 .form {
-  display: flex;
-  min-width: 300px;
-  flex-direction: row;
-  gap:20px;
-}
+  flex-wrap: wrap;
+  
+  @include md {
+    display: flex;
+    flex-wrap: nowrap;
+    min-width: 300px;
+    flex-direction: row;
+    gap:20px;
+  }
 
-.first-division {
-  display: flex;
-}
+  .instruction-container {
+    width:100%;
 
-.form-field {
-  display: flex;
-  flex-direction: column;
-  width: 55vw;
-  min-width: 150px;
-}
+  }
 
-.ingredient-field {
-  width: 1vw;
-}
+  .ingredient-container {
+    width: 100%;
+    
+    @include md {
+      display: flex;
+      flex-direction: column;
+      width: 55vw;
+      min-width: 150px;
 
-.output li {
-  margin-top: 10px;
-}
+    }
+    
+    .first-division {
+      display: flex;
+    }
+  }
 
-.output {
-  margin-right: 0;
-  width: 25vw;
-}
-
-.btn-outline-secondary {
-  background-color: var(--main-hover);
-  color: grey;
-  transition: 0.4s;
-}
-
-.btn-outline-secondary:hover {
-  background-color: rgb(158, 250, 158);
-  color: grey;
-}
-
-.second-division {
-  width:100%;
+  .button-trash{
+    font-size:14px;
+  }
+  h3{
+    color: rgb(223, 146, 4);
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
 }

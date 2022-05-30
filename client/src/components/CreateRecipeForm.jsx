@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.css";
-import '../styling/myRecipes/CreateRecipeForm.css';
+import '../styling/myRecipes/CreateRecipeForm.scss';
 import { CSSTransition } from 'react-transition-group';
 import { scrapeData } from '../services/recipeService';
 import { fractionView } from '../utils/formatNumber.js';
@@ -199,7 +199,6 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
         classNames="menuPrimary"
       >
         <div className="CreateRecipe" ref={nodeRef}>
-          <div className="url-input-container" >
             <div className="input-group mb-3">
               <div className="input-group-prepend">
                 <button
@@ -235,7 +234,6 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
                 </>
               )}
             </div>
-          </div>
 
           <div className="separator">
           </div>
@@ -245,46 +243,41 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
               placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" />
           </div>
           <div className='form'>
-            <div className='form-field'>
+            <div className='ingredient-container'>
               <h3>Ingredients</h3>
               {ingredientList.map((ingredient, index) => (
-                <div key={index}>
-                  <div className="first-division">
-                    <InputGroup className="input-group-sm mb-3">
-                      <InputGroup.Text >{index + 1}</InputGroup.Text>
-                      <FormControl style={{ width: '14vw' }} onChange={(e) => changeIngredient(e, index)} aria-label="ingredient" value={ingredientList[index].ingredient} placeholder="ingredient" />
-                      <FormControl onChange={(e) => changeQuantity(e, index)} aria-label="quantity" value={ingredientList[index].quantity} placeholder="quantity" />
-                      <FormControl onChange={(e) => changeUnit(e, index)} aria-label="unit" value={ingredientList[index].unit} placeholder="unit" />
-                      {ingredientList.length > 1 &&
-                        <Button variant="outline-warning"
-                          onClick={() => removeIngredient(index)}
-                        >
-                          <i className="bi bi-trash-fill button-trash"></i>
-                        </Button>
-                      }
-                    </InputGroup>
-                  </div>
+                <div key={index} className="first-division">
+                  <InputGroup className="input-group-sm mb-3">
+                    <InputGroup.Text >{index + 1}</InputGroup.Text>
+                    <FormControl style={{ width: '14vw' }} onChange={(e) => changeIngredient(e, index)} aria-label="ingredient" value={ingredientList[index].ingredient} placeholder="ingredient" />
+                    <FormControl onChange={(e) => changeQuantity(e, index)} aria-label="quantity" value={ingredientList[index].quantity} placeholder="quantity" />
+                    <FormControl onChange={(e) => changeUnit(e, index)} aria-label="unit" value={ingredientList[index].unit} placeholder="unit" />
+                    {ingredientList.length > 1 &&
+                      <Button variant="outline-warning"
+                        onClick={() => removeIngredient(index)}
+                      >
+                        <i className="bi bi-trash-fill button-trash"></i>
+                      </Button>
+                    }
+                  </InputGroup>
                 </div>
               ))
               }
 
             </div>
-            <div className="second-division">
+            <div className="instruction-container">
               <h3>Instructions</h3>
               {instructionList.map((el, ind) => (
-                <div key={ind + 'a'}>
-                  <div className="input-group input-group-sm mb-3">
-                    <div className="input-group-prepend">
-                      <span style={{ fontSize: '11px' }} className="input-group-text" id="inputGroup-sizing-sm">{ind + 1}</span>
-                    </div>
-                    <input placeholder="..." value={el.text && el.text} onChange={(e) => (onInstructionChange(e, ind))} type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
-                    {instructionList.length > 1 &&
-                      <Button variant="outline-warning" onClick={() => removeInstruction(ind)} >
-                        <i className="bi bi-trash-fill button-trash"></i>
-                      </Button>
-                    }
+                <div key={ind + 'a'} className="input-group input-group-sm mb-3">
+                  <div className="input-group-prepend">
+                    <span style={{ fontSize: '11px' }} className="input-group-text" id="inputGroup-sizing-sm">{ind + 1}</span>
                   </div>
-
+                  <input placeholder="..." value={el.text && el.text} onChange={(e) => (onInstructionChange(e, ind))} type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
+                  {instructionList.length > 1 &&
+                    <Button variant="outline-warning" onClick={() => removeInstruction(ind)} >
+                      <i className="bi bi-trash-fill button-trash"></i>
+                    </Button>
+                  }
                 </div>
               ))}
 
@@ -292,7 +285,13 @@ export default function CreateRecipeForm({ personalRecipes, setPersonalRecipes, 
           </div>
 
           <div>
-            <button type="button" onClick={saveRecipe} className="btn btn-outline-success">Save</button>
+            <button
+              type="button"
+              onClick={saveRecipe}
+              className="btn btn-outline-success"
+            >
+              Save
+            </button>
           </div>
         </div>
 

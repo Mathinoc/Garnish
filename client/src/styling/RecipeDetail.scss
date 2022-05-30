@@ -74,11 +74,14 @@
   margin-top: 6px;
 }
 .recipe-information {
-  /* border: 1px solid blue; */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 25px;
+  
+  i {
+    font-size: 25px;
+  }
 }
 .info-container {
   display: flex;
@@ -86,15 +89,10 @@
   align-items: center;
   gap: 15px
 }
-.bi {
-  font-size: 25px;
-}
 .special-selection {
   color: var(--main-color2);
 }
 .step-for-heart-transition{
-  /* border: 1px solid blue; */
-  /* margin-top:20px; */
   position: relative;
   height:68px;
   width :68px;

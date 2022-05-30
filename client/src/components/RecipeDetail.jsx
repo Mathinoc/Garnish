@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import './../styling/RecipeDetail.css';
+import './../styling/RecipeDetail.scss';
 import IngredientList from './IngredientList';
 import InstructionList from './InstructionList';
 import SimilarList from './SimilarList';
