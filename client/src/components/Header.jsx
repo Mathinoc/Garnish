@@ -60,7 +60,7 @@ export default function Header({ searchSet }) {
     <div className="header">
       <Link to="/" id='menu'>
         <img src={logo} alt="leaf" />
-        <p> Garnish</p>
+        <p id='header-title' > Garnish</p>
       </Link>
       <div className='search-bar'>
         <button onClick={handleClick}><i className="bi bi-search"></i></button>
@@ -99,7 +99,7 @@ export default function Header({ searchSet }) {
             </div>
           </CSSTransition>
         </div>
-      </div >
+      </div>
       <nav>
         <Link to="/my-recipes">
           <Button type="button" className="btn-head btn-my-recipe common-background">Recipe Box</Button>

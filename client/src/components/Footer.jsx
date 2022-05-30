@@ -1,5 +1,5 @@
 import React from 'react';
-import './../styling/Footer.css';
+import './../styling/Footer.scss';
 import spoon from './../images/spoonacular-logo.svg';
 import { scrollToTop } from '../utils/scrollToTop';
 

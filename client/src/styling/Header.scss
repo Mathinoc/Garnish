@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Karla&family=Nunito+Sans:ital,wght@1,200&family=Space+Mono&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+@import '../App.scss';
+
 :root {
   --head-color1: #F5D6BA ;
   --head-color2: #ACC3A6;
@@ -12,6 +14,7 @@
   top: 0;
   z-index: 4;
   display: flex;
+  gap: 15px;
   justify-content: space-between;
   align-items: center;
   background-color: white;
@@ -19,16 +22,25 @@
   box-shadow: 0px 0px 10px 1px rgba(8, 1, 1, 0.199);
   min-height: 65px;
   height: 8vh;
-  min-width: 600px;
-}
-a img {
-  height: 38px;
+
+  a {
+    img {
+      height: 38px;
+    }
+    #header-title{
+      display: none;
+      @include sm {
+        display: block;
+      }
+    }
+  }
 }
 
 #menu {
   display: flex;
   align-items: center;
   gap:0.5vw;
+
   p {
     color: rgb(47, 47, 52);
     font-family: 'Dancing Script', sans-serif;
@@ -44,23 +56,26 @@ a img {
   border: 1px solid var(--main-color);
   border-radius: 30px;
   display: flex;
+  flex-grow: 1;
   gap: 10px;
-  padding: 8px 15px;
+  padding: 6px 10px;
 }
 .search-bar button {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  margin: 5px 20px;
-}
+  margin: 0px 5px;
+}*
 .search-bar i {
   font-size: 1rem;
 }
 .search-bar #main-input{
+
   border: none;
   min-width: 150px;
-  width: 30vw;
+  width: 100%;
+  // width: 30vw;
 }
 .search-bar #main-input:focus-visible {
   outline: none;
@@ -125,36 +140,30 @@ a img {
 
 
 
-
-
-
-nav {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 15px;
-  align-items: center;
-}
-.btn-head{
-  border-radius: 30px !important;
-  padding: 9px 15px 11px;
-  white-space: nowrap;
-  cursor: pointer;
-  border: 1px solid var(--main-color) !important;
-}
-.common-background{
-  background: rgba(88, 254, 169, 0.12)!important;
-}
-.btn-favorite {
-  border: none;
-  color: var(--head-color);
-  color: grey !important;
-}
-
-.btn-my-recipe{
-  color: grey !important;
-}
-
 .header a{
   text-decoration: none;
 }
+nav {
+  display:none;
 
+  @include md {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    align-items: center;
+  
+    .btn-head{
+      border-radius: 30px !important;
+      padding: 6px 12px 7px;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid var(--main-color) !important;
+      background: rgba(88, 254, 169, 0.12)!important;
+      color: grey !important;
+    }
+    .btn-favorite {
+      border: none;
+      color: var(--head-color);
+    }
+  }
+}

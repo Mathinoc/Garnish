@@ -15,7 +15,7 @@
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
-  padding: 10px 17px;
+  padding: 4px 10px 5px 10px;
   border-radius: 30px;
   background-image: linear-gradient(45deg, white, transparent);
   z-index: 1;
@@ -39,6 +39,9 @@
 }
 .heart-btn:hover::before{
   opacity: 1;
+}
+.heart-btn .bi {
+  font-size: 20px;
 }
 
 

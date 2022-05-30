@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import RecipeList from './components/RecipeList';
@@ -33,20 +33,20 @@ function App() {
   const [randomListInitial, setRandomListInitial] = useState([]);
 
   useEffect(() => {
-    getRandomRecipess(20)
-      .then(result => {
-        if (Array.isArray(result)) {
-          result.map(el => {
-            myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
-          })
-          setRandomListInitial({ ok: true, resultArray: result });
-        } else {
-          alert("Couldn't get the data :/")
-          const message = "Sorry, we couldn't get any recipe from the database"
-          setRandomListInitial({ ok: false, displayText: message });
-        }
-      })
-      .catch(error => console.log("getRandomRecipess()", error));
+    // getRandomRecipess(20)
+    //   .then(result => {
+    //     if (Array.isArray(result)) {
+    //       result.map(el => {
+    //         myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
+    //       })
+    //       setRandomListInitial({ ok: true, resultArray: result });
+    //     } else {
+    //       alert("Couldn't get the data :/")
+    //       const message = "Sorry, we couldn't get any recipe from the database"
+    //       setRandomListInitial({ ok: false, displayText: message });
+    //     }
+    //   })
+    //   .catch(error => console.log("getRandomRecipess()", error));
   }, [])
 
 

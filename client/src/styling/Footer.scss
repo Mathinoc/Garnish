@@ -1,3 +1,5 @@
+@import '../App.scss';
+
 .footer-container {
   background-color: white;
   min-height: 60px;
@@ -27,12 +29,10 @@
   color: rgb(51, 50, 50);
   transition: 0.2s;
 }
-
 .scroll-top:hover{
   color: rgb(11, 11, 11);
   /* font-size: 1.6rem; */
 }
-
 
 
 .spoonacular {
