@@ -23,7 +23,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p className='mobile-back-link' >recipes from <a href="https://spoonacular.com/food-api" target="_blank" rel="noreferrer">spoonacular API</a></p>
       <nav className='mobile-nav-bar'>
         <Link to="/" className={`${ActivePath('/') && 'active-tab'}`} >
           <i className="bi bi-house"></i>
