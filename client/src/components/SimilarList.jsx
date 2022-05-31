@@ -1,5 +1,5 @@
 import React from 'react';
-import './../styling/RecipeList.css';
+import './../styling/RecipeList.scss';
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import RecipeView from './RecipeView';

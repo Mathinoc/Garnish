@@ -83,6 +83,7 @@
   position: relative;
 }
 .dropdown-menu {
+  width: 170px;
   position: absolute;
   display: block !important;
   left: 0;
@@ -117,6 +118,7 @@
 .filter-form-inner-btn{
   background-color: var(--main-color);
   border-radius: 20px;
+  margin: 6px 20px;
 }
 
 .menu-primary-enter {

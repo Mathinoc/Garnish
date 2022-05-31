@@ -1,5 +1,5 @@
 import React from 'react';
-import './../styling/RecipeView.css';
+import './../styling/RecipeView.scss';
 
 export default function RecipeView({ recipe }) {
   const id = recipe.id;
@@ -8,7 +8,7 @@ export default function RecipeView({ recipe }) {
 
   return (
     <div className="single-recipe-container">
-      <img src={imgHref} alt={`image of ${recipe.title}`} />
+      <img src={imgHref} alt={`${recipe.title}`} />
       <p>{recipe.title}</p>
     </div>
   )

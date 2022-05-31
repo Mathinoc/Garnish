@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import RecipeView from './RecipeView';
 import { scrollToTop } from '../utils/scrollToTop';
 import animationSearch from './../gifs/searching-for-word.gif';
-import './../styling/RecipeList.css';
+import './../styling/RecipeList.scss';
 import { getRecipeTemplate } from './../data';
 
 

@@ -70,7 +70,6 @@ export default function RecipeDetail({ myList, toggleHeart }) {
           </div>
         </div>
 
-        <div className="recipe-detail-middle">
           <div className="recipe-information" >
             <div className="info-container" >
               <i className="bi bi-clock special-selection"></i>
@@ -93,7 +92,6 @@ export default function RecipeDetail({ myList, toggleHeart }) {
               </button>
             </div>
           </div>
-        </div>
 
         <div className="recipe-detail-bottom">
           <div className="ingredient-class" >

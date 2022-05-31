@@ -1,0 +1,35 @@
+@import '../index.scss';
+
+.single-recipe-container {
+  width: 130px;
+  min-height: 0;
+  height: auto;
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  @include sm {
+    width: 190px;
+  }
+  @include md {
+    width: 230px;
+  }
+
+
+  &:hover > img{
+    opacity:1;
+  }
+  img {
+    transition: .2s;
+    opacity:0.8;
+    border-radius: 10px;
+    width: 100%;
+    height: 80%;
+  }
+  p {
+    margin: 0;
+    color: rgb(79, 78, 78);
+    padding: 6px ;
+  }
+}
+
+

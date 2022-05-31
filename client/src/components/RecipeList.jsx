@@ -1,6 +1,6 @@
 import React from 'react';
 import RecipeView from './RecipeView';
-import './../styling/RecipeList.css';
+import './../styling/RecipeList.scss';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { scrollToTop } from '../utils/scrollToTop';
@@ -44,6 +44,9 @@ export default function RecipeList({ randomListInitial, toggleHeart }) {
           More...
         </button>
       )}
+      
+      <p className='mobile-back-link' >recipes from <a href="https://spoonacular.com/food-api" target="_blank" rel="noreferrer">spoonacular API</a></p>
+
     </div>
   )
 }

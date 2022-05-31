@@ -19,10 +19,11 @@ export default function Footer() {
         <div className="footer-container">
           <div className="spoonacular">
             <img src={spoon} alt="Spoonacular icon" />
-            <p>recipes from <a href="https://spoonacular.com/food-api" target="_blank">spoonacular API</a></p>
+            <p>recipes from <a href="https://spoonacular.com/food-api" target="_blank" rel="noreferrer">spoonacular API</a></p>
           </div>
         </div>
       </div>
+      <p className='mobile-back-link' >recipes from <a href="https://spoonacular.com/food-api" target="_blank" rel="noreferrer">spoonacular API</a></p>
       <nav className='mobile-nav-bar'>
         <Link to="/" className={`${ActivePath('/') && 'active-tab'}`} >
           <i className="bi bi-house"></i>

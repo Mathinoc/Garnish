@@ -1,3 +1,5 @@
+@import '../index.scss';
+
 .list-container {
   position: relative;
 }
@@ -46,21 +48,24 @@
 
 
 .recipe-list-frame {
-  padding: 100px 1vw 40px 1vw;
+  padding: 40px 1vw;
   background-color: white;
   box-shadow: var(--main-shadow);
 
   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
   justify-content: center;
+  gap: 15px;
+
+  @include md{
+    gap: 30px;
+  }
 }
 .recipe-list-frame a {
   text-decoration: none;
 }
 .suggestion {
-  position: absolute;
   top: 0;
   text-align: center;
   left: 0;
@@ -96,4 +101,24 @@
 }
 .btn-more:hover:disabled{
   background-color: rgba(237, 122, 122, 0.993);
+}
+
+
+.mobile-back-link {
+  position: absolute;
+  bottom: 10px;
+  font-size: 12px;
+  font-style: italic;
+  color: grey;
+  bottom: -55px;
+  left: 0;
+  right: 0;
+
+  @include md {
+    display: none;
+  }
+
+  a {
+    color: grey;
+  }
 }

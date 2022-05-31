@@ -63,6 +63,8 @@
 
 }
 
+
+
 .mobile-nav-bar{
   display: flex;
   justify-content: space-evenly;
@@ -74,7 +76,8 @@
   height: var(--mobile-footer-height);
   align-content: flex-start;
   background-color: white;
-  z-index:1.5;
+  z-index: 2;
+
 
   a {
     color: rgba(128, 128, 128, 0.718);
