@@ -40,7 +40,7 @@ export default function SimilarList({ id, number, toggleHeart, myList }) {
   }
 
   return (
-    <div className="recipe-list-frame">
+    <div className="recipe-list-frame frame-rounded-bottom">
       {(
         similarList.ok &&
           similarList.resultArray.map(el => {

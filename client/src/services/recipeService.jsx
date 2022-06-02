@@ -36,8 +36,6 @@ export function getSearchResults (searchDetails) {
 }
 
 export function getRandomRecipess (number) {
-  console.log("number in getRandomRecipess()", number);
-  console.log('baseUrl', baseUrl)
   //! API
   return fetch(`${baseUrl}/recipes`, {
     method: 'POST',
@@ -54,7 +52,6 @@ export function getRandomRecipess (number) {
 
 
 export function getRecipeById (id, filters) {
-  // console.log("id in getRecipeById()", id)
 //   //! API
   return fetch(`${baseUrl}/recipe/${id}`, {
     method: 'POST',

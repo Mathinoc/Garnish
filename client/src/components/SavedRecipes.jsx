@@ -31,7 +31,7 @@ export default function SavedRecipes({ myList, toggleHeart }) {
   return (
     <div className="list-container" >
       <p className="suggestion" >Favorites</p>
-      <div className="recipe-list-frame">
+      <div className="recipe-list-frame frame-rounded-bottom">
         {savedRecipes.length > 0 ?
           (
             savedRecipes.map(el => {

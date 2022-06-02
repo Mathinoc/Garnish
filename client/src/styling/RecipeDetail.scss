@@ -9,17 +9,18 @@
   gap: 30px;
 }
 .recipe-detail-container {
+  box-shadow: var(--main-shadow);
   position: relative;
   border-radius: var(--element-radius);
   margin-bottom:30px;
   text-align: center;
-  border: 1px solid var(--main-color);
   background-color: white;
 }
 
 .recipe-header-title {
   text-align: center;
   font-size: 20px;
+  margin: 0;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: var(--main-color);
@@ -32,7 +33,7 @@
 
 
 .recipe-detail-top {
-  margin: auto;
+  margin-top: 10px;
   display: flex;
   gap: 30px;
   padding: 3vw 3vh;
@@ -66,13 +67,7 @@
   }
 }
 
-// .chart-itself {
-//   width: 70%;
-// }
 
-// #food-image {
-//   width: 100%;
-// }
 
 .recipe-information {
   display: flex;

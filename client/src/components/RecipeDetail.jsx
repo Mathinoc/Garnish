@@ -112,7 +112,8 @@ export default function RecipeDetail({ myList, toggleHeart }) {
           </div>
         </div>
       </div>
-      <div className="recipe-detail-container">
+      <div >
+      {/* className="recipe-detail-container" */}
         <p className="recipe-header-title" >Similar recipes</p>
         <SimilarList myList={myList} id={recipeId} number={3} toggleHeart={toggleHeart} />
       </div>

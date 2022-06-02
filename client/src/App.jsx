@@ -35,7 +35,6 @@ function App() {
   useEffect(() => {
     getRandomRecipess(20)
       .then(result => {
-        console.log(result)
         if (Array.isArray(result)) {
           result.map(el => {
             myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false;
