@@ -9,6 +9,7 @@ function ActivePath (path) {
   let resolved = useResolvedPath(path);
   return useMatch({ path: resolved.pathname, end: true });
 }
+
 export default function Footer() {
   return (
     <>
