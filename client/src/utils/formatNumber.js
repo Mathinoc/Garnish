@@ -1,8 +1,6 @@
 export function fractionView (value) {
   const valueString = value.toString();
   if (valueString.match('.').length) {
-    console.log(valueString);
-    console.log(valueString.match('.').length)
     let finalNumber = valueString.slice(0, valueString.indexOf('.'));
     if (finalNumber === '0') {
       finalNumber = []
@@ -12,10 +10,8 @@ export function fractionView (value) {
     const decimalPart = valueString.indexOf('.') !== '-1' && valueString.slice(valueString.indexOf('.')+1)
     let decimalFraction;
       if( decimalPart.slice(0,2) === '66'){
-        console.log('ihi')
       	decimalFraction = '2/3';
         finalNumber.push('2/3');
-        console.log(finalNumber)
       }
       else if (decimalPart.slice(0,2) === '33'){
         decimalFraction = '1/3';

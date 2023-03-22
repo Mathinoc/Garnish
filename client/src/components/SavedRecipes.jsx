@@ -50,7 +50,7 @@ export default function SavedRecipes({ myList, toggleHeart }) {
           :
           <div>
             <p style={{ 'fontSize': '20px' }}>You don't have any saved recipe yet!</p>
-            <i class="bi bi-bookmark-heart"></i>
+            <i className="bi bi-bookmark-heart"></i>
           </div>
         }
       </div>

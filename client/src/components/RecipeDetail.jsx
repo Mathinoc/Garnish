@@ -8,7 +8,7 @@ import SimilarList from './SimilarList';
 import { getRecipeById } from './../services/recipeService';
 import BarChart from './BarChart';
 // import { getRecipeByIdData } from './../data';
-import { getRecipeTemplate } from './../data';
+// import { getRecipeTemplate } from './../data';
 
 
 export default function RecipeDetail({ myList, toggleHeart }) {
@@ -24,14 +24,13 @@ export default function RecipeDetail({ myList, toggleHeart }) {
 
   useEffect(() => {
     if (!recipe.id || recipe.id !== recipeId) {
-      getRecipeById(recipeId, {})
+      getRecipeById(recipeId)
         .then(recipeResult => {
           if (recipeResult['id'] === parseInt(recipeId, 10)) {
             myList.includes(recipeResult['id']) ? recipeResult["favorite"] = true : recipeResult["favorite"] = false;
             setRecipe(recipeResult);
             return
           }
-          alert('Could not get recipe details :/')
         })
         .catch(error => console.log("RecipeDetail()", error))
     }
@@ -115,7 +114,7 @@ export default function RecipeDetail({ myList, toggleHeart }) {
       <div >
       {/* className="recipe-detail-container" */}
         <p className="recipe-header-title" >Similar recipes</p>
-        <SimilarList myList={myList} id={recipeId} number={3} toggleHeart={toggleHeart} />
+        <SimilarList myList={myList} id={recipeId} toggleHeart={toggleHeart} />
       </div>
     </div>
   )

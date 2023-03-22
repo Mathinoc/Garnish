@@ -1,75 +1,51 @@
-import {getRandomRecipes} from './../data.js';
+import { getMockedRandomRecipes } from './../data.js';
+import { urlParams } from './../utils/urlParams.ts';
 const baseUrl = process.env.REACT_APP_BASE_URL || "";
 
 
-export function scrapeData (urlRecipe) {
-  return fetch(`${baseUrl}/recipe-url`, {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({'urlRecipe':urlRecipe})
-  })
-  .then(result => {
-    return result.json()
-  })
-  .catch(e => console.log('error in service file', e))
+export function scrapeData(url) {
+  return fetch(`${baseUrl}/recipe/external?url=${url}`)
+    .then(res => res.json())
+    .catch(e => console.log('error in service file', e))
 }
 
 
-export function getRecipeInMyList (ids) {
-  return fetch(`${baseUrl}/recipes-id`, {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(ids)
-  })
-  .then(result => result.json())
-  .catch(e => console.log('error in service file', e))
+export function getRecipeInMyList(ids) {
+  return fetch(`${baseUrl}/recipes/ids/${ids.join(',')}`)
+    .then(res => res.json())
+    .catch(e => console.log('error in service file', e))
 }
 
-export function getSearchResults (searchDetails) {
-  return fetch(`${baseUrl}/recipe-by-name`, {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(searchDetails)
-  })
-  .then(result => result.json())
-  .catch(e => console.log('error in service file', e))
+export function getSearchResults(searchDetails) {
+  const searchParams = urlParams(searchDetails);
+  return fetch(`${baseUrl}/search${searchParams}`)
+    .then(res => res.json())
+    .catch(e => console.log('error in service file', e));
 }
 
-export function getRandomRecipess (number) {
+export function getRandomRecipes() {
   //! API
-  return fetch(`${baseUrl}/recipes`, {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({"number": number})
-  })
-    .then(result => result.json())
+  return fetch(`${baseUrl}/recipes`)
+    .then(res => res.json())
     .then(res => res["recipes"])
     .catch(e => console.log('error in service file', e))
-  
+
   //! from saved data
   // return getRandomRecipes(10)
 }
 
 
-export function getRecipeById (id, filters) {
-//   //! API
-  return fetch(`${baseUrl}/recipe/${id}`, {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({"filters": filters})
-  })
-  .then(result => result.json())
-  .catch(e => console.log('error in service file', e))
+export function getRecipeById(id) {
+  //   //! API
+  return fetch(`${baseUrl}/recipes/${id}`)
+    .then(res => res.json())
+    .catch(e => console.log('error in service file', e))
 }
 
 
-export function getSimilarRecipes (id, number) {
+export function getSimilarRecipes(id) {
   //   //! API
-  return fetch(`${baseUrl}/similar-recipe/${id}`, {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({"number": number})
-  })
-  .then(result => result.json())
-  .catch(e => console.log('error in service file', e))
+  return fetch(`${baseUrl}/recipes/${id}/similar`)
+    .then(res => res.json())
+    .catch(e => console.log('error in service file', e))
 }

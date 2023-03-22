@@ -8,11 +8,11 @@ import { scrollToTop } from '../utils/scrollToTop';
 import animationSearch from './../gifs/searching-for-word.gif';
 
 
-export default function SimilarList({ id, number, toggleHeart, myList }) {
+export default function SimilarList({ id, toggleHeart, myList }) {
   const [similarList, setSimilarList] = useState([]);
 
   useEffect(() => {
-    getSimilarRecipes(id, number)
+    getSimilarRecipes(id)
       .then(result => {
         if (Array.isArray(result) && result.length > 0) {
           result.map(el => {
@@ -27,7 +27,7 @@ export default function SimilarList({ id, number, toggleHeart, myList }) {
           setSimilarList({ ok: false, displayText: message });
         }
       })
-      .catch(error => console.log("getRandomRecipess()", error))
+      .catch(error => console.log("getRandomRecipes()", error))
   }, [id])
 
   function handleClick(recipeId) {

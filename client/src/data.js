@@ -1,6 +1,4 @@
-
-
-let recipeBulk = {
+const recipeBulk = {
   "recipes": [
     {
           "vegetarian": true,
@@ -51212,9 +51210,9 @@ let recipeBulk = {
           "spoonacularSourceUrl": "https://spoonacular.com/southern-style-green-bean-715515"
       }
   ]
-}
+};
 
-let recipeTemplate = {
+const recipeTemplate = {
   "vegetarian": true,
   "vegan": false,
   "glutenFree": false,
@@ -53526,13 +53524,13 @@ let recipeTemplate = {
       }
   ],
   "originalId": null
-}
+};
 
 
 
 let recipeBulkLength = recipeBulk.length;
-export function getRandomRecipes(number) {
-console.log('in random fct from data')
+
+export function getMockedRandomRecipes(number) {
   let startPoint = Math.round(Math.random()*(recipeBulkLength-1));
   let result = [];
   
@@ -53561,7 +53559,6 @@ export function getRecipeTemplate () {
 export function getRecipeByIdData (id) {
   for (let recipe of recipeBulk.recipes) {
     if(recipe.id === id ) {
-      // console.log("recipe", typeof recipe)
       return recipe
     }
   }

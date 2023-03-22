@@ -8,8 +8,8 @@ import Footer from "./components/Footer";
 import MyRecipes from "./components/MyRecipes";
 import SavedRecipes from './components/SavedRecipes';
 import { useState, useEffect } from 'react';
-import { getRandomRecipess } from './services/recipeService';
-// import { getRandomRecipes, getRecipeBulk } from './data';
+import { getRandomRecipes } from './services/recipeService';
+// import { getMockedRandomRecipes, getRecipeBulk } from './data';
 
 function App() {
   const [searchRecipe, setSearchRecipe] = useState('');
@@ -33,7 +33,7 @@ function App() {
   const [randomListInitial, setRandomListInitial] = useState([]);
 
   useEffect(() => {
-    getRandomRecipess(20)
+    getRandomRecipes(20)
       .then(result => {
         if (Array.isArray(result)) {
           result.map(el => {
@@ -46,12 +46,12 @@ function App() {
           setRandomListInitial({ ok: false, displayText: message });
         }
       })
-      .catch(error => console.log("getRandomRecipess()", error));
+      .catch(error => console.log("getRandomRecipes()", error));
   }, [])
 
 
   //! from saved data
-  // const randomListInitial ={ok: true, resultArray:getRandomRecipes(20)};
+  // const randomListInitial ={ok: true, resultArray:getMockedRandomRecipes(20)};
   // randomListInitial.resultArray.map(el => {
   //   if (myList.includes(el.id)) {
   //     el["favorite"] = true;

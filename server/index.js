@@ -13,13 +13,13 @@ config();
 
 app.use(cors());
 
-app.use(Express.json());    //parse the req into json
+app.use(Express.json());    //parse the req object (json.parse)
+
+app.use(router);
 
 app.use(Express.static(path.join(__dirname + './../client/build')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-
-app.use(router);
 
 app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT} 🪁`));

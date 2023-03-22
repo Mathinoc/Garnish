@@ -17,8 +17,7 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
     search: searchSet.searchRecipe,
     vegetarian: searchSet.vegetarian,
     gluten: searchSet.gluten,
-    dairy: searchSet.dairy,
-    number: number || 20
+    dairy: searchSet.dairy
   }
 
   useEffect(() => {
@@ -48,7 +47,6 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
         myList.includes(el.id) ? el["favorite"] = true : el["favorite"] = false
         return el
       });
-      console.log('searchlist', newSearchList)
       setSearchList({ ...searchList, resultArray: newSearchList })
     }
   }, [myList])
