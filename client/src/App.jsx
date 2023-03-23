@@ -1,5 +1,5 @@
 import './App.scss';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import RecipeList from './components/RecipeList';
 import SearchList from './components/SearchList';
@@ -33,7 +33,7 @@ function App() {
   const [randomListInitial, setRandomListInitial] = useState([]);
 
   useEffect(() => {
-    getRandomRecipes(20)
+    getRandomRecipes()
       .then(result => {
         if (Array.isArray(result)) {
           result.map(el => {
@@ -41,7 +41,6 @@ function App() {
           })
           setRandomListInitial({ ok: true, resultArray: result });
         } else {
-          console.log("Couldn't get the data :/")
           const message = "Sorry, we couldn't get any recipe from the database"
           setRandomListInitial({ ok: false, displayText: message });
         }
@@ -89,9 +88,10 @@ function App() {
             <Routes>
               <Route path="/" element={<RecipeList toggleHeart={toggleHeart} randomListInitial={randomListInitial} />} />
               <Route path="/search" element={<SearchList toggleHeart={toggleHeart} myList={myList} number={20} searchSet={searchAndFilterSets} />} />
-              <Route path="/:recipeId" element={<RecipeDetail toggleHeart={toggleHeart} myList={myList} />} />
+              <Route path="/recipes/:recipeId" element={<RecipeDetail toggleHeart={toggleHeart} myList={myList} />} />
               <Route path="/my-recipes" element={<MyRecipes />} />
               <Route path="/my-favorites" element={<SavedRecipes myList={myList} toggleHeart={toggleHeart} />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
         </div>

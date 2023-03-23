@@ -64,7 +64,7 @@ export default function SearchList({ number, searchSet, toggleHeart, myList }) {
                   <button className="heart-btn" onClick={() => (toggleHeart(el.id))} >
                     {el["favorite"] ? <i className="bi bi-heart-fill"></i> : <i className="bi bi-heart"></i>}
                   </button>
-                  <Link to={`/${el.id}`} key={el.id} onClick={scrollToTop}>
+                  <Link to={`/recipes/${el.id}`} key={el.id} onClick={scrollToTop}>
                     <RecipeView toggleHeart={toggleHeart} recipe={el} key={el.id} />
                   </Link>
                 </div>

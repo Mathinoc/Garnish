@@ -4,7 +4,7 @@ const fetch = (...args) =>
 
 const baseUrl = 'https://api.spoonacular.com/recipes';
 const randomList = '/random?apiKey=';
-const apiKey = process.env.API_KEY2;
+const apiKey = process.env.API_KEY1;
 
 async function randomRecipes(req, res) {
   try {
